@@ -9,6 +9,17 @@ void mySwap(int* x, int* y)
 	*y = temp;
 }
 
+void printEven(int arr[])
+{
+	cout << endl;
+	int* ptr = arr;
+	ptr++;
+	for (; *ptr <= 10; ptr+=2)
+	{
+		cout << *ptr << endl;
+	}
+}
+
 int main() {
 
 	int a = 100;
@@ -49,6 +60,8 @@ int main() {
 	mySwap(px, py);
 	cout << "px = " << *px << "\npy = " << *py << endl;
 
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	printEven(arr);
 
 	cin.ignore();
 	cin.get();
