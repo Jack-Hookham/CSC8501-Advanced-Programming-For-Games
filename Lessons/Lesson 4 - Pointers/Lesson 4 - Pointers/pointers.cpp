@@ -14,7 +14,11 @@ void printEven(int arr[])
 	cout << endl;
 	int* ptr = arr;
 	ptr++;
-	for (; *ptr <= 10; ptr+=2)
+	//for (; *ptr <= 10; ptr+=2)
+	//{
+	//	cout << *ptr << endl;
+	//}
+	for (int i = 0; i < 10; ptr+=2, i+=2)
 	{
 		cout << *ptr << endl;
 	}
