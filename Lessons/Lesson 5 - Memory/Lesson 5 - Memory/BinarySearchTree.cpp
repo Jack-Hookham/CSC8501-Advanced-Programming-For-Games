@@ -13,12 +13,12 @@ BinarySearchTree::~BinarySearchTree()
 
 void BinarySearchTree::insertInteger(struct node** tree, int value)
 {
-	if (root == NULL)
+	if (*tree == NULL)
 	{
-		root = new node;
-		root->value = value;
-		root->left = NULL;
-		root->right = NULL;
+		*tree = new node;
+		(*tree)->value = value;
+		(*tree)->left = NULL;
+		(*tree)->right = NULL;
 	}
 	else
 	{
@@ -61,7 +61,7 @@ void BinarySearchTree::printTree(struct node* tree)
 	}
 
 	printTree(tree->left);
-	std::cout << tree->value << std::endl;
+	cout << tree->value << endl;
 	printTree(tree->right);
 }
 
@@ -74,3 +74,110 @@ void BinarySearchTree::terminateTree(struct node* tree)
 		delete tree;
 	}
 }
+
+void BinarySearchTree::printPretty(struct node* tree)
+{
+	int height = getHeight(tree) * 2;
+
+	for (int i = 0; i < height; i++)
+	{
+		printRow(tree, height, i);
+	}
+}
+
+void BinarySearchTree::printRow(const node* tree, const int height, int depth)
+{
+	int placeholder = 1 << 31;
+	vector<int> vec;
+	getLine(tree, depth, vec);
+
+	cout << setw((height - depth) * 2);
+
+	bool toggle = true;
+
+	if (vec.size() > 1)
+	{
+		for (int v : vec)
+		{
+			if (v != placeholder)
+			{
+				if (toggle)
+				{
+					cout << "/" << "   ";
+				}
+				else
+				{
+					cout << "\\" << "   ";
+				}
+			}
+			else
+			{
+				cout << "    ";
+			}
+			toggle = !toggle;
+		}
+		cout << "\n";
+		cout << setw((height - depth) * 2);
+	}
+	for (int v : vec)
+	{
+		if(v != placeholder)
+		{
+			cout << v << "   ";
+		}
+		else
+		{
+			cout << "    ";
+		}
+	}
+	cout << "\n";
+}
+
+void BinarySearchTree::getLine(const node* tree, int depth, vector<int>& values)
+{
+	int placeholder = 1 << 31;
+	if (depth <= 0 && tree != NULL) 
+	{
+		values.push_back(tree->value);
+		return;
+	}
+	if (tree->left != NULL)
+	{
+		getLine(tree->left, depth - 1, values);
+	}
+	else if (depth - 1 <= 0)
+	{
+		values.push_back(placeholder);
+	}
+	if (tree->right != NULL)
+	{
+		getLine(tree->right, depth - 1, values);
+	}
+	else if (depth - 1 <= 0)
+	{
+		values.push_back(placeholder);
+	}
+}
+
+int BinarySearchTree::getHeight(node* tree)
+{
+	if (tree == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int left = getHeight(tree->left);
+		int right = getHeight(tree->right);
+
+		if (left > right)
+		{
+			return left + 1;
+		}
+		else
+		{
+			return right + 1;
+		}
+	}
+}
+

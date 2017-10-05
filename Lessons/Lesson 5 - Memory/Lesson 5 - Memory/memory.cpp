@@ -114,9 +114,19 @@ int main() {
 	bst.insertInteger(&bst.root, 11);
 	bst.insertInteger(&bst.root, 16);
 	bst.insertInteger(&bst.root, 1);
-	bst.insertInteger(&bst.root, 2);
+	bst.insertInteger(&bst.root, 8);
+	bst.insertInteger(&bst.root, 22);
+	bst.insertInteger(&bst.root, 27);
+	bst.insertInteger(&bst.root, 63);
+	bst.insertInteger(&bst.root, 17);
+	bst.insertInteger(&bst.root, 33);
+	bst.insertInteger(&bst.root, 12);
+	bst.insertInteger(&bst.root, 3);
+	bst.insertInteger(&bst.root, 21);
 
 	bst.printTree(bst.root);
+
+	bst.printPretty(bst.root);
 
 	bst.terminateTree(bst.root);
 	cin.ignore();
