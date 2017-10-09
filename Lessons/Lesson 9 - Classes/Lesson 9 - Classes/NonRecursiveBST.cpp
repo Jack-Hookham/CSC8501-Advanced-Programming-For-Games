@@ -2,6 +2,10 @@
 
 NonRecursiveBST::NonRecursiveBST(int insertValues[], const int NUM_VALUES)
 {
+	for (int i = 0; i < NUM_VALUES; i++)
+	{
+		insertInteger(&root, insertValues[i]);
+	}
 }
 
 NonRecursiveBST::~NonRecursiveBST()
@@ -25,41 +29,43 @@ void NonRecursiveBST::insertInteger(struct node** tree, int value)
 		(*tree)->left = NULL;
 		(*tree)->right = NULL;
 	}
-
-	//while no empty node is found
-	while (currentNode != NULL)
-	{
-		//if value < current branch value go left
-		if (value < currentNode->value)
-		{
-			//update parent and current node values
-			parentNode = currentNode;
-			currentNode = currentNode->left;
-			cout << "Go left";
-		}
-		//value <= current branch value go right
-		else
-		{
-			parentNode = currentNode;
-			currentNode = currentNode->right;
-			cout << "Go right";
-		}
-	}
-	//Once an empty node is found we can populate that node
-	//Create the node
-	node* newNode = new node;
-	newNode->value = value;
-	newNode->left = NULL;
-	newNode->right = NULL;
-
-	//Insert the node
-	if (value < parentNode->value)
-	{
-		parentNode->left->value = value;
-	}
 	else
 	{
-		parentNode->right->value = value;
+		//while no empty node is found
+		while (currentNode != NULL)
+		{
+			//if value < current branch value go left
+			if (value < currentNode->value)
+			{
+				//update parent and current node values
+				parentNode = currentNode;
+				currentNode = currentNode->left;
+				cout << "Go left\n";
+			}
+			//value <= current branch value go right
+			else
+			{
+				parentNode = currentNode;
+				currentNode = currentNode->right;
+				cout << "Go right\n";
+			}
+		}
+		//Once an empty node is found we can populate that node
+		//Create the node
+		node* newNode = new node;
+		newNode->value = value;
+		newNode->left = NULL;
+		newNode->right = NULL;
+
+		//Insert the node
+		if (value < parentNode->value)
+		{
+			parentNode->left = newNode;
+		}
+		else
+		{
+			parentNode->right = newNode;
+		}
 	}
 }
 
