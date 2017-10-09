@@ -36,7 +36,7 @@ void BinarySearchTree::insertInteger(struct node** tree, int value)
 				(*tree)->left->right = NULL;
 			}
 		}
-		else if (value >= (*tree)->value)
+		else
 		{
 			if ((*tree)->right != NULL)
 			{

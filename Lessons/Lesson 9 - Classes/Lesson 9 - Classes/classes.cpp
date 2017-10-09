@@ -1,44 +1,10 @@
 #include <iostream>
 
+#include "Enemy.h"
+#include "Player.h"
+#include "BinarySearchTree.h"
+
 using namespace std;
-
-class Enemy {
-public:
-	Enemy(int hps);
-	~Enemy();
-	int get_hit_points() const;
-	int get_score() const;
-	void set_hit_points(int new_hit_points);
-	void set_score(int new_score);
-private:
-	int hit_points;
-	int* score;
-};
-
-Enemy::Enemy(int hps) :
-	hit_points(hps) {
-	score = new int(0);
-}
-
-Enemy::~Enemy() {
-	delete score;
-}
-
-int Enemy::get_hit_points() const {
-	return hit_points;
-}
-
-int Enemy::get_score() const {
-	return *score;
-}
-
-void Enemy::set_hit_points(const int new_hit_points) {
-	hit_points = new_hit_points;
-}
-
-void Enemy::set_score(const int new_score) {
-	*score = new_score;
-}
 
 int main(void) {
 
@@ -54,5 +20,41 @@ int main(void) {
 
 	delete e2;
 	e2 = NULL;
+
+	const int numValues = 10;
+	int insertValues[] = { 10, 5, 11, 16, 1, 8, 22, 27, 63, 17 };
+	BinarySearchTree* bst = new BinarySearchTree(insertValues, 10);
+
+	bst->printTree(bst->root);
+	cout << "\n";
+
+	bst->insertInteger(&bst->root, 12);
+	bst->insertInteger(&bst->root, 3);
+	bst->insertInteger(&bst->root, 21);
+
+	bst->printTree(bst->root);
+	cout << "\n";
+
+	while (true)
+	{
+		int searchVal;
+		cout << "\nEnter integer to search for: ";
+		cin >> searchVal;
+		if (bst->searchTree(bst->root, searchVal))
+		{
+			cout << searchVal << " found.";
+		}
+		else
+		{
+			cout << searchVal << " not found.";
+		}
+	}
+
+	delete bst;
+	bst = NULL;
+
+	cin.ignore();
+	cin.get();
+
 	return 0;
 }
