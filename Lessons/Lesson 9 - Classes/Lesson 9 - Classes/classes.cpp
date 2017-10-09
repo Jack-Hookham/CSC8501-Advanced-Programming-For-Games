@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "BinarySearchTree.h"
+#include "NonRecursiveBST.h"
 
 using namespace std;
 
@@ -35,7 +36,11 @@ int main(void) {
 	bst->printTree(bst->root);
 	cout << "\n";
 
-	while (true)
+	NonRecursiveBST* nrbst = new NonRecursiveBST(insertValues, 10);
+	nrbst->printTree(nrbst->root);
+	cout << "\n";
+
+	/*while (true)
 	{
 		int searchVal;
 		cout << "\nEnter integer to search for: ";
@@ -48,7 +53,7 @@ int main(void) {
 		{
 			cout << searchVal << " not found.";
 		}
-	}
+	}*/
 
 	delete bst;
 	bst = NULL;

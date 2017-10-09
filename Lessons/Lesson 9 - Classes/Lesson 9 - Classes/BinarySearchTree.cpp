@@ -1,7 +1,7 @@
 #include "BinarySearchTree.h"
 
 
-BinarySearchTree::BinarySearchTree(int insertValues[], const int NUM_VALUES)
+BinarySearchTree::BinarySearchTree(int insertValues[] = {}, const int NUM_VALUES = 0)
 {
 	for (int i = 0; i < NUM_VALUES; i++)
 	{
@@ -16,7 +16,7 @@ BinarySearchTree::~BinarySearchTree()
 
 void BinarySearchTree::insertInteger(node** tree, int value)
 {
-	//if tree has not been started set the root as the value
+	//if the tree is empty give it the value
 	if (*tree == NULL)
 	{
 		*tree = new node;
@@ -113,5 +113,4 @@ bool BinarySearchTree::searchTree(node* tree, int value)
 	{
 		return false;
 	}
-
 }

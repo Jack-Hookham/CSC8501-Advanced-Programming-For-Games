@@ -5,11 +5,11 @@
 
 using namespace std;
 
-class BinarySearchTree
+class NonRecursiveBST
 {
 public:
-	BinarySearchTree(int insertValues[], const int NUM_VALUES);
-	~BinarySearchTree();
+	NonRecursiveBST(int insertValues[], const int NUM_VALUES);
+	~NonRecursiveBST();
 
 	struct node
 	{
@@ -25,3 +25,4 @@ public:
 	void terminateTree(node* tree);
 	bool searchTree(node* tree, int value);
 };
+

@@ -114,11 +114,13 @@
     <ClCompile Include="BinarySearchTree.cpp" />
     <ClCompile Include="classes.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="NonRecursiveBST.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="NonRecursiveBST.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
