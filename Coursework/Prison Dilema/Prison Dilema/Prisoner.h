@@ -15,7 +15,7 @@ public:
 	void print();
 
 private:
-	const int MAX_LINES = 20;
-	string strategyLines[20];
+	static constexpr int MAX_LINES = 20;
+	string strategyLines[MAX_LINES];
 };
 

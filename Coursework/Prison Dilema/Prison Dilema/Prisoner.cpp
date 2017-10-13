@@ -2,25 +2,9 @@
 
 Prisoner::Prisoner(string strategyPath)
 {
-	//strategyLines[MAX_LINES];
+	FileManager::readFileToArray(strategyPath, strategyLines);
 
-	string line;
-	ifstream file(strategyPath);
-
-	if (file.is_open())
-	{
-		int currentLineIndex = 0;
-		while (getline(file, line))
-		{
-			strategyLines[currentLineIndex] = line + "\n";
-			currentLineIndex++;
-		}
-		file.close();
-	}
-	else
-	{
-		cout << "Unable to open file";
-	}
+	cout << "done";
 }
 
 Prisoner::~Prisoner()

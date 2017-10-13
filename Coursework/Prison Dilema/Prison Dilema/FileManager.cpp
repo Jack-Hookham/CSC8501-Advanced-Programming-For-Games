@@ -1,32 +1,22 @@
 #include "fileManager.h"
 
-//Read a strategy file
-bool FileManager::readFile(std::string filePath, std::string& buffer)
+void FileManager::readFileToArray(string filePath, string lines[])
 {
-	bool success = true;
+	string line;
+	ifstream file(filePath);
 
-	std::ifstream file(filePath, std::ios::binary);
-	if (file.fail())
+	if (file.is_open())
 	{
-		perror(filePath.c_str());
-		return false;
+		int currentLineIndex = 0;
+		while (getline(file, line))
+		{
+			lines[currentLineIndex] = line + "\n";
+			currentLineIndex++;
+		}
+		file.close();
 	}
 	else
 	{
-		//seek to the end
-		file.seekg(0, std::ios::end);
-
-		//Get the file size
-		unsigned int fileSize = (unsigned int)file.tellg();
-		file.seekg(0, std::ios::beg);
-
-		//Reduce the file size by any header bytes that might be present
-		fileSize -= (unsigned int)file.tellg();
-
-		buffer.resize(fileSize);
-		file.read((char *)&(buffer[0]), fileSize);
-		file.close();
+		cout << "Unable to open file";
 	}
-
-	return success;
 }
