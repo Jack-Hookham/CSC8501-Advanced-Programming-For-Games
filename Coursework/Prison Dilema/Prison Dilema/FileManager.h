@@ -8,4 +8,5 @@ class FileManager
 {
 public:
 	static void readFileToArray(std::string filePath, std::string lines[]);
+	static void writeStringToFile(std::string filePath, std::string strategy[])
 };

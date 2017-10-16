@@ -9,9 +9,13 @@ void StrategyGenerator::generate(int n)
 	}
 }
 
-void StrategyGenerator::generateStrategy(int index)
+void StrategyGenerator::generateStrategy(const int index, const int MAX_LINES const)
 {
+	std::ostringstream oss;
+	oss << "../Strategies/WriteTest" << index << ".txt";
+	std::string filePath = oss.str();
 
+	std::string strategy[MAX_LINES];
 
-	FileManager::writeStringToFile(std::string filePath, std::string strategy[]);
+	FileManager::writeStringToFile(filePath, strategy[]);
 }
