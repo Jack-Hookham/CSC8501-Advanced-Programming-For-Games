@@ -1,9 +1,9 @@
 #include "fileManager.h"
 
-void FileManager::readFileToArray(string filePath, string lines[])
+void FileManager::readFileToArray(std::string filePath, std::string lines[])
 {
-	string line;
-	ifstream file(filePath);
+	std::string line;
+	std::ifstream file(filePath);
 
 	if (file.is_open())
 	{
@@ -17,6 +17,6 @@ void FileManager::readFileToArray(string filePath, string lines[])
 	}
 	else
 	{
-		cout << "Unable to open file";
+		std::cout << "Unable to open file";
 	}
 }

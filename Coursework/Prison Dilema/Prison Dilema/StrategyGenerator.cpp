@@ -12,4 +12,6 @@ void StrategyGenerator::generate(int n)
 void StrategyGenerator::generateStrategy(int index)
 {
 
+
+	FileManager::writeStringToFile(std::string filePath, std::string strategy[]);
 }

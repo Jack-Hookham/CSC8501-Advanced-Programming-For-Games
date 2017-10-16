@@ -1,4 +1,9 @@
 #pragma once
+
+#include <iostream>
+
+#include "FileManager.h"
+
 class StrategyGenerator
 {
 public:

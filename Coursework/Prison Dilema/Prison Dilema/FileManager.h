@@ -4,10 +4,8 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
 class FileManager
 {
 public:
-	static void readFileToArray(string filePath, string lines[]);
+	static void readFileToArray(std::string filePath, std::string lines[]);
 };

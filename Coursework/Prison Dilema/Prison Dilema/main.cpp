@@ -6,16 +6,17 @@
 #include "Interpreter.h"
 #include "StrategyGenerator.h"
 
-
 int main()
 {
 	Prisoner a("../Strategies/TestStrategy1.txt");
 	a.print();
 
+	std::cout << "\n";
+
 	StrategyGenerator::generate(10);
 
-	cin.ignore();
-	cin.get();
+	std::cin.ignore();
+	std::cin.get();
 
 	return 0;
 }
