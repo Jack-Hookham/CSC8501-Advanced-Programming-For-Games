@@ -113,13 +113,18 @@
   <ItemGroup>
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="Language.cpp" />
+    <ClCompile Include="PSILWord.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prisoner.cpp" />
     <ClCompile Include="StrategyGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="Language.h" />
+    <ClInclude Include="PSILWord.h" />
     <ClInclude Include="Prisoner.h" />
     <ClInclude Include="StrategyGenerator.h" />
   </ItemGroup>

@@ -7,6 +7,6 @@
 class FileManager
 {
 public:
-	static void readFileToArray(std::string filePath, std::string lines[]);
-	static void writeStringToFile(std::string filePath, std::string strategy[])
+	static void readFromFile(std::string filePath, std::string strategy[]);
+	static void writeToFile(std::string filePath, int lines, std::string strategy[]);
 };

@@ -3,6 +3,8 @@
 #include <iostream>
 
 #include "FileManager.h"
+#include "Globals.h"
+#include "Language.h"
 
 class Prisoner
 {
@@ -13,7 +15,7 @@ public:
 	void print();
 
 private:
-	static constexpr int MAX_LINES = 20;
-	std::string strategyLines[MAX_LINES];
+	//static constexpr int MAX_LINES = 20;
+	std::string strategyLines[Language::MAXLINES];
 };
 

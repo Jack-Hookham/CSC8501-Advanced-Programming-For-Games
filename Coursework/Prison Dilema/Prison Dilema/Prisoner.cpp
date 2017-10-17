@@ -2,7 +2,7 @@
 
 Prisoner::Prisoner(std::string strategyPath)
 {
-	FileManager::readFileToArray(strategyPath, strategyLines);
+	FileManager::readFromFile(strategyPath, strategyLines);
 }
 
 Prisoner::~Prisoner()
@@ -11,7 +11,7 @@ Prisoner::~Prisoner()
 
 void Prisoner::print()
 {
-	for (int i = 0; i < MAX_LINES; i++)
+	for (int i = 0; i < Language::MAXLINES; i++)
 	{
 		std::cout << strategyLines[i];
 	}

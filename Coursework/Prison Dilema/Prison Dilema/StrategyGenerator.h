@@ -3,8 +3,12 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <random>
+#include <ctime>
 
 #include "FileManager.h"
+#include "Globals.h"
+#include "Language.h"
 
 class StrategyGenerator
 {
@@ -15,5 +19,8 @@ public:
 private:
 	//generate a single strategy
 	static void generateStrategy(int index);
+
+	//generate a PSIL if statement
+	static std::string generateIf();
 };
 
