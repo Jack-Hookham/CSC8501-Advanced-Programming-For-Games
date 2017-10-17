@@ -22,7 +22,7 @@ public:
 		GREATER_THAN,
 		LESS_THAN,
 		EQUALS,
-		NUM_OPERATORS
+		NO_OP
 	};
 
 	static enum varEnums
@@ -34,7 +34,7 @@ public:
 		ALLOUTCOMES_Z,
 		ITERATIONS,
 		MYSCORE,
-		NUM_VARS
+		NO_VAR
 	};
 
 	static const std::string psil_keywords[];

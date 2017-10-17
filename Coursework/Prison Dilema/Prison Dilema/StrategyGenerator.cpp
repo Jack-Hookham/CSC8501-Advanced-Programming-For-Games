@@ -32,12 +32,6 @@ void StrategyGenerator::generateStrategy(const int index)
 	//random line distribution between 1 and max lines
 	std::uniform_int_distribution<int> lineDistribution(1, Language::MAXLINES);
 
-	std::uniform_int_distribution<int> firstVarDistribution(0, Language::varEnums::NUM_VARS - 1);
-	std::uniform_int_distribution<int> secondVarDistribution(0, Language::varEnums::NUM_VARS - 2);
-
-	//-2 to exclude =
-	std::uniform_int_distribution<int> operatorDistribution(0, Language::operatorEnums::NUM_OPERATORS - 2);
-
 	//Set the number of lines for this strategy
 	const int totalLines = lineDistribution(randGenerator);
 
@@ -81,7 +75,7 @@ void StrategyGenerator::generateStrategy(const int index)
 					switch (i)
 					{
 					case 0: //IF
-						ossLine << generateIf(currentLineNum, totalLines, randGenerator, firstVarDistribution, secondVarDistribution, operatorDistribution);
+						ossLine << generateIf(currentLineNum, totalLines, randGenerator);
 						strategy[currentLineNum] = ossLine.str();
 						i = NUM_WEIGHTS; 
 						lastLine = IF;
@@ -116,30 +110,66 @@ void StrategyGenerator::generateStrategy(const int index)
 }
 
 //generate a PSIL if statement
-std::string StrategyGenerator::generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator,
-	std::uniform_int_distribution<int> &firstVarDistribution, std::uniform_int_distribution<int> &secondVarDistribution, 
-	std::uniform_int_distribution<int> &operatorDistribution)
+std::string StrategyGenerator::generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator)
 {
+	//Number of operations on each side (1 or 2)
+	bool lhs = false;
+	bool rhs = false;
 
-	int firstVar = firstVarDistribution(randGenerator);
-	int secondVar = secondVarDistribution(randGenerator);
+	std::uniform_int_distribution<int> dist(0, 1);
 
-	//greatest enum is removed from secondVarDistribution
-	//if the same variables are picked then second var is set to greatest enum
-	if (firstVar == secondVar)
+	if (dist(randGenerator) > 0)
 	{
-		secondVar = Language::varEnums::MYSCORE;
+		lhs = true;
+	}	
+
+	if (dist(randGenerator) > 0)
+	{
+		rhs = true;
 	}
 
-	int op = operatorDistribution(randGenerator);
+	std::uniform_int_distribution<int> varDistribution(0, Language::varEnums::NO_VAR - 1);
+
+	const int varsSize = 4;
+	int vars[varsSize];
+	for (int i = 0; i < varsSize; i++)
+	{
+		vars[i] = varDistribution(randGenerator);
+	}
+
+	std::uniform_int_distribution<int> calcOperatorDistribution(Language::operatorEnums::PLUS, Language::operatorEnums::MINUS);
+	std::uniform_int_distribution<int> equalityOperatorDistribution(Language::operatorEnums::GREATER_THAN, Language::operatorEnums::EQUALS);
+
+	int equalityOperator = equalityOperatorDistribution(randGenerator);
+	int firstOp = calcOperatorDistribution(randGenerator);
+	int secondOp = calcOperatorDistribution(randGenerator);
+
+	//Set lhs operator and second var to "" if they aren't being used
+	if (!lhs)
+	{
+		firstOp = Language::operatorEnums::NO_OP;
+		vars[1] = Language::varEnums::NO_VAR;
+	}
+	//Set rhs operator and second var to "" if they aren't being used
+	if (!rhs)
+	{
+		secondOp = Language::operatorEnums::NO_OP;
+		vars[3] = Language::varEnums::NO_VAR;
+	}
 
 	//GOTO line number should be between (current line + 1) and total lines
-	std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 1, totalLines);
-	int gotoLine = gotoDistribution(randGenerator);
+	//if on 2nd last line go to last line
+	int gotoLine = totalLines;
+	if (currentLineNum < totalLines - 1)
+	{
+		std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 1, totalLines);
+		gotoLine = gotoDistribution(randGenerator);
+	}
 
 	std::ostringstream ossLine;
 	//concatenate the final if statement
-	ossLine << "IF " << Language::psil_vars[firstVar] << ' ' << Language::psil_operators[op] << ' ' << Language::psil_vars[secondVar] << " GOTO " << gotoLine;
+	ossLine << "IF " << Language::psil_vars[vars[0]] << Language::psil_operators[firstOp] << Language::psil_vars[vars[1]] << Language::psil_operators[equalityOperator]
+		<< Language::psil_vars[vars[2]] << Language::psil_operators[secondOp] << Language::psil_vars[vars[3]] << "GOTO " << gotoLine;
 
 	std::string lineString = ossLine.str();
 	return lineString;

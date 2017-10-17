@@ -21,8 +21,6 @@ private:
 	static void generateStrategy(int index);
 
 	//generate a PSIL if statement
-	static std::string generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator,
-		std::uniform_int_distribution<int> &firstVarDistribution, std::uniform_int_distribution<int> &secondVarDistribution,
-		std::uniform_int_distribution<int> &operatorDistribution);
+	static std::string generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator);
 };
 
