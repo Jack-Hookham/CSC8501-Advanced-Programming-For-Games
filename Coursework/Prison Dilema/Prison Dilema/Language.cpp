@@ -1,18 +1,25 @@
 #include "Language.h"
 
-//Definition of keywords
-const std::string Language::keywords[] =
+const std::string Language::psil_keywords[] =
 {
 	"IF",
 	"GOTO",
 	"BETRAY",
 	"SILENCE",
-	"RANDOM",
+	"RANDOM"
+};
+
+const std::string Language::psil_operators[] =
+{
 	"+",
 	"-",
 	">",
 	"<",
-	"=",
+	"="
+};
+
+const std::string Language::psil_vars[] =
+{
 	"LASTOUTCOME",
 	"ALLOUTCOMES_W",
 	"ALLOUTCOMES_X",
