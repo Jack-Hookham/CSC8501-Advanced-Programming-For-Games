@@ -28,79 +28,71 @@ void StrategyGenerator::generateStrategy(const int index)
 	std::string filePath = ossPath.str();
 
 	std::random_device rd;
-	std::mt19937 randGenerator(rd());
+	std::default_random_engine dre{ rd() };
+	std::mt19937 randGenerator(dre);
+
 	//random line distribution between 1 and max lines
 	std::uniform_int_distribution<int> lineDistribution(1, Language::MAXLINES);
 
 	//Set the number of lines for this strategy
 	const int totalLines = lineDistribution(randGenerator);
-
+	//const int totalLines = 1;
 	//array of strings with each index representing a line of the strategy
 	std::string strategy[Language::MAXLINES];
-	
+
+	//Weightings for IF, BETRAY, SILENCE, RANDOM
 	const int NUM_WEIGHTS = 4;
-	//IF, BETRAY, SILENCE, RANDOM keyword weightings
-	//DISCRETE DIST???
-	int weights[NUM_WEIGHTS] = { 70, 10, 10, 10 };
-	int totalWeight = 0;
-	for (int i = 0; i < NUM_WEIGHTS; i++)
-	{
-		totalWeight += weights[i];
-	}
+	double weights[NUM_WEIGHTS] = { 4, 1, 1, 1 };
+	std::discrete_distribution<int> weightDistribution({ weights[0], weights[1], weights[2], weights[3] });
 
-	std::uniform_int_distribution<int> weightDistribution(0, totalWeight - 1);
-
+	//current line number (as an index for arrays) so +1 needed for actual line number starting from 1
 	int currentLineNum = 0;
-	while (currentLineNum <= Language::MAXLINES)
+	while (currentLineNum < totalLines)
 	{
-		//if the number of lines has been reached stop adding lines
-		if (currentLineNum >= totalLines)
+		//if the program is longer than 1 line then the first line should be an if
+		if (currentLineNum == 0 && totalLines > 1)
 		{
-			break;
+			weightDistribution = std::discrete_distribution<int>({ weights[0], 0, 0, 0 });
 		}
-		//strategy generation logic
+
+		//last line can't be if
+		else if (currentLineNum + 1 >= totalLines)
+		{
+			weightDistribution = std::discrete_distribution<int>({ 0, weights[1], weights[2], weights[3] });
+		}
+		
+		//otherwise use all defined weights
 		else
 		{
-			//START LINE
-			int cumulativeWeight = 0;
-			int weight = weightDistribution(randGenerator);
-			
-			for (int i = 0; i < NUM_WEIGHTS; i++)
-			{
-				cumulativeWeight += weights[i];
-				if (weight < cumulativeWeight)
-				{
-					std::ostringstream ossLine;
-					ossLine << currentLineNum + 1 << ' ';
-					switch (i)
-					{
-					case 0: //IF
-						ossLine << generateIf(currentLineNum, totalLines, randGenerator);
-						strategy[currentLineNum] = ossLine.str();
-						i = NUM_WEIGHTS; 
-						lastLine = IF;
-						break;
-					case 1: //BETRAY
-						ossLine << Language::psil_keywords[Language::keywordEnums::BETRAY];
-						strategy[currentLineNum] = ossLine.str();
-						i = NUM_WEIGHTS;
-						lastLine = BETRAY;
-						break;
-					case 2: //SILENCE
-						ossLine << Language::psil_keywords[Language::keywordEnums::SILENCE];
-						strategy[currentLineNum] = ossLine.str();
-						i = NUM_WEIGHTS;
-						lastLine = SILENCE;
-						break;
-					case 3: //RANDOM
-						ossLine << Language::psil_keywords[Language::keywordEnums::RANDOM];
-						strategy[currentLineNum] = ossLine.str();
-						i = NUM_WEIGHTS;
-						lastLine = RANDOM;
-						break;
-					}
-				}
-			}
+			weightDistribution = std::discrete_distribution<int>({ weights[0], weights[1], weights[2], weights[3] });
+		}
+		//Strategy generation logic
+		std::ostringstream ossLine;
+		ossLine << currentLineNum + 1 << ' ';
+		//int cumulativeWeight = 0;
+		int randomWord = weightDistribution(randGenerator);
+		switch (randomWord)
+		{
+		case 0: //IF
+			ossLine << generateIf(currentLineNum, totalLines, randGenerator);
+			strategy[currentLineNum] = ossLine.str();
+			lastLine = IF;
+			break;
+		case 1: //BETRAY
+			ossLine << Language::psil_keywords[Language::keywordEnums::BETRAY];
+			strategy[currentLineNum] = ossLine.str();
+			lastLine = BETRAY;
+			break;
+		case 2: //SILENCE
+			ossLine << Language::psil_keywords[Language::keywordEnums::SILENCE];
+			strategy[currentLineNum] = ossLine.str();
+			lastLine = SILENCE;
+			break;
+		case 3: //RANDOM
+			ossLine << Language::psil_keywords[Language::keywordEnums::RANDOM];
+			strategy[currentLineNum] = ossLine.str();
+			lastLine = RANDOM;
+			break;
 		}
 
 		currentLineNum++;
@@ -130,9 +122,9 @@ std::string StrategyGenerator::generateIf(const int currentLineNum, const int to
 
 	std::uniform_int_distribution<int> varDistribution(0, Language::varEnums::NO_VAR - 1);
 
-	const int varsSize = 4;
-	int vars[varsSize];
-	for (int i = 0; i < varsSize; i++)
+	const int VARS_SIZE = 4;
+	int vars[VARS_SIZE];
+	for (int i = 0; i < VARS_SIZE; i++)
 	{
 		vars[i] = varDistribution(randGenerator);
 	}
@@ -168,8 +160,9 @@ std::string StrategyGenerator::generateIf(const int currentLineNum, const int to
 
 	std::ostringstream ossLine;
 	//concatenate the final if statement
-	ossLine << "IF " << Language::psil_vars[vars[0]] << Language::psil_operators[firstOp] << Language::psil_vars[vars[1]] << Language::psil_operators[equalityOperator]
-		<< Language::psil_vars[vars[2]] << Language::psil_operators[secondOp] << Language::psil_vars[vars[3]] << "GOTO " << gotoLine;
+	ossLine << Language::psil_keywords[Language::keywordEnums::IF] << Language::psil_vars[vars[0]] << Language::psil_operators[firstOp] 
+		<< Language::psil_vars[vars[1]] << Language::psil_operators[equalityOperator] << Language::psil_vars[vars[2]]
+		<< Language::psil_operators[secondOp] << Language::psil_vars[vars[3]] << Language::psil_keywords[Language::keywordEnums::GOTO] << gotoLine;
 
 	std::string lineString = ossLine.str();
 	return lineString;
