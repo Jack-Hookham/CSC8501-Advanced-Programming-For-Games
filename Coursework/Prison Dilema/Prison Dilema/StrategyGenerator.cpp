@@ -160,7 +160,7 @@ std::string StrategyGenerator::generateIf(const int currentLineNum, const int to
 	//GOTO line number should be between (current line + 1) and total lines
 	//if on 2nd last line go to last line
 	int gotoLine = totalLines;
-	if (currentLineNum < totalLines - 1)
+	if (currentLineNum < totalLines - 2)
 	{
 		std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 1, totalLines);
 		gotoLine = gotoDistribution(randGenerator);

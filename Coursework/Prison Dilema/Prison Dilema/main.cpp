@@ -13,7 +13,7 @@ int main()
 
 	std::cout << "\n";
 
-	StrategyGenerator::generate(3);
+	StrategyGenerator::generate(10);
 
 	std::cin.ignore();
 	std::cin.get();
