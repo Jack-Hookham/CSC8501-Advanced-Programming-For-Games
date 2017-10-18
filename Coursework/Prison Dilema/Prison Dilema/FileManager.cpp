@@ -1,6 +1,6 @@
 #include "fileManager.h"
 
-void FileManager::readFromFile(std::string filePath, std::string strategy[])
+void FileManager::readFromFile(std::string filePath, std::vector<std::string>& strategy)
 {
 	std::string line;
 	std::ifstream file(filePath);
@@ -10,7 +10,7 @@ void FileManager::readFromFile(std::string filePath, std::string strategy[])
 		int currentLineIndex = 0;
 		while (getline(file, line))
 		{
-			strategy[currentLineIndex] = line + "\n";
+			strategy.push_back(line + "\n");
 			currentLineIndex++;
 		}
 		file.close();
@@ -21,7 +21,7 @@ void FileManager::readFromFile(std::string filePath, std::string strategy[])
 	}
 }
 
-void FileManager::writeToFile(std::string filePath, int lines, std::string strategy[])
+void FileManager::writeToFile(std::string filePath, int lines, std::vector<std::string>& strategy)
 {
 	std::ofstream file(filePath);
 	if (file.is_open())

@@ -41,6 +41,7 @@ public:
 	static const std::string psil_operators[];
 	static const std::string psil_vars[];
 
-	static const int MAXLINES = 15;
+	//Maximum lines that can be written to a strategy file
+	static const int MAX_LINES = 15;
 };
 

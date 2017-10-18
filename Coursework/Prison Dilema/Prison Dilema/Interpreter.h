@@ -7,16 +7,9 @@
 class Interpreter
 {
 public:
-	Interpreter();
-	~Interpreter();
+	static void interpretStrategy(std::string filePath);
 
 private:
 
-
-	//const Keyword keywords[17];
-
-	//const std::string KEYWORDS[5] = { "IF", "GOTO", "BETRAY", "SILENCE", "RANDOM" };
-	//const char OPERATORS[5] = { '+', '-', '>', '<', '=' };
-	//const std::string VARIABLES[7] = { "LASTOUTCOME", "ALLOUTCOMES_W", "ALLOUTCOMES_X", "ALLOUTCOMES_Y", "ALLOUTCOMES_Z", "ITERATIONS", "MYSCORE" };
 };
 

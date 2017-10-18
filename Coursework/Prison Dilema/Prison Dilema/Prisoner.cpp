@@ -1,8 +1,8 @@
 #include "Prisoner.h"
 
-Prisoner::Prisoner(std::string strategyPath)
+Prisoner::Prisoner(std::string filePath)
 {
-	FileManager::readFromFile(strategyPath, strategyLines);
+	FileManager::readFromFile(filePath, strategy);
 }
 
 Prisoner::~Prisoner()
@@ -11,8 +11,8 @@ Prisoner::~Prisoner()
 
 void Prisoner::print()
 {
-	for (int i = 0; i < Language::MAXLINES; i++)
+	for (int i = 0; i < strategy.size(); i++)
 	{
-		std::cout << strategyLines[i];
+		std::cout << strategy[i];
 	}
 }

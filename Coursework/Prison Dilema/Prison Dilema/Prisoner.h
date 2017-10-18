@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 #include "FileManager.h"
 #include "Globals.h"
@@ -9,13 +10,13 @@
 class Prisoner
 {
 public:
-	Prisoner(std::string strategyPath);
+	//Prisoner constructor reads a strategy from file and adds each line to the strategy array
+	Prisoner(std::string filePath);
 	~Prisoner();
 
 	void print();
 
 private:
-	//static constexpr int MAX_LINES = 20;
-	std::string strategyLines[Language::MAXLINES];
+	std::vector<std::string> strategy;
 };
 

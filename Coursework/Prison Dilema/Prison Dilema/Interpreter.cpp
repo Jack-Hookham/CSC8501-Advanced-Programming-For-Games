@@ -1,9 +1,6 @@
 #include "Interpreter.h"
 
-Interpreter::Interpreter()
+void Interpreter::interpretStrategy(std::string filePath)
 {
-}
 
-Interpreter::~Interpreter()
-{
 }

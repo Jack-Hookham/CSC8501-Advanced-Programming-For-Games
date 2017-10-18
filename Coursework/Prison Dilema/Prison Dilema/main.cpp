@@ -8,12 +8,12 @@
 
 int main()
 {
-	Prisoner a("../Strategies/TestStrategy1.txt");
+	StrategyGenerator::generate(10);
+
+	Prisoner a("../Strategies/WriteTest9.txt");
 	a.print();
 
 	std::cout << "\n";
-
-	StrategyGenerator::generate(10);
 
 	std::cin.ignore();
 	std::cin.get();

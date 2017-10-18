@@ -32,13 +32,13 @@ void StrategyGenerator::generateStrategy(const int index)
 	std::mt19937 randGenerator(dre);
 
 	//random line distribution between 1 and max lines
-	std::uniform_int_distribution<int> lineDistribution(1, Language::MAXLINES);
+	std::uniform_int_distribution<int> lineDistribution(1, Language::MAX_LINES);
 
 	//Set the number of lines for this strategy
 	const int totalLines = lineDistribution(randGenerator);
 	//const int totalLines = 1;
 	//array of strings with each index representing a line of the strategy
-	std::string strategy[Language::MAXLINES];
+	std::vector<std::string> strategy;
 
 	//Weightings for IF, BETRAY, SILENCE, RANDOM
 	const int NUM_WEIGHTS = 4;
@@ -75,22 +75,22 @@ void StrategyGenerator::generateStrategy(const int index)
 		{
 		case 0: //IF
 			ossLine << generateIf(currentLineNum, totalLines, randGenerator);
-			strategy[currentLineNum] = ossLine.str();
+			strategy.push_back(ossLine.str());
 			lastLine = IF;
 			break;
 		case 1: //BETRAY
 			ossLine << Language::psil_keywords[Language::keywordEnums::BETRAY];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.push_back(ossLine.str());
 			lastLine = BETRAY;
 			break;
 		case 2: //SILENCE
 			ossLine << Language::psil_keywords[Language::keywordEnums::SILENCE];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.push_back(ossLine.str());
 			lastLine = SILENCE;
 			break;
 		case 3: //RANDOM
 			ossLine << Language::psil_keywords[Language::keywordEnums::RANDOM];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.push_back(ossLine.str());
 			lastLine = RANDOM;
 			break;
 		}
@@ -152,9 +152,9 @@ std::string StrategyGenerator::generateIf(const int currentLineNum, const int to
 	//GOTO line number should be between (current line + 1) and total lines
 	//if on 2nd last line go to last line
 	int gotoLine = totalLines;
-	if (currentLineNum < totalLines - 2)
+	if (currentLineNum < totalLines - 1)
 	{
-		std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 1, totalLines);
+		std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 2, totalLines);
 		gotoLine = gotoDistribution(randGenerator);
 	}
 
