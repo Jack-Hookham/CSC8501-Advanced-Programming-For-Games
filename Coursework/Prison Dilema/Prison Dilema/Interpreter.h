@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 #include <iterator>
-#include <regex>
+#include <random>
 
 #include "Language.h"
 #include "Prisoner.h"
@@ -16,10 +16,9 @@ public:
 	//Determine a decison (betray/silent) based on the prisoner's strategy
 	static int interpretDecision(Prisoner& prisoner);
 
-	//Compare two strategies and determine a result for strategyA
-	static int compareStrategies(Prisoner& prisonerA, Prisoner& prisonerB);
-
 private:
-
+	static int processStrategy();
+	static int processLine(const std::string line);
+	static int parseIf(const std::vector<std::string>& tokens);
 };
 

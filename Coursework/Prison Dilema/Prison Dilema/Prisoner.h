@@ -12,7 +12,7 @@ class Prisoner
 
 public:
 	Prisoner();
-	//Reads a strategy from file and adds each line to the strategy array
+	//Reads a strategy from file and adds each line to the strategy map
 	Prisoner(std::string filePath);
 	~Prisoner();
 
@@ -24,7 +24,7 @@ public:
 	};
 
 	inline std::map<int, std::string> getStrategy() { return strategy; }
-	inline std::string getStrategyLine(int i) { return strategy[i]; }
+	inline std::string getStrategyLine(int i) { return strategy.at(i); }
 	void setStrategy(std::string filePath);
 
 	//Game variable getters
@@ -60,11 +60,5 @@ private:
 	int allOutcomes_z = 0;
 	int iterations = 0;
 	int myScore = 0;
-
-	template<size_t size, class T>
-	inline int arraySize(T(&arr)[size])
-	{
-		return size;
-	}
 };
 

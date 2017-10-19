@@ -21,10 +21,10 @@ int main()
 
 	//PUT GAMES IN TOURNAMENT
 	//The Iterated Prisoners Dilemma Problem Game between two prisoners, a and b
-	//TIPDPGame* game = new TIPDPGame(a, b);
-	//game->play(5);
+	TIPDPGame* game = new TIPDPGame(a, b);
+	game->play(5);
 
-	//delete game;
+	delete game;
 
 	std::cout << "\n";
 

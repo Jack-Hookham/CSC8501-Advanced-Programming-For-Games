@@ -10,7 +10,6 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 		int currentLineNumber = 1;
 		while (getline(file, line))
 		{
-			int lineNumber;
 			std::string firstWord = line.substr(0, line.find(" "));
 
 			//Check whether first word of line is an integer
@@ -20,8 +19,8 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 			}
 			else
 			{
-				lineNumber = stoi(firstWord);
-				strategy.insert(std::pair<int, std::string>(lineNumber, line));
+				//Insert line into the map with line number as the key
+				strategy.insert(std::pair<int, std::string>(stoi(firstWord), line));
 			}
 		}
 		file.close();
@@ -39,6 +38,7 @@ void FileManager::writeToFile(const std::string& filePath, const std::map<int, s
 	{
 		for (std::map<int, std::string>::const_iterator it = strategy.begin(); it != strategy.end(); it++)
 		{
+			//Add each line string to the file
 			file << it->second << "\n";
 		}
 		file.close();
