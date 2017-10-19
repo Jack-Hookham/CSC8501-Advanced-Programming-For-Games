@@ -30,9 +30,6 @@
     <ClCompile Include="StrategyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PSILWord.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Language.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,12 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StrategyGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PSILWord.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Language.h">

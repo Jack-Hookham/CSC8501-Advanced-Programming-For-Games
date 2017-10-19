@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Prisoner.h"
+#include "Interpreter.h"
 
 //The Iterated Prisoners Dilemma Problem Game between two prisoners
 
@@ -14,9 +15,8 @@ public:
 	void play(int n);
 
 private:
-	Prisoner a = NULL;
-	Prisoner b = NULL;
-
+	Prisoner a;
+	Prisoner b;
 
 };
 

@@ -7,7 +7,6 @@
 
 
 #include "FileManager.h"
-#include "Globals.h"
 #include "Language.h"
 
 class StrategyGenerator
