@@ -17,7 +17,7 @@ public:
 
 private:
 	//generate a single strategy
-	static void generateStrategy(int index);
+	static void generateStrategy(int pathIndex);
 
 	//generate a PSIL if statement
 	static std::string generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator);

@@ -21,8 +21,8 @@ void Prisoner::setStrategy(std::string filePath)
 void Prisoner::print()
 {
 	//for (int i = 0; i < arraySize(strategy); i++)
-	for (int i = 0; i < Language::MAX_READ_LINES; i++)
+	for (std::map<int, std::string>::const_iterator it = strategy.begin(); it != strategy.end(); it++)
 	{
-		std::cout << strategy[i];
+		std::cout << it->second << "\n";
 	}
 }

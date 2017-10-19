@@ -11,7 +11,7 @@ int Interpreter::interpretDecision(Prisoner& prisoner)
 	std::copy(std::istream_iterator<std::string>(issLine), std::istream_iterator<std::string>(), std::back_inserter(tokens));
 
 	//Check whether first word is line number
-	if (!isInteger(tokens[0]))
+	if (!Language::isInteger(tokens[0]))
 	{
 		std::cout << "Invalid file! No line number found.\n";
 		return decision;

@@ -11,10 +11,14 @@ void StrategyGenerator::generate(int n)
 	}
 }
 
-void StrategyGenerator::generateStrategy(const int index)
+void StrategyGenerator::generateStrategy(const int pathIndex)
 {
+	//Map of line numbers and line strings
+	std::map<int, std::string> strategy;
+
+	//Generate the file path
 	std::ostringstream ossPath;
-	ossPath << "../Strategies/WriteTest" << index << ".txt";
+	ossPath << "../Strategies/WriteTest" << pathIndex << ".txt";
 	std::string filePath = ossPath.str();
 
 	std::random_device rd;
@@ -27,26 +31,29 @@ void StrategyGenerator::generateStrategy(const int index)
 	//Set the number of lines for this strategy
 	const int totalLines = lineDistribution(randGenerator);
 
-	//Array of strings with each index representing a line of the strategy
-	std::string strategy[Language::MAX_WRITE_LINES];
-
 	//Weightings for IF, BETRAY, SILENCE, RANDOM
 	const int NUM_WEIGHTS = 4;
 	double weights[NUM_WEIGHTS] = { 4, 1, 1, 1 };
 	std::discrete_distribution<int> weightDistribution({ weights[0], weights[1], weights[2], weights[3] });
 
-	//current line number (as an index for arrays) so +1 needed for actual line number starting from 1
-	int currentLineNum = 0;
-	while (currentLineNum < totalLines)
+	//current line index so +1 needed for actual line number starting from 1
+	int currentLineIndex = 0;
+
+	//Current value used for line number in the strategy
+	int currentLineNum = 10;
+
+	while (currentLineIndex < totalLines)
 	{
+		//Strategy generation logic
 		//if the program is longer than 1 line then the first line should be an if
-		if (currentLineNum == 0 && totalLines > 1)
+		if (currentLineIndex == 0 && totalLines > 1)
 		{
+			//Set all weightings to 0 except IF
 			weightDistribution = std::discrete_distribution<int>({ weights[0], 0, 0, 0 });
 		}
 
-		//last line can't be if
-		else if (currentLineNum + 1 >= totalLines)
+		//if > 3 lines then last 2 lines can't be if
+		else if (currentLineIndex >= totalLines - 2)
 		{
 			weightDistribution = std::discrete_distribution<int>({ 0, weights[1], weights[2], weights[3] });
 		}
@@ -56,39 +63,40 @@ void StrategyGenerator::generateStrategy(const int index)
 		{
 			weightDistribution = std::discrete_distribution<int>({ weights[0], weights[1], weights[2], weights[3] });
 		}
-		//Strategy generation logic
+
 		std::ostringstream ossLine;
-		ossLine << currentLineNum + 1 << ' ';
+		ossLine << currentLineNum << ' ';
 		//int cumulativeWeight = 0;
 		int randomWord = weightDistribution(randGenerator);
 		switch (randomWord)
 		{
 		case 0: //IF
-			ossLine << generateIf(currentLineNum, totalLines, randGenerator);
-			strategy[currentLineNum] = ossLine.str();
+			ossLine << generateIf(currentLineIndex, totalLines, randGenerator);
+			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 1: //BETRAY
 			ossLine << Language::psil_keywords[Language::keywordEnums::BETRAY];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 2: //SILENCE
 			ossLine << Language::psil_keywords[Language::keywordEnums::SILENCE];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 3: //RANDOM
 			ossLine << Language::psil_keywords[Language::keywordEnums::RANDOM];
-			strategy[currentLineNum] = ossLine.str();
+			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		}
 
-		currentLineNum++;
+		currentLineIndex++;
+		currentLineNum += 10;
 	}
 
-	FileManager::writeToFile(filePath, totalLines, strategy);
+	FileManager::writeToFile(filePath, strategy);
 }
 
 //generate a PSIL if statement
-std::string StrategyGenerator::generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator)
+std::string StrategyGenerator::generateIf(const int currentLineIndex, const int totalLines, std::mt19937 &randGenerator)
 {
 	//Number of operations on each side (1 or 2)
 	int lhs = false;
@@ -170,12 +178,12 @@ std::string StrategyGenerator::generateIf(const int currentLineNum, const int to
 
 	//GOTO line number should be between (current line + 1) and total lines
 	//if on 2nd last line go to last line
-	int gotoLine = totalLines;
+	int gotoLine = totalLines * 10;		//default to last line
 	//if not 2nd last line choose random line greater than current line
-	if (currentLineNum < totalLines - 1)
+	if (currentLineIndex < totalLines - 1)
 	{
-		std::uniform_int_distribution<int> gotoDistribution(currentLineNum + 2, totalLines);
-		gotoLine = gotoDistribution(randGenerator);
+		std::uniform_int_distribution<int> gotoDistribution(currentLineIndex + 2, totalLines);
+		gotoLine = gotoDistribution(randGenerator) * 10;
 	}
 
 	std::ostringstream ossLine;

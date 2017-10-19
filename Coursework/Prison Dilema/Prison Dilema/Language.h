@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <regex>
 
 class Language
 {
@@ -47,5 +48,8 @@ public:
 	
 	//Maximum lines that can be read from a strategy file
 	static const int MAX_READ_LINES = 50;
+
+	//inline static bool isInteger(const std::string& s) { return std::regex_match(s, std::regex("^([+-]?[0-9]\d*|0)$")); }
+	inline static bool isInteger(const std::string& s) { return s.find_first_not_of("0123456789") == std::string::npos; }
 };
 

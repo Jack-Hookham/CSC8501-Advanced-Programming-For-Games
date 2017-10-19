@@ -4,10 +4,15 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
+#include <sstream>
+#include <iterator>
+
+#include "Language.h"
 
 class FileManager
 {
 public:
-	static void readFromFile(std::string filePath, std::string strategy[]);
-	static void writeToFile(std::string filePath, int lines, std::string strategy[]);
+	static void readFromFile(const std::string& filePath, std::map<int, std::string>& strategy);
+	static void writeToFile(const std::string& filePath, const std::map<int, std::string>& strategy);
 };

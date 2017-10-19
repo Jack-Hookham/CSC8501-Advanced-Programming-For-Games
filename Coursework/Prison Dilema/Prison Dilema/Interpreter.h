@@ -20,9 +20,6 @@ public:
 	static int compareStrategies(Prisoner& prisonerA, Prisoner& prisonerB);
 
 private:
-	static bool isInteger(const std::string& s)
-	{
-		return std::regex_match(s, std::regex("^([+-]?[0-9]\d*|0)$"));
-	}
+
 };
 

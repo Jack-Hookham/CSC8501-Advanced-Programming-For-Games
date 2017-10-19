@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include<map>
 
 #include "FileManager.h"
 #include "Language.h"
@@ -22,7 +23,7 @@ public:
 		INVALID_FILE
 	};
 
-	inline std::string getStrategy() { return strategy[Language::MAX_READ_LINES]; }
+	inline std::map<int, std::string> getStrategy() { return strategy; }
 	inline std::string getStrategyLine(int i) { return strategy[i]; }
 	void setStrategy(std::string filePath);
 
@@ -48,7 +49,7 @@ public:
 
 private:
 	//Array of strings containing the strategy
-	std::string strategy[Language::MAX_READ_LINES];
+	std::map<int, std::string> strategy;
 
 	//Game variables
 	std::string lastOutcome;
