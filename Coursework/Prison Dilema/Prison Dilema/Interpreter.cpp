@@ -3,19 +3,30 @@
 int Interpreter::interpretDecision(Prisoner& prisoner)
 {
 	int decision = Prisoner::decisions::INVALID_FILE;
-	//Check whether first word is line number
 
+	//Copy the first line into a vector of strings
 	std::string currentLine = prisoner.getStrategyLine(0);
 	std::istringstream issLine(currentLine);
 	std::vector<std::string> tokens;
 	std::copy(std::istream_iterator<std::string>(issLine), std::istream_iterator<std::string>(), std::back_inserter(tokens));
 
-	for (int i = 0; i < tokens.size(); i++)
+	//Check whether first word is line number
+	if (!isInteger(tokens[0]))
 	{
-		std::cout << tokens[i] + ' ';
+		std::cout << "Invalid file! No line number found.\n";
+		return decision;
+	}
+	else
+	{
+		if (tokens[1] == "IF")
+		{
+			//(keywordIf())
+		}
 	}
 
-	while (decision == Prisoner::decisions::INVALID_FILE)
+	//int currentLineNumber = tokens[0];
+
+	//while (decision == Prisoner::decisions::INVALID_FILE)
 	{
 	}
 	
