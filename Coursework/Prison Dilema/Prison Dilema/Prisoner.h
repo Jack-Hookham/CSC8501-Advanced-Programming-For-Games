@@ -8,11 +8,6 @@
 
 class Prisoner
 {
-	enum decisions
-	{
-		BETRAY,
-		SILENT
-	};
 
 public:
 	Prisoner();
@@ -20,7 +15,15 @@ public:
 	Prisoner(std::string filePath);
 	~Prisoner();
 
+	enum decisions
+	{
+		BETRAY,
+		SILENT,
+		INVALID_FILE
+	};
+
 	inline std::string getStrategy() { return strategy[Language::MAX_READ_LINES]; }
+	inline std::string getStrategyLine(int i) { return strategy[i]; }
 	void setStrategy(std::string filePath);
 
 	//Game variable getters

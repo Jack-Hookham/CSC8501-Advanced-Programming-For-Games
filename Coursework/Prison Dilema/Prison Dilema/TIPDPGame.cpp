@@ -14,7 +14,7 @@ void TIPDPGame::play(int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		int currentOutcomeA = Interpreter::compareStrategies(a, b);
+		int decisionA = Interpreter::interpretDecision(a);
 
 		int currentOutcomeB;
 	}

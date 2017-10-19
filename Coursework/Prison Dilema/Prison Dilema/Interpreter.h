@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
+#include <iterator>
 
 #include "Language.h"
 #include "Prisoner.h"

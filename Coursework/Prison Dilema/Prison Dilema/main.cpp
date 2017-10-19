@@ -17,6 +17,7 @@ int main()
 
 	Prisoner b("../Strategies/TestStrategy2.txt");
 	b.print();
+	std::cout << "\n";
 
 	//PUT GAMES IN TOURNAMENT
 	//The Iterated Prisoners Dilemma Problem Game between two prisoners, a and b
