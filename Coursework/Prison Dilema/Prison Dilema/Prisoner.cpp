@@ -11,7 +11,7 @@ Prisoner::~Prisoner()
 
 void Prisoner::print()
 {
-	for (int i = 0; i < strategy.size(); i++)
+	for (int i = 0; i < Language::MAX_WRITE_LINES; i++)
 	{
 		std::cout << strategy[i];
 	}

@@ -5,27 +5,25 @@
 class Language
 {
 public:
-	static enum keywordEnums
+	enum keywordEnums
 	{
 		IF,
 		GOTO,
 		BETRAY,
 		SILENCE,
-		RANDOM,
-		NUM_KEYWORDS
+		RANDOM
 	};
 
-	static enum operatorEnums
+	enum operatorEnums
 	{
 		PLUS,
 		MINUS,
 		GREATER_THAN,
 		LESS_THAN,
-		EQUALS,
-		NO_OP
+		EQUALS
 	};
 
-	static enum varEnums
+	enum varEnums
 	{
 		LASTOUTCOME,
 		ALLOUTCOMES_W,
@@ -34,7 +32,10 @@ public:
 		ALLOUTCOMES_Z,
 		ITERATIONS,
 		MYSCORE,
-		NO_VAR
+		W,
+		X,
+		Y,
+		Z
 	};
 
 	static const std::string psil_keywords[];
@@ -42,6 +43,9 @@ public:
 	static const std::string psil_vars[];
 
 	//Maximum lines that can be written to a strategy file
-	static const int MAX_LINES = 15;
+	static const int MAX_WRITE_LINES = 15;
+	
+	//Maximum lines that can be read from a strategy file
+	static const int MAX_READ_LINES = 50;
 };
 

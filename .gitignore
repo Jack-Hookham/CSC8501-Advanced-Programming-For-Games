@@ -305,4 +305,4 @@ __pycache__/
 OpenCover/
 
 # Coursework specific
-*WriteTest*
+*WriteTest*.txt

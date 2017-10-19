@@ -36,6 +36,9 @@
     <ClCompile Include="Language.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TIPDPGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Prisoner.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Language.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TIPDPGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

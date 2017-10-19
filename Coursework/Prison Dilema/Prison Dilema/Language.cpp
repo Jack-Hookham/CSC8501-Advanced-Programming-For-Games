@@ -16,7 +16,6 @@ const std::string Language::psil_operators[] =
 	"> ",
 	"< ",
 	"= ",
-	""
 };
 
 const std::string Language::psil_vars[] =
@@ -28,5 +27,8 @@ const std::string Language::psil_vars[] =
 	"ALLOUTCOMES_Z ",
 	"ITERATIONS ",
 	"MYSCORE ",
-	""
+	"W ",
+	"X ",
+	"Y ",
+	"Z "
 };
