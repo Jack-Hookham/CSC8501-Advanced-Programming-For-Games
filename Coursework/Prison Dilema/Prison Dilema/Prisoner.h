@@ -5,7 +5,7 @@
 #include<map>
 
 #include "FileManager.h"
-#include "Language.h"
+#include "PsilLang.h"
 
 class Prisoner
 {
@@ -19,7 +19,7 @@ public:
 	enum decisions
 	{
 		BETRAY,
-		SILENT,
+		SILENCE,
 		INVALID_FILE
 	};
 

@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include <regex>
+#include <map>
 
-class Language
+class PsilLang
 {
 public:
 	enum keywordEnums
@@ -39,9 +40,11 @@ public:
 		Z
 	};
 
-	static const std::string psil_keywords[];
-	static const std::string psil_operators[];
-	static const std::string psil_vars[];
+	static const std::string psilKeywords[];
+	static const std::string psilOperators[];
+	static const std::string psilVars[];
+
+	static const std::map<std::string, int> stringToEnumMap;
 
 	//Maximum lines that can be written to a strategy file
 	static const int MAX_WRITE_LINES = 15;

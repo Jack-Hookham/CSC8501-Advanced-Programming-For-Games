@@ -7,7 +7,7 @@
 
 
 #include "FileManager.h"
-#include "Language.h"
+#include "PsilLang.h"
 
 class StrategyGenerator
 {

@@ -26,7 +26,7 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 	std::mt19937 randGenerator(dre);
 
 	//random line distribution between 1 and max lines
-	std::uniform_int_distribution<int> lineDistribution(1, Language::MAX_WRITE_LINES);
+	std::uniform_int_distribution<int> lineDistribution(1, PsilLang::MAX_WRITE_LINES);
 
 	//Set the number of lines for this strategy
 	const int totalLines = lineDistribution(randGenerator);
@@ -75,15 +75,15 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 1: //BETRAY
-			ossLine << Language::psil_keywords[Language::keywordEnums::BETRAY];
+			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::BETRAY];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 2: //SILENCE
-			ossLine << Language::psil_keywords[Language::keywordEnums::SILENCE];
+			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::SILENCE];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 3: //RANDOM
-			ossLine << Language::psil_keywords[Language::keywordEnums::RANDOM];
+			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::RANDOM];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		}
@@ -109,7 +109,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	int numLhsVars = numVariablesDistribution(randGenerator) + 1;
 	int numRhsVars = numVariablesDistribution(randGenerator) + 1;
 
-	std::uniform_int_distribution<int> varDistribution(Language::varEnums::LASTOUTCOME, Language::varEnums::MYSCORE);
+	std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::LASTOUTCOME, PsilLang::varEnums::MYSCORE);
 
 	std::vector<int> lhsVars;
 	std::vector<int> rhsVars;
@@ -125,19 +125,19 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	std::vector<int> rhsOperators;
 
 	//if first variable is LASTOUTCOME it must be compared with w, x, y, z instead of the other variables and operator must be EQUALS
-	if (lhsVars[0] == Language::varEnums::LASTOUTCOME)
+	if (lhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
 	{
-		equalityOperator = Language::operatorEnums::EQUALS;
-		std::uniform_int_distribution<int> wxyzDist(Language::varEnums::W, Language::varEnums::Z);
+		equalityOperator = PsilLang::operatorEnums::EQUALS;
+		std::uniform_int_distribution<int> wxyzDist(PsilLang::varEnums::W, PsilLang::varEnums::Z);
 		//set the other side of the equation to w, x, y or z
 		rhsVars[0] = wxyzDist(randGenerator);
 		numLhsVars = 1;
 		numRhsVars = 1;
 	}
-	else if (rhsVars[0] == Language::varEnums::LASTOUTCOME)
+	else if (rhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
 	{
-		equalityOperator = Language::operatorEnums::EQUALS;
-		std::uniform_int_distribution<int> wxyzDist(Language::varEnums::W, Language::varEnums::Z);
+		equalityOperator = PsilLang::operatorEnums::EQUALS;
+		std::uniform_int_distribution<int> wxyzDist(PsilLang::varEnums::W, PsilLang::varEnums::Z);
 		lhsVars[0] = wxyzDist(randGenerator);
 		numLhsVars = 1;
 		numRhsVars = 1;
@@ -146,7 +146,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	else
 	{
 		//Remove LASTOUTCOME from possible vars
-		varDistribution = std::uniform_int_distribution<int>(Language::varEnums::ALLOUTCOMES_W, Language::varEnums::MYSCORE);
+		varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::ALLOUTCOMES_W, PsilLang::varEnums::MYSCORE);
 
 		//Populate the rest of the lhs and rhs vars
 		for (int i = 1; i < numLhsVars; i++)
@@ -159,11 +159,11 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 			rhsVars.push_back(varDistribution(randGenerator));
 		}
 
-		std::uniform_int_distribution<int> equalityOperatorDistribution(Language::operatorEnums::GREATER_THAN, Language::operatorEnums::EQUALS);
+		std::uniform_int_distribution<int> equalityOperatorDistribution(PsilLang::operatorEnums::GREATER_THAN, PsilLang::operatorEnums::EQUALS);
 
 		equalityOperator = equalityOperatorDistribution(randGenerator);
 
-		std::uniform_int_distribution<int> sumOperatorDistribution(Language::operatorEnums::PLUS, Language::operatorEnums::MINUS);
+		std::uniform_int_distribution<int> sumOperatorDistribution(PsilLang::operatorEnums::PLUS, PsilLang::operatorEnums::MINUS);
 
 		for (int i = 0; i < numLhsVars - 1; i++)
 		{
@@ -189,32 +189,32 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	std::ostringstream ossLine;
 	//Concatenate the final if statement
 	//IF
-	ossLine << Language::psil_keywords[Language::keywordEnums::IF];
+	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::IF];
 
 	//Lhs vars and operators
 	for (int i = 0; i < numLhsVars; i++)
 	{
-		ossLine << Language::psil_vars[lhsVars[i]];
+		ossLine << PsilLang::psilVars[lhsVars[i]];
 		if (i < numLhsVars - 1)
 		{
-			ossLine << Language::psil_operators[lhsOperators[i]];
+			ossLine << PsilLang::psilOperators[lhsOperators[i]];
 		}
 	}
 
 	//Conditional Operator
-	ossLine << Language::psil_operators[equalityOperator];
+	ossLine << PsilLang::psilOperators[equalityOperator];
 
 	//Rhs vars and operators
 	for (int i = 0; i < numRhsVars; i++)
 	{
-		ossLine << Language::psil_vars[rhsVars[i]];
+		ossLine << PsilLang::psilVars[rhsVars[i]];
 		if (i < numRhsVars - 1)
 		{
-			ossLine << Language::psil_operators[rhsOperators[i]];
+			ossLine << PsilLang::psilOperators[rhsOperators[i]];
 		}
 	}
 	
-	ossLine << Language::psil_keywords[Language::keywordEnums::GOTO] << gotoLine;
+	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO] << gotoLine;
 
 	std::string lineString = ossLine.str();
 	return lineString;

@@ -7,7 +7,7 @@
 #include <iterator>
 #include <random>
 
-#include "Language.h"
+#include "PsilLang.h"
 #include "Prisoner.h"
 
 class Interpreter
@@ -18,7 +18,7 @@ public:
 
 private:
 	static int processStrategy();
-	static int processLine(const std::string line);
-	static int parseIf(const std::vector<std::string>& tokens);
+	static int processLine(Prisoner& prisoner, const std::string line);
+	static int parseIf(Prisoner& prisoner, const std::vector<std::string>& tokens);
 };
 
