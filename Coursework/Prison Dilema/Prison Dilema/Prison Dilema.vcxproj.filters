@@ -30,10 +30,10 @@
     <ClCompile Include="StrategyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Language.cpp">
+    <ClCompile Include="TIPDPGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TIPDPGame.cpp">
+    <ClCompile Include="PsilLang.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +50,10 @@
     <ClInclude Include="StrategyGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Language.h">
+    <ClInclude Include="TIPDPGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TIPDPGame.h">
+    <ClInclude Include="PsilLang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -113,7 +113,7 @@
   <ItemGroup>
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Interpreter.cpp" />
-    <ClCompile Include="Language.cpp" />
+    <ClCompile Include="PsilLang.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prisoner.cpp" />
     <ClCompile Include="StrategyGenerator.cpp" />
@@ -122,7 +122,7 @@
   <ItemGroup>
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Interpreter.h" />
-    <ClInclude Include="Language.h" />
+    <ClInclude Include="PsilLang.h" />
     <ClInclude Include="Prisoner.h" />
     <ClInclude Include="StrategyGenerator.h" />
     <ClInclude Include="TIPDPGame.h" />
