@@ -17,8 +17,7 @@ public:
 	static int interpretDecision(Prisoner& prisoner);
 
 private:
-	static int processStrategy();
-	static int processLine(Prisoner& prisoner, const std::string line);
-	static int parseIf(Prisoner& prisoner, const std::vector<std::string>& tokens);
+	static int processLine(Prisoner& prisoner, const int lineNumber);
+	static int parseIf(Prisoner& prisoner, const int lineNumber, const std::vector<std::string>& tokens);
 };
 

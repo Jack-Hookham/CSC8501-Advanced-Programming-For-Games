@@ -37,7 +37,8 @@ public:
 		W,
 		X,
 		Y,
-		Z
+		Z,
+		NUM_VARIABLES
 	};
 
 	static const std::string psilKeywords[];
