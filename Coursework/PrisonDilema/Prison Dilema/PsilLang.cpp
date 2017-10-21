@@ -2,35 +2,35 @@
 
 const std::string PsilLang::psilKeywords[] =
 {
-	"IF ",
-	"GOTO ",
-	"BETRAY ",
-	"SILENCE ",
-	"RANDOM "
+	"IF",
+	"GOTO",
+	"BETRAY",
+	"SILENCE",
+	"RANDOM"
 };
 
 const std::string PsilLang::psilOperators[] =
 {
-	"+ ",
-	"- ",
-	"> ",
-	"< ",
-	"= ",
+	"+",
+	"-",
+	">",
+	"<",
+	"=",
 };
 
 const std::string PsilLang::psilVars[] =
 {
-	"LASTOUTCOME ",
-	"ALLOUTCOMES_W ",
-	"ALLOUTCOMES_X ",
-	"ALLOUTCOMES_Y ",
-	"ALLOUTCOMES_Z ",
-	"ITERATIONS ",
-	"MYSCORE ",
-	"W ",
-	"X ",
-	"Y ",
-	"Z "
+	"LASTOUTCOME",
+	"ALLOUTCOMES_W",
+	"ALLOUTCOMES_X",
+	"ALLOUTCOMES_Y",
+	"ALLOUTCOMES_Z",
+	"ITERATIONS",
+	"MYSCORE",
+	"W",
+	"X",
+	"Y",
+	"Z"
 };
 
 const std::map<std::string, int> PsilLang::stringToEnumMap =

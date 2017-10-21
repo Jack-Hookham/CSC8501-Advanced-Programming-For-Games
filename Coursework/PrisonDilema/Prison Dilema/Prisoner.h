@@ -34,8 +34,8 @@ public:
 	//	NUM_VARIABLES
 	//};
 
-	inline std::map<int, std::string> getStrategy() { return strategy; }
-	inline std::string getStrategyLine(int n) { return strategy.at(n); }
+	inline std::map<int, std::string>& getStrategy() { return mStrategy; }
+	inline std::string getStrategyLine(int n) { return mStrategy.at(n); }
 	void setStrategy(std::string filePath);
 
 	//Game variable getters
@@ -48,7 +48,7 @@ public:
 	//inline int getIterations() { return iterations; }
 	//inline int getMyScore() { return myScore; }
 
-	inline int getVariable(const int n) { return mVariables[n]; }
+	inline int getVariable(const int n) const { return mVariables[n]; }
 
 	//Game variable setters
 	//inline void setLastOutcome(std::string outcome) { lastOutcome = outcome; }
@@ -58,13 +58,14 @@ public:
 	//inline void setAllOutComes_y(int outcomes) { allOutcomes_y = outcomes; }
 	//inline void setAllOutComes_z(int outcomes) { allOutcomes_z = outcomes; }
 
-	inline void getVariable(const int n, const int value) { mVariables[n] = value; }
+	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
+	inline void incrementIterations() { mVariables[PsilLang::psilVars[PsilLang::varEnums::ITERATIONS]]++; }
 
 	void print();
 
 private:
 	//Array of strings containing the strategy
-	std::map<int, std::string> strategy;
+	std::map<int, std::string> mStrategy;
 
 	int mVariables[PsilLang::varEnums::NUM_VARIABLES] = { 0 };
 };

@@ -8,16 +8,16 @@
 #include <random>
 
 #include "PsilLang.h"
-#include "Prisoner.h"
+#include "prisoner.h"
 
 class Interpreter
 {
 public:
 	//Determine a decison (betray/silent) based on the prisoner's strategy
-	static int interpretDecision(Prisoner& prisoner);
+	static int interpretDecision(Prisoner* prisoner);
 
 private:
-	static int processLine(Prisoner& prisoner, const int lineNumber);
-	static int parseIf(Prisoner& prisoner, const int lineNumber, const std::vector<std::string>& tokens);
+	static int processLine(Prisoner* prisoner, const int lineNumber);
+	static int parseIf(Prisoner* prisoner, const int lineNumber, const std::vector<std::string>& tokens);
 };
 

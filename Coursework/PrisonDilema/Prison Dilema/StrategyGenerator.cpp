@@ -18,7 +18,7 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 
 	//Generate the file path
 	std::ostringstream ossPath;
-	ossPath << "../Strategies/WriteTest" << pathIndex << ".txt";
+	ossPath << "../Strategies/Generated/WriteTest" << pathIndex << ".txt";
 	std::string filePath = ossPath.str();
 
 	std::random_device rd;
@@ -66,7 +66,6 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 
 		std::ostringstream ossLine;
 		ossLine << currentLineNum << ' ';
-		//int cumulativeWeight = 0;
 		int randomWord = weightDistribution(randGenerator);
 		switch (randomWord)
 		{
@@ -189,32 +188,32 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	std::ostringstream ossLine;
 	//Concatenate the final if statement
 	//IF
-	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::IF];
+	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::IF] << ' ';
 
 	//Lhs vars and operators
 	for (int i = 0; i < numLhsVars; i++)
 	{
-		ossLine << PsilLang::psilVars[lhsVars[i]];
+		ossLine << PsilLang::psilVars[lhsVars[i]] << ' ';
 		if (i < numLhsVars - 1)
 		{
-			ossLine << PsilLang::psilOperators[lhsOperators[i]];
+			ossLine << PsilLang::psilOperators[lhsOperators[i]] << ' ';
 		}
 	}
 
 	//Conditional Operator
-	ossLine << PsilLang::psilOperators[equalityOperator];
+	ossLine << PsilLang::psilOperators[equalityOperator] << ' ';
 
 	//Rhs vars and operators
 	for (int i = 0; i < numRhsVars; i++)
 	{
-		ossLine << PsilLang::psilVars[rhsVars[i]];
+		ossLine << PsilLang::psilVars[rhsVars[i]] << ' ';
 		if (i < numRhsVars - 1)
 		{
-			ossLine << PsilLang::psilOperators[rhsOperators[i]];
+			ossLine << PsilLang::psilOperators[rhsOperators[i]] << ' ';
 		}
 	}
 	
-	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO] << gotoLine;
+	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO] << ' ' << gotoLine;
 
 	std::string lineString = ossLine.str();
 	return lineString;

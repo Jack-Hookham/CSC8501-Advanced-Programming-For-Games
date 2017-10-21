@@ -2,21 +2,21 @@
 
 #include <iostream>
 
-#include "Prisoner.h"
+#include "prisoner.h"
 #include "Interpreter.h"
 #include "StrategyGenerator.h"
 #include "TIPDPGame.h"
 
 int main()
 {
-	StrategyGenerator::generate(10);
+	//StrategyGenerator::generate(10);
 
-	Prisoner a("../Strategies/TestStrategy1.txt");
-	a.print();
+	Prisoner* a = new Prisoner("../Strategies/Test/TestStrategy1.txt");
+	a->print();
 	std::cout << "\n";
 
-	Prisoner b("../Strategies/TestStrategy2.txt");
-	b.print();
+	Prisoner* b = new Prisoner("../Strategies/Test/TestStrategy2.txt");
+	b->print();
 	std::cout << "\n";
 
 	//PUT GAMES IN TOURNAMENT
@@ -25,6 +25,8 @@ int main()
 	game->play(5);
 
 	delete game;
+	delete a;
+	delete b;
 
 	std::cout << "\n";
 
