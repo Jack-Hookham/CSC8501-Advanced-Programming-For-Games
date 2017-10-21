@@ -25,3 +25,31 @@ void Prisoner::print()
 		std::cout << it->second << "\n";
 	}
 }
+
+//Both silent
+void Prisoner::outcomeW()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 2;
+}
+
+//A silent, B betray
+void Prisoner::outcomeX()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 5;
+}
+
+//A betray, B silent
+void Prisoner::outcomeY()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 4;
+}
+
+//Both betray
+void Prisoner::outcomeZ()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 4;
+}

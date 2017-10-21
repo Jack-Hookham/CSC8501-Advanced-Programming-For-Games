@@ -60,6 +60,11 @@ public:
 
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
 	inline void incrementIterations() { mVariables[PsilLang::psilVars[PsilLang::varEnums::ITERATIONS]]++; }
+	
+	void outcomeW();
+	void outcomeX();
+	void outcomeY();
+	void outcomeZ();
 
 	void print();
 
