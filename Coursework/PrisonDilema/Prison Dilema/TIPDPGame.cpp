@@ -17,7 +17,7 @@ void TIPDPGame::play(int n)
 		int decisionA = Interpreter::interpretDecision(a);
 		//Friend? compare prisoner strategies
 
-		int currentOutcomeB;
+		int decisionB = Interpreter::interpretDecision(b);
 	}
 
 

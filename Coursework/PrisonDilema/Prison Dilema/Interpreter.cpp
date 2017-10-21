@@ -45,13 +45,19 @@ int Interpreter::processLine(Prisoner& prisoner, const int lineNumber)
 		std::uniform_int_distribution<int> dist(0, 1);
 		return dist(randomGen);
 	}
+	else
+	{
+		//error
+		std::cout << "Invalid file! Invalid word found.\n";
+		return Prisoner::decisions::INVALID_FILE;
+	}
 }
 
 int Interpreter::parseIf(Prisoner& prisoner, const int lineNumber, const std::vector<std::string>& tokens)
 {
-	//STRINGTOENUM? MAP???
-	//Tokens[even] > 1 is variable
-	//Tokens[odd] > 1 is operator
+	////STRINGTOENUM? MAP???
+	////Tokens[even] > 1 is variable
+	////Tokens[odd] > 1 is operator
 
 	bool ifResult = false;
 
@@ -81,33 +87,33 @@ int Interpreter::parseIf(Prisoner& prisoner, const int lineNumber, const std::ve
 					std::cout << "Invalid strategy file, expected int line number\n";
 				}
 			}
-			//switch (PsilLang::stringToEnumMap.at(tokens[4]))
-			//{
-			//case PsilLang::varEnums::W:
-			//	if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::W)
-			//	{
-			//		ifResult = true;
-			//	}
-			//case PsilLang::varEnums::X:
-			//	if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::X)
-			//	{
-			//		ifResult = true;
-			//	}
-			//case PsilLang::varEnums::Y:
-			//	if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::Y)
-			//	{
-			//		ifResult = true;
-			//	}
-			//case PsilLang::varEnums::Z:
-			//	if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::Z)
-			//	{
-			//		ifResult = true;
-			//	}
-			//default:
-			//	//error
-			//	std::cout << "rhs was invalid";
-			//	return Prisoner::decisions::INVALID_FILE;
-			//}
+			switch (PsilLang::stringToEnumMap.at(tokens[4]))
+			{
+			case PsilLang::varEnums::W:
+				if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::W)
+				{
+					ifResult = true;
+				}
+			case PsilLang::varEnums::X:
+				if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::X)
+				{
+					ifResult = true;
+				}
+			case PsilLang::varEnums::Y:
+				if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::Y)
+				{
+					ifResult = true;
+				}
+			case PsilLang::varEnums::Z:
+				if (prisoner.getVariable(PsilLang::LASTOUTCOME) == PsilLang::varEnums::Z)
+				{
+					ifResult = true;
+				}
+			default:
+				//error
+				std::cout << "rhs was invalid";
+				return Prisoner::decisions::INVALID_FILE;
+			}
 		}
 		else
 		{

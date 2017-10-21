@@ -33,7 +33,7 @@ const std::string PsilLang::psilVars[] =
 	"Z "
 };
 
-const std::map<std::string, int> stringToEnumMap = 
+const std::map<std::string, int> PsilLang::stringToEnumMap =
 { 
 	{ "LASTOUTCOME", PsilLang::varEnums::LASTOUTCOME },
 	{ "ALLOUTCOMES_W", PsilLang::varEnums::ALLOUTCOMES_W },
