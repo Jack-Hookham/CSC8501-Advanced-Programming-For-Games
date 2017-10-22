@@ -12,6 +12,13 @@ TIPDPGame::~TIPDPGame()
 
 void TIPDPGame::play(const int n)
 {
+	std::cout << "Strategy\t";
+	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	{
+		std::cout << PsilLang::psilVars[i] << "\t";
+	}
+	std::cout << "\n";
+	
 	for (int i = 0; i < n; i++)
 	{
 		int decisionA = Interpreter::interpretDecision(mPrisonerA);
@@ -20,9 +27,13 @@ void TIPDPGame::play(const int n)
 		int decisionB = Interpreter::interpretDecision(mPrisonerB);
 
 		updateVariables(decisionA, decisionB);
+		mPrisonerA->printVariables();
+		mPrisonerB->printVariables();
 	}
+	std::cout << "\n";
 }
 
+//Update variables for both prisoners
 void TIPDPGame::updateVariables(const int decisionA, const int decisionB)
 {
 	mPrisonerA->incrementIterations();
@@ -45,7 +56,6 @@ void TIPDPGame::updateVariables(const int decisionA, const int decisionB)
 	}
 	else if (decisionA == decisionB == Prisoner::decisions::BETRAY)
 	{
-		//Update variables for both prisoners
 		mPrisonerA->outcomeZ();
 		mPrisonerB->outcomeZ();
 	}

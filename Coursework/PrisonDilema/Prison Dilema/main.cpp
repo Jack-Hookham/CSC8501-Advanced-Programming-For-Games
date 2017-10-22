@@ -11,22 +11,22 @@ int main()
 {
 	//StrategyGenerator::generate(10);
 
-	Prisoner* a = new Prisoner("../Strategies/Test/TestStrategy1.txt");
-	a->print();
+	Prisoner* prisoner1 = new Prisoner("TestStrategy1", "../Strategies/Test/");
+	prisoner1->printStrategy();
 	std::cout << "\n";
 
-	Prisoner* b = new Prisoner("../Strategies/Test/TestStrategy2.txt");
-	b->print();
+	Prisoner* prisoner2 = new Prisoner("TestStrategy2", "../Strategies/Test/");
+	prisoner2->printStrategy();
 	std::cout << "\n";
 
 	//PUT GAMES IN TOURNAMENT
 	//The Iterated Prisoners Dilemma Problem Game between two prisoners, a and b
-	TIPDPGame* game = new TIPDPGame(a, b);
-	game->play(5);
+	TIPDPGame* game = new TIPDPGame(prisoner1, prisoner2);
+	game->play(200);
 
 	delete game;
-	delete a;
-	delete b;
+	delete prisoner1;
+	delete prisoner2;
 
 	std::cout << "\n";
 

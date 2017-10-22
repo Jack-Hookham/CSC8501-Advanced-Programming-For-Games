@@ -13,8 +13,9 @@ class Prisoner
 public:
 	Prisoner();
 	//Reads a strategy from file and adds each line to the strategy map
-	Prisoner(std::string filePath);
+	Prisoner(const std::string id, const std::string folderPath);
 	~Prisoner();
+
 
 	enum decisions
 	{
@@ -23,53 +24,30 @@ public:
 		INVALID_FILE
 	};
 
-	//enum gameVariablesEnums
-	//{
-	//	ALL_OUTCOMES_W,
-	//	ALL_OUTCOMES_X,
-	//	ALL_OUTCOMES_Y,
-	//	ALL_OUTCOMES_Z,
-	//	ITERATIONS,
-	//	MY_SCORE,
-	//	NUM_VARIABLES
-	//};
+	inline const std::map<int, std::string>& getStrategy() { return mStrategy; }
+	inline const std::string getStrategyLine(const int n) { return mStrategy.at(n); }
+	void setStrategy(const std::string filePath);
 
-	inline std::map<int, std::string>& getStrategy() { return mStrategy; }
-	inline std::string getStrategyLine(int n) { return mStrategy.at(n); }
-	void setStrategy(std::string filePath);
-
-	//Game variable getters
-	//inline std::string getLastOutcome() { return lastOutcome; }
-	//inline std::string getCurrentOutcome() { return currentOutcome; }
-	//inline int getAllOutcomes_w() { return allOutcomes_w; }
-	//inline int getAllOutcomes_x() { return allOutcomes_x; }
-	//inline int getAllOutcomes_y() { return allOutcomes_y; }
-	//inline int getAllOutcomes_z() { return allOutcomes_z; }
-	//inline int getIterations() { return iterations; }
-	//inline int getMyScore() { return myScore; }
-
-	inline int getVariable(const int n) const { return mVariables[n]; }
-
-	//Game variable setters
-	//inline void setLastOutcome(std::string outcome) { lastOutcome = outcome; }
-	//inline void setCurrentOutcome(std::string outcome) { currentOutcome = outcome; }
-	//inline void setAllOutComes_w(int outcomes) { allOutcomes_w = outcomes; }
-	//inline void setAllOutComes_x(int outcomes) { allOutcomes_x = outcomes; }
-	//inline void setAllOutComes_y(int outcomes) { allOutcomes_y = outcomes; }
-	//inline void setAllOutComes_z(int outcomes) { allOutcomes_z = outcomes; }
+	inline const int getVariable(const int n) const { return mVariables[n]; }
 
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
-	inline void incrementIterations() { mVariables[PsilLang::psilVars[PsilLang::varEnums::ITERATIONS]]++; }
+	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
 	
 	void outcomeW();
 	void outcomeX();
 	void outcomeY();
 	void outcomeZ();
 
-	void print();
+	void printStrategy();
+	void printVariables();
 
 private:
-	//Array of strings containing the strategy
+	std::string mStrategyID;
+	//Strategy file path
+	std::string mStrategyPath;
+
+	//Map of strings containing the strategy
+	//Key = line number, value = strategy string
 	std::map<int, std::string> mStrategy;
 
 	int mVariables[PsilLang::varEnums::NUM_VARIABLES] = { 0 };

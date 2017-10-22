@@ -58,11 +58,9 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 	////Tokens[even] > 1 is variable
 	////Tokens[odd] > 1 is operator
 
-	bool conditionalResult = false;
-
 	//Initialise next line number to the next line
 	//If the if statement returns true this number will be changed to the GOTO number
-	std::map<int, std::string>::iterator it = prisoner->getStrategy().find(lineNumber);
+	std::map<int, std::string>::const_iterator it = prisoner->getStrategy().find(lineNumber);
 	it++;
 	int nextLineNum = it->first;
 
@@ -75,7 +73,6 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 		{
 			if (prisoner->getVariable(PsilLang::LASTOUTCOME) == PsilLang::stringToEnumMap.at(tokens[4]))
 			{
-				conditionalResult = true;
 				if (PsilLang::isInteger(tokens[6]))
 				{
 					nextLineNum = std::stoi(tokens[6]);
@@ -126,8 +123,7 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 		if (tokens[3] == PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS])
 		{
 			if (prisoner->getVariable(PsilLang::LASTOUTCOME) == PsilLang::stringToEnumMap.at(tokens[2]))
-			{
-				conditionalResult = true;			
+			{			
 				if (PsilLang::isInteger(tokens[6]))
 				{
 					nextLineNum = std::stoi(tokens[6]);
@@ -206,7 +202,6 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 			(conditionalOperator == PsilLang::psilOperators[PsilLang::operatorEnums::LESS_THAN] && lhsValue < rhsValue) ||
 			(conditionalOperator == PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS] && lhsValue == rhsValue))
 		{
-			conditionalResult = true;
 			tokenIterator++;
 			if (PsilLang::isInteger(tokens[tokenIterator]))
 			{

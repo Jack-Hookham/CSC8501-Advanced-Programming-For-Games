@@ -4,26 +4,44 @@ Prisoner::Prisoner()
 {
 }
 
-Prisoner::Prisoner(std::string filePath)
+Prisoner::Prisoner(const std::string id, const std::string folderPath)
 {
-	FileManager::readFromFile(filePath, mStrategy);
+	mStrategyID = id;
+
+	std::ostringstream ossPath;
+	ossPath << folderPath << id << ".txt";
+	mStrategyPath = ossPath.str();
+
+
+	//Read the file into the strategy map
+	FileManager::readFromFile(mStrategyPath, mStrategy);
 }
 
 Prisoner::~Prisoner()
 {
 }
 
-void Prisoner::setStrategy(std::string filePath)
+void Prisoner::setStrategy(const std::string filePath)
 {
 	FileManager::readFromFile(filePath, mStrategy);
 }
 
-void Prisoner::print()
+void Prisoner::printStrategy()
 {
 	for (std::map<int, std::string>::const_iterator it = mStrategy.begin(); it != mStrategy.end(); it++)
 	{
 		std::cout << it->second << "\n";
 	}
+}
+
+void Prisoner::printVariables()
+{
+	std::cout << mStrategyID << "\t";
+	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	{
+		std::cout << mVariables[i] << "\t\t";
+	}
+	std::cout << "\n";
 }
 
 //Both silent
@@ -44,7 +62,6 @@ void Prisoner::outcomeX()
 void Prisoner::outcomeY()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 4;
 }
 
 //Both betray

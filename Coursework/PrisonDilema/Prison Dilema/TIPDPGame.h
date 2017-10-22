@@ -12,7 +12,7 @@ public:
 	~TIPDPGame();
 
 	//Plays a game of n iterations between to prisoner strategies
-	void play(int n);
+	void play(int n = 200);
 
 private:
 	void updateVariables(const int decisionA, const int decisionB);
