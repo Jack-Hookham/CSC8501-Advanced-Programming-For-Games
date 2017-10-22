@@ -8,7 +8,10 @@ public:
 	IPDPTournament(std::vector<std::string> strategies);
 	~IPDPTournament();
 
-private:
-	std::vector<IPDPGame> games;
-};
+	void play();
+	void printResults();
 
+private:
+	std::vector<Prisoner*> mPrisoners;
+	//std::vector<IPDPGame> games;
+};

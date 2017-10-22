@@ -10,34 +10,32 @@
 
 int main()
 {
-	//StrategyGenerator::generate(10);
+	StrategyGenerator::generate(10);
 
-	Prisoner* prisoner1 = new Prisoner("../Strategies/Test/TestStrategy1.txt");
-	prisoner1->printStrategy();
-	std::cout << "\n";
+	//Prisoner* prisoner1 = new Prisoner("../Strategies/Test/TestStrategy1.txt");
+	//prisoner1->printStrategy();
+	//std::cout << "\n";
 
-	Prisoner* prisoner2 = new Prisoner("../Strategies/Test/TestStrategy2.txt");
-	prisoner2->printStrategy();
-	std::cout << "\n";
+	//Prisoner* prisoner2 = new Prisoner("../Strategies/Test/TestStrategy2.txt");
+	//prisoner2->printStrategy();
+	//std::cout << "\n";
 
-	//PUT GAMES IN TOURNAMENT
-	std::vector<std::string> strategies;
-
-	for (int i = 1; i <= 10; i++)
+	std::vector<std::string> tournamentStrategies;
+	for (int i = 0; i < 10; i++)
 	{
-		
+		std::ostringstream ossPath;
+		ossPath << "../Strategies/Generated/Strategy" << i + 1 << ".txt";
+		tournamentStrategies.push_back(ossPath.str());
 	}
 
-	IPDPTournament* tournament = new IPDPTournament(strategies);
-
-	//The Iterated Prisoners Dilemma Problem Game between two prisoners, a and b
-	IPDPGame* game = new IPDPGame(prisoner1, prisoner2);
-	game->play(200);
+	IPDPTournament* tournament = new IPDPTournament(tournamentStrategies);
+	tournament->play();
+	tournament->printResults();
 
 	delete tournament;
-	delete game;
-	delete prisoner1;
-	delete prisoner2;
+
+	//delete prisoner1;
+	//delete prisoner2;
 
 	std::cout << "\n";
 

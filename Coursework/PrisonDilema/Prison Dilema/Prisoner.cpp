@@ -6,7 +6,6 @@ Prisoner::Prisoner()
 
 Prisoner::Prisoner(const std::string filePath)
 {
-	
 	mStrategyPath = filePath;
 
 	//Read the file into the strategy map
@@ -40,6 +39,22 @@ void Prisoner::printVariables()
 		std::cout << mVariables[i] << "\t\t";
 	}
 	std::cout << "\n";
+}
+
+void Prisoner::softReset()
+{
+	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	{
+		mVariables[i] = 0;
+	}
+}
+
+void Prisoner::hardReset()
+{
+	for (int i = 0; i <= PsilLang::varEnums::CUMULATIVE_SCORE; i++)
+	{
+		mVariables[i] = 0;
+	}
 }
 
 //Both silent

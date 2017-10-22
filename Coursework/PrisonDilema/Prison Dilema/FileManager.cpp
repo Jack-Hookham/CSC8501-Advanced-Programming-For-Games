@@ -57,6 +57,6 @@ const std::string FileManager::getFileName(const std::string filePath)
 	std::string temp = filePath.substr(botDirPos + 1, filePath.length());
 
 	//Remove the extension
-	std::size_t extensionePos = temp.find_last_of(".");
+	std::size_t extensionePos = temp.find_last_of('.');
 	return temp.substr(0, extensionePos);
 }

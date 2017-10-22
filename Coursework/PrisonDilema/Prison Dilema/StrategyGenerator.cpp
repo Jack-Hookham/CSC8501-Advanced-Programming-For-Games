@@ -1,13 +1,13 @@
 #include "StrategyGenerator.h"
 
-//TODO: Lastoutcome equality only with W, X, Y, Z
+const std::string StrategyGenerator::folderPath = "../Strategies/Generated/";
 
 void StrategyGenerator::generate(int n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		//generate strategy number i
-		generateStrategy(i);
+		generateStrategy(i + 1);
 	}
 }
 
@@ -18,7 +18,7 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 
 	//Generate the file path
 	std::ostringstream ossPath;
-	ossPath << "../Strategies/Generated/WriteTest" << pathIndex << ".txt";
+	ossPath << folderPath << "Strategy" << pathIndex << ".txt";
 	std::string filePath = ossPath.str();
 
 	std::random_device rd;

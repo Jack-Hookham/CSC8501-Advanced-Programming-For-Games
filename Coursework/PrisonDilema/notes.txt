@@ -1,0 +1,10 @@
+TODO
+
+Error checking
+- strategy gen
+- files
+- interpretter
+
+set line number increments
+
+map typedefs

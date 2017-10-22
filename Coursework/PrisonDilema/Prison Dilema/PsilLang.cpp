@@ -27,6 +27,7 @@ const std::string PsilLang::psilVars[] =
 	"ALLOUTCOMES_Z",
 	"ITERATIONS",
 	"MYSCORE",
+	"CUMULATIVE_SCORE",
 	"W",
 	"X",
 	"Y",
@@ -42,8 +43,9 @@ const std::map<std::string, int> PsilLang::stringToEnumMap =
 	{ "ALLOUTCOMES_Z", PsilLang::varEnums::ALLOUTCOMES_Z },
 	{ "ITERATIONS", PsilLang::varEnums::ITERATIONS },
 	{ "MYSCORE", PsilLang::varEnums::MYSCORE },
+	{ "CUMULATIVE_SCORE", PsilLang::varEnums::CUMULATIVE_SCORE },
 	{ "W", PsilLang::varEnums::W },
-	{ "X", PsilLang::varEnums::X},
+	{ "X", PsilLang::varEnums::X },
 	{ "Y", PsilLang::varEnums::Y },
 	{ "Z", PsilLang::varEnums::Z }
 };

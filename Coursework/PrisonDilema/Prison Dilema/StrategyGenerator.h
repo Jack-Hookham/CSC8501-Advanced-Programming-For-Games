@@ -16,6 +16,8 @@ public:
 	static void generate(int n);
 
 private:
+	static const std::string folderPath;
+
 	//generate a single strategy
 	static void generateStrategy(int pathIndex);
 

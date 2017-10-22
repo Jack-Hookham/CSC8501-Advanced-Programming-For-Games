@@ -34,11 +34,11 @@ public:
 		ALLOUTCOMES_Z,
 		ITERATIONS,
 		MYSCORE,
+		CUMULATIVE_SCORE,
 		W,
 		X,
 		Y,
-		Z,
-		NUM_VARIABLES
+		Z
 	};
 
 	static const std::string psilKeywords[];

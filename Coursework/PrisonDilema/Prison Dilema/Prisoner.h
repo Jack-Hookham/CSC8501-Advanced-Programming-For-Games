@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include<map>
+#include <map>
 
 #include "FileManager.h"
 #include "PsilLang.h"
@@ -28,6 +28,7 @@ public:
 	void setStrategy(const std::string filePath);
 
 	inline const int getVariable(const int n) const { return mVariables[n]; }
+	inline const std::string getStrategyName() const { return mStrategyName; }
 
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
@@ -39,16 +40,21 @@ public:
 
 	void printStrategy();
 	void printVariables();
+	//Reset all but CUMULATIVE_SCORE
+	void softReset();
+	//Reset all including CUMULATIVE_SCORE
+	void hardReset();
+	//Add current score to cumulative score
+	inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
 
 private:
 	std::string mStrategyName;
-	//Strategy file path
 	std::string mStrategyPath;
 
 	//Map of strings containing the strategy
 	//Key = line number, value = strategy string
 	std::map<int, std::string> mStrategy;
 
-	int mVariables[PsilLang::varEnums::NUM_VARIABLES] = { 0 };
+	int mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = { 0 };
 };
 
