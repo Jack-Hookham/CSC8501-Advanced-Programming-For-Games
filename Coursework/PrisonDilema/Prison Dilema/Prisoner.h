@@ -55,6 +55,6 @@ private:
 	//Key = line number, value = strategy string
 	std::map<int, std::string> mStrategy;
 
-	int mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = { 0 };
+	int mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
 };
 

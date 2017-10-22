@@ -5,8 +5,7 @@ IPDPTournament::IPDPTournament(std::vector<std::string> strategies)
 	//Create a Prisoner for each strategy
 	for (int i = 0; i < strategies.size(); i++)
 	{
-		Prisoner* prisoner = new Prisoner(strategies[i]);
-		mPrisoners.push_back(prisoner);
+		mPrisoners.push_back(new Prisoner(strategies[i]));
 	}
 }
 
@@ -40,7 +39,7 @@ void IPDPTournament::play()
 
 void IPDPTournament::printResults()
 {
-	std::cout << "Strategy Name\tTotal Score\n";
+	std::cout << "\nStrategy Name\t\tTotal Score\n";
 
 	int winner = 0;
 	//Print each prisoner's cumulative score and determine a winner (lowest score)
@@ -53,5 +52,5 @@ void IPDPTournament::printResults()
 			winner = i;
 		}
 	}
-	std::cout << "Winning strategy: " << mPrisoners[winner]->getStrategyName() << "\n";
+	std::cout << "\nWinning strategy: " << mPrisoners[winner]->getStrategyName() << "\n";
 }
