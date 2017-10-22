@@ -10,15 +10,8 @@
 
 int main()
 {
-	StrategyGenerator::generate(10);
-
-	//Prisoner* prisoner1 = new Prisoner("../Strategies/Test/TestStrategy1.txt");
-	//prisoner1->printStrategy();
-	//std::cout << "\n";
-
-	//Prisoner* prisoner2 = new Prisoner("../Strategies/Test/TestStrategy2.txt");
-	//prisoner2->printStrategy();
-	//std::cout << "\n";
+	const int tournamentSize = 10;
+	StrategyGenerator::generate(tournamentSize);
 
 	std::vector<std::string> tournamentStrategies;
 	for (int i = 0; i < 10; i++)
@@ -33,9 +26,6 @@ int main()
 	tournament->printResults();
 
 	delete tournament;
-
-	//delete prisoner1;
-	//delete prisoner2;
 
 	std::cout << "\n";
 

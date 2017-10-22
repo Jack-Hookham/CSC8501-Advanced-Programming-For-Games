@@ -1,11 +1,12 @@
 #pragma once
 
 #include "IPDPGame.h"
+#include "StrategyGenerator.h"
 
 class IPDPTournament
 {
 public:
-	IPDPTournament(std::vector<std::string> strategies);
+	IPDPTournament(const std::vector<std::string>& strategies);
 	~IPDPTournament();
 
 	void play();
@@ -13,5 +14,7 @@ public:
 
 private:
 	std::vector<Prisoner*> mPrisoners;
-	//std::vector<IPDPGame> games;
+
+	//Formatting
+	const std::string lineBreak = "__________________________________________________________________________________________________________________________\n";
 };
