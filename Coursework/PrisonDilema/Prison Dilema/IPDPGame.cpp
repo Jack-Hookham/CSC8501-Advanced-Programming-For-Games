@@ -10,7 +10,7 @@ IPDPGame::~IPDPGame()
 {
 }
 
-void IPDPGame::play(const int n)
+void IPDPGame::play(const int gameNum, const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -24,8 +24,7 @@ void IPDPGame::play(const int n)
 		//mPrisonerA->printVariables();
 		//mPrisonerB->printVariables();
 	}
-	std::cout << "\n";
-
+	std::cout << "\nGame " << gameNum << "\n";
 	//Print the variables for both prisoners at the end of the game
 	mPrisonerA->printVariables();
 	mPrisonerB->printVariables();
@@ -45,7 +44,7 @@ void IPDPGame::updateVariables(const int decisionA, const int decisionB)
 	mPrisonerA->incrementIterations();
 	mPrisonerB->incrementIterations();
 
-	if (decisionA == decisionB == Prisoner::decisions::SILENCE)
+	if (decisionA == Prisoner::decisions::SILENCE && decisionB == Prisoner::decisions::SILENCE)
 	{
 		mPrisonerA->outcomeW();
 		mPrisonerB->outcomeW();
@@ -60,7 +59,7 @@ void IPDPGame::updateVariables(const int decisionA, const int decisionB)
 		mPrisonerA->outcomeY();
 		mPrisonerB->outcomeX();
 	}
-	else if (decisionA == decisionB == Prisoner::decisions::BETRAY)
+	else if (decisionA == Prisoner::decisions::BETRAY && decisionB == Prisoner::decisions::BETRAY)
 	{
 		mPrisonerA->outcomeZ();
 		mPrisonerB->outcomeZ();

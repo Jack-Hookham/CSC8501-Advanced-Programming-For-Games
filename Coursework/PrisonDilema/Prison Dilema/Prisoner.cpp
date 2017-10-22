@@ -36,7 +36,15 @@ void Prisoner::printVariables()
 	std::cout << mStrategyName << "\t";
 	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
 	{
-		std::cout << mVariables[i] << "\t\t";
+		//If LASTOUTCOME print the letter, otherwise print int value of the variable
+		if (i == PsilLang::varEnums::LASTOUTCOME)
+		{
+			std::cout << PsilLang::psilVars[mVariables[i]] << "\t\t";
+		}
+		else
+		{
+			std::cout << mVariables[i] << "\t\t";
+		}
 	}
 	std::cout << "\n";
 }
@@ -62,6 +70,7 @@ void Prisoner::outcomeW()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
 	mVariables[PsilLang::varEnums::MYSCORE] += 2;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
 }
 
 //A silent, B betray
@@ -69,12 +78,14 @@ void Prisoner::outcomeX()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
 	mVariables[PsilLang::varEnums::MYSCORE] += 5;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
 }
 
 //A betray, B silent
 void Prisoner::outcomeY()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Y;
 }
 
 //Both betray
@@ -82,4 +93,5 @@ void Prisoner::outcomeZ()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
 	mVariables[PsilLang::varEnums::MYSCORE] += 4;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
 }

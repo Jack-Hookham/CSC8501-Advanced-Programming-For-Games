@@ -27,12 +27,14 @@ void IPDPTournament::play()
 	}
 	std::cout << "\n";
 
+	int gameNum = 1;
 	for (int i = 0; i < mPrisoners.size(); i++)
 	{
 		for (int j = i + 1; j < mPrisoners.size(); j++)
 		{
 			IPDPGame* game = new IPDPGame(mPrisoners[i], mPrisoners[j]);
-			game->play();
+			game->play(gameNum);
+			gameNum++;
 		}
 	}
 }
