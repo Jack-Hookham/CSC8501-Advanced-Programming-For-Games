@@ -4,17 +4,15 @@ Prisoner::Prisoner()
 {
 }
 
-Prisoner::Prisoner(const std::string id, const std::string folderPath)
+Prisoner::Prisoner(const std::string filePath)
 {
-	mStrategyID = id;
-
-	std::ostringstream ossPath;
-	ossPath << folderPath << id << ".txt";
-	mStrategyPath = ossPath.str();
-
+	
+	mStrategyPath = filePath;
 
 	//Read the file into the strategy map
 	FileManager::readFromFile(mStrategyPath, mStrategy);
+
+	mStrategyName = FileManager::getFileName(filePath);
 }
 
 Prisoner::~Prisoner()
@@ -36,7 +34,7 @@ void Prisoner::printStrategy()
 
 void Prisoner::printVariables()
 {
-	std::cout << mStrategyID << "\t";
+	std::cout << mStrategyName << "\t";
 	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
 	{
 		std::cout << mVariables[i] << "\t\t";

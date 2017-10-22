@@ -48,3 +48,15 @@ void FileManager::writeToFile(const std::string& filePath, const std::map<int, s
 		std::cout << "Unable to open file";
 	}
 }
+
+//Return the raw file name from a file path
+const std::string FileManager::getFileName(const std::string filePath)
+{
+	//Remove folder path
+	std::size_t botDirPos = filePath.find_last_of('/');
+	std::string temp = filePath.substr(botDirPos + 1, filePath.length());
+
+	//Remove the extension
+	std::size_t extensionePos = temp.find_last_of(".");
+	return temp.substr(0, extensionePos);
+}

@@ -113,19 +113,21 @@
   <ItemGroup>
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="IPDPGame.cpp" />
+    <ClCompile Include="IPDPTournament.cpp" />
     <ClCompile Include="PsilLang.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prisoner.cpp" />
     <ClCompile Include="StrategyGenerator.cpp" />
-    <ClCompile Include="TIPDPGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="IPDPGame.h" />
+    <ClInclude Include="IPDPTournament.h" />
     <ClInclude Include="PsilLang.h" />
     <ClInclude Include="Prisoner.h" />
     <ClInclude Include="StrategyGenerator.h" />
-    <ClInclude Include="TIPDPGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

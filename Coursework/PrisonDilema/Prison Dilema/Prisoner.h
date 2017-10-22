@@ -13,9 +13,8 @@ class Prisoner
 public:
 	Prisoner();
 	//Reads a strategy from file and adds each line to the strategy map
-	Prisoner(const std::string id, const std::string folderPath);
+	Prisoner(const std::string folderPath);
 	~Prisoner();
-
 
 	enum decisions
 	{
@@ -42,7 +41,7 @@ public:
 	void printVariables();
 
 private:
-	std::string mStrategyID;
+	std::string mStrategyName;
 	//Strategy file path
 	std::string mStrategyPath;
 

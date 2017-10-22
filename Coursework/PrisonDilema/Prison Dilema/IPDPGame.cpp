@@ -1,16 +1,16 @@
-#include "TIPDPGame.h"
+#include "IPDPGame.h"
 
-TIPDPGame::TIPDPGame(Prisoner* a, Prisoner* b)
+IPDPGame::IPDPGame(Prisoner* a, Prisoner* b)
 {
 	mPrisonerA = a;
 	mPrisonerB = b;
 }
 
-TIPDPGame::~TIPDPGame()
+IPDPGame::~IPDPGame()
 {
 }
 
-void TIPDPGame::play(const int n)
+void IPDPGame::play(const int n)
 {
 	std::cout << "Strategy\t";
 	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
@@ -34,7 +34,7 @@ void TIPDPGame::play(const int n)
 }
 
 //Update variables for both prisoners
-void TIPDPGame::updateVariables(const int decisionA, const int decisionB)
+void IPDPGame::updateVariables(const int decisionA, const int decisionB)
 {
 	mPrisonerA->incrementIterations();
 	mPrisonerB->incrementIterations();

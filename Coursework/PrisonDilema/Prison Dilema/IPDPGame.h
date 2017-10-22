@@ -5,11 +5,11 @@
 
 //The Iterated Prisoners Dilemma Problem Game between two prisoners
 
-class TIPDPGame
+class IPDPGame
 {
 public:
-	TIPDPGame(Prisoner* a, Prisoner* b);
-	~TIPDPGame();
+	IPDPGame(Prisoner* a, Prisoner* b);
+	~IPDPGame();
 
 	//Plays a game of n iterations between to prisoner strategies
 	void play(int n = 200);
@@ -19,6 +19,5 @@ private:
 
 	Prisoner* mPrisonerA;
 	Prisoner* mPrisonerB;
-
 };
 
