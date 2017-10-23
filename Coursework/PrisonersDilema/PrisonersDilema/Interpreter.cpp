@@ -155,12 +155,26 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 			//if PLUS operator
 			if (tokens[tokenIterator] == PsilLang::psilOperators[PsilLang::operatorEnums::PLUS])
 			{
-				lhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				{
+					lhsValue += std::stoi(tokens[tokenIterator + 1]);
+				}
+				else
+				{
+					lhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+				}
 			}
 			//if MINUS operator
 			else
 			{
-				lhsValue -= prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				{
+					lhsValue -= std::stoi(tokens[tokenIterator + 1]);
+				}
+				else
+				{
+					lhsValue -= prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+				}
 			}
 			tokenIterator += 2;
 		}
@@ -169,6 +183,7 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 		std::string conditionalOperator = tokens[tokenIterator];
 		tokenIterator++;
 
+		//rhs var value
 		if (PsilLang::isInteger(tokens[tokenIterator]))
 		{
 			rhsValue += std::stoi(tokens[tokenIterator]);
@@ -179,11 +194,6 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 		}
 		tokenIterator++;
 
-		//rhs var value
-		if (PsilLang::isInteger(tokens[tokenIterator]))
-		{
-			rhsValue += std::stoi(tokens[tokenIterator]);
-		}
 		//loop until GOTO keyword is found
 		while (tokens[tokenIterator] != PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO])
 		{

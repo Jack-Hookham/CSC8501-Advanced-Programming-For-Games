@@ -53,6 +53,6 @@ public:
 	//Maximum lines that can be read from a strategy file
 	static const int MAX_READ_LINES = 30;
 
-	inline static bool isInteger(const std::string& s) { return s.find_first_not_of("0123456789") == std::string::npos; }
+	inline static bool isInteger(const std::string& s) { return s.find_first_not_of("-0123456789") == std::string::npos; }
 };
 

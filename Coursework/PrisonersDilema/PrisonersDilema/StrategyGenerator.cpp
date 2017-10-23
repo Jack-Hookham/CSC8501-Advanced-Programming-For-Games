@@ -107,8 +107,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	int numRhsVars = numVariablesDistribution(randGenerator) + 1;
 
 	//For varDistribution MYSCORE + 1 represents a random number that will need to be generated
-	//std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::LASTOUTCOME, PsilLang::varEnums::MYSCORE + 1);
-	std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::MYSCORE + 1, PsilLang::varEnums::MYSCORE + 1);
+	std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::LASTOUTCOME, PsilLang::varEnums::MYSCORE + 1);
 
 	std::vector<int> lhsVars;
 	std::vector<int> rhsVars;
@@ -145,8 +144,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	else
 	{
 		//Remove LASTOUTCOME from possible vars
-		//varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::ALLOUTCOMES_W, PsilLang::varEnums::MYSCORE + 1);
-		varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::MYSCORE + 1, PsilLang::varEnums::MYSCORE + 1);
+		varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::ALLOUTCOMES_W, PsilLang::varEnums::MYSCORE + 1);
 
 		//Populate the rest of the lhs and rhs vars
 		for (int i = 1; i < numLhsVars; i++)
