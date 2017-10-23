@@ -1,6 +1,6 @@
 #include "fileManager.h"
 
-void FileManager::readFromFile(const std::string& filePath, std::map<int, std::string>& strategy)
+void FileManager::readFromFile(const std::string& filePath, std::map<int, std::string>& const strategy)
 {
 	std::string line;
 	std::ifstream file(filePath);
@@ -31,7 +31,7 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 	}
 }
 
-void FileManager::writeToFile(const std::string& filePath, const std::map<int, std::string>& strategy)
+void FileManager::writeToFile(const std::string& filePath, const std::map<int, std::string>& const strategy)
 {
 	std::ofstream file(filePath);
 	if (file.is_open())
@@ -49,7 +49,7 @@ void FileManager::writeToFile(const std::string& filePath, const std::map<int, s
 	}
 }
 
-void FileManager::writeToFile(const std::string & filePath, const std::string s)
+void FileManager::writeToFile(const std::string & filePath, const std::string& const s)
 {
 	std::ofstream file(filePath);
 	if (file.is_open())
@@ -64,7 +64,7 @@ void FileManager::writeToFile(const std::string & filePath, const std::string s)
 }
 
 //Return the raw file name from a file path
-const std::string FileManager::getFileName(const std::string filePath)
+const std::string FileManager::getFileName(const std::string& const filePath)
 {
 	//Remove folder path
 	std::size_t botDirPos = filePath.find_last_of('/');

@@ -4,7 +4,7 @@ Prisoner::Prisoner()
 {
 }
 
-Prisoner::Prisoner(const std::string filePath)
+Prisoner::Prisoner(const std::string& const filePath)
 {
 	mStrategyPath = filePath;
 
@@ -18,7 +18,7 @@ Prisoner::~Prisoner()
 {
 }
 
-void Prisoner::setStrategy(const std::string filePath)
+void Prisoner::setStrategy(const std::string& const filePath)
 {
 	FileManager::readFromFile(filePath, mStrategy);
 }

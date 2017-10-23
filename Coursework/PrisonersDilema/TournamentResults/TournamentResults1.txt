@@ -2,17 +2,17 @@ ________________________________________________________________________________
 
 Strategy Name  Total Score
 
-Strategy1      3664
-Strategy2      3540
-Strategy3      5357
-Strategy4      5337
-Strategy5      6891
-Strategy6      5278
-Strategy7      3572
-Strategy8      5299
-Strategy9      5337
-Strategy10     6924
+Strategy1      3265
+Strategy2      6028
+Strategy3      3912
+Strategy4      5319
+Strategy5      3411
+Strategy6      6582
+Strategy7      3320
+Strategy8      5384
+Strategy9      5351
+Strategy10     6585
 _______________________________________________________________________________________________________________________
 
-Winning strategy: Strategy2
+Winning strategy: Strategy1
 _______________________________________________________________________________________________________________________

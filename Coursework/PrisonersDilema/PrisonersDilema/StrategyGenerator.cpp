@@ -36,11 +36,8 @@ void StrategyGenerator::generateStrategy(const int pathIndex, const bool gangStr
 	//Set the number of lines for this strategy
 	const int totalLines = RandomGen::generateRandomWithinRange(1, PsilLang::MAX_WRITE_LINES);
 
-	//current line index so +1 needed for actual line number starting from 1
-	int currentLineIndex = 0;
-
-	//Current value used for line number in the strategy
-	int currentLineNum = 10;
+	int currentLineIndex = 0;	//Line number by index 0, 1, 2 etc
+	int currentLineNum = 10;	//Line number by value to be written to file e.g. 10, 20, 30 etc
 
 	while (currentLineIndex < totalLines)
 	{
@@ -106,25 +103,26 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	int numRhsVars = RandomGen::generateRandomWeighted(numVarsWeights) + 1;
 
 	//Store temporary upperbounds for random number gen which will vary based on the gangStrategy bool
-	int upperBound;
+	int varGenUpperBound;
+	int wxyzabcUpperBound;
 
-	//For varDistribution ENUM + 1 represents a random number that will need to be generated
-	std::uniform_int_distribution<int> varDistribution;
 	if (gangStrategy)
 	{
-		upperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_2;
+		varGenUpperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_2;
+		wxyzabcUpperBound = PsilLang::varEnums::C;
 	}
 	else
 	{
-		upperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_1;
+		varGenUpperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_1;
+		wxyzabcUpperBound = PsilLang::varEnums::C;
 	}
 
 	std::vector<int> lhsVars;
 	std::vector<int> rhsVars;
 
 	//First vars for both sides
-	lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, upperBound));
-	rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, upperBound));
+	lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, varGenUpperBound));
+	rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, varGenUpperBound));
 
 	int conditionalOperatorEnum;
 	std::vector<int> lhsOperatorEnums;
@@ -134,57 +132,30 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	if (lhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
 	{
 		conditionalOperatorEnum = PsilLang::operatorEnums::EQUALS;
-		if (gangStrategy)
-		{
-			upperBound = PsilLang::varEnums::C;
-		}
-		else
-		{
-			upperBound = PsilLang::varEnums::Z;
-		}
 		//set the other side of the equation to w, x, y or z (a, b, c included if strategy is for a gang prisoner)
-		rhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, upperBound);
+		rhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, wxyzabcUpperBound);
 		numLhsVars = 1;
 		numRhsVars = 1;
 	}
 	else if (rhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
 	{
 		conditionalOperatorEnum = PsilLang::operatorEnums::EQUALS;
-		std::uniform_int_distribution<int> wxyzDist;
-		if (gangStrategy)
-		{
-			upperBound = PsilLang::varEnums::C;
-		}
-		else
-		{
-			upperBound = PsilLang::varEnums::Z;
-		}
-		lhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, upperBound);
+		lhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, wxyzabcUpperBound);
 		numLhsVars = 1;
 		numRhsVars = 1;
 	}
 	//else continue with random variable generation
 	else
 	{
-		//Remove LASTOUTCOME from possible vars
-		if (gangStrategy)
-		{
-			upperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_2;
-		}
-		else
-		{
-			upperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_1;
-		}
-
 		//Populate the rest of the lhs and rhs vars
 		for (int i = 1; i < numLhsVars; i++)
 		{
-			lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, upperBound));
+			lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
 		}
 
 		for (int i = 1; i < numRhsVars; i++)
 		{
-			rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, upperBound));
+			rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
 		}
 
 		conditionalOperatorEnum = RandomGen::generateRandomWithinRange(PsilLang::operatorEnums::GREATER_THAN, PsilLang::operatorEnums::EQUALS);
