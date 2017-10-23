@@ -27,7 +27,7 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 	}
 	else
 	{
-		std::cout << "Unable to open file";
+		std::cout << "Unable to open file\n";
 	}
 }
 
@@ -45,7 +45,21 @@ void FileManager::writeToFile(const std::string& filePath, const std::map<int, s
 	}
 	else
 	{
-		std::cout << "Unable to open file";
+		std::cout << "Unable to open file\n";
+	}
+}
+
+void FileManager::writeToFile(const std::string & filePath, const std::string s)
+{
+	std::ofstream file(filePath);
+	if (file.is_open())
+	{
+		file << s;
+		file.close();
+	}
+	else
+	{
+		std::cout << "Unable to open file\n";
 	}
 }
 

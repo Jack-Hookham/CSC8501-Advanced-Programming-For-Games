@@ -25,11 +25,9 @@ void StrategyGenerator::generateStrategy(const int pathIndex)
 	std::default_random_engine dre{ rd() };
 	std::mt19937 randGenerator(dre);
 
-	//random line distribution between 1 and max lines
-	std::uniform_int_distribution<int> lineDistribution(1, PsilLang::MAX_WRITE_LINES);
-
+	//random total line number distribution between 1 and max lines
 	//Set the number of lines for this strategy
-	const int totalLines = lineDistribution(randGenerator);
+	const int totalLines = std::uniform_int_distribution<int>(1, PsilLang::MAX_WRITE_LINES) (randGenerator);
 
 	//Weightings for IF, BETRAY, SILENCE, RANDOM
 	const int NUM_WEIGHTS = 4;
@@ -108,7 +106,9 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	int numLhsVars = numVariablesDistribution(randGenerator) + 1;
 	int numRhsVars = numVariablesDistribution(randGenerator) + 1;
 
-	std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::LASTOUTCOME, PsilLang::varEnums::MYSCORE);
+	//For varDistribution MYSCORE + 1 represents a random number that will need to be generated
+	//std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::LASTOUTCOME, PsilLang::varEnums::MYSCORE + 1);
+	std::uniform_int_distribution<int> varDistribution(PsilLang::varEnums::MYSCORE + 1, PsilLang::varEnums::MYSCORE + 1);
 
 	std::vector<int> lhsVars;
 	std::vector<int> rhsVars;
@@ -145,7 +145,8 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	else
 	{
 		//Remove LASTOUTCOME from possible vars
-		varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::ALLOUTCOMES_W, PsilLang::varEnums::MYSCORE);
+		//varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::ALLOUTCOMES_W, PsilLang::varEnums::MYSCORE + 1);
+		varDistribution = std::uniform_int_distribution<int>(PsilLang::varEnums::MYSCORE + 1, PsilLang::varEnums::MYSCORE + 1);
 
 		//Populate the rest of the lhs and rhs vars
 		for (int i = 1; i < numLhsVars; i++)
@@ -185,15 +186,27 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 		gotoLine = gotoDistribution(randGenerator) * 10;
 	}
 
+	//Int distribtution used to fill in integer variables
+	std::uniform_int_distribution<int> intDistribution(-200, 200);
+
 	std::ostringstream ossLine;
 	//Concatenate the final if statement
-	//IF
 	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::IF] << ' ';
 
 	//Lhs vars and operators
 	for (int i = 0; i < numLhsVars; i++)
 	{
-		ossLine << PsilLang::psilVars[lhsVars[i]] << ' ';
+		//if the current variable is an integer value then generate that value
+		//else just used the string represented by the value
+		if (lhsVars[i] == PsilLang::varEnums::MYSCORE + 1)
+		{
+			ossLine << intToString(intDistribution(randGenerator)) << ' ';
+		}
+		else
+		{
+			ossLine << PsilLang::psilVars[lhsVars[i]] << ' ';
+		}
+
 		if (i < numLhsVars - 1)
 		{
 			ossLine << PsilLang::psilOperators[lhsOperators[i]] << ' ';
@@ -206,7 +219,14 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	//Rhs vars and operators
 	for (int i = 0; i < numRhsVars; i++)
 	{
-		ossLine << PsilLang::psilVars[rhsVars[i]] << ' ';
+		if (rhsVars[i] == PsilLang::varEnums::MYSCORE + 1)
+		{
+			ossLine << intToString(intDistribution(randGenerator)) << ' ';
+		}
+		else
+		{
+			ossLine << PsilLang::psilVars[rhsVars[i]] << ' ';
+		}
 		if (i < numRhsVars - 1)
 		{
 			ossLine << PsilLang::psilOperators[rhsOperators[i]] << ' ';
@@ -217,4 +237,11 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 
 	std::string lineString = ossLine.str();
 	return lineString;
+}
+
+std::string StrategyGenerator::intToString(const int x)
+{
+	std::stringstream ss;
+	ss << x;
+	return ss.str();
 }

@@ -23,5 +23,6 @@ private:
 
 	//generate a PSIL if statement
 	static std::string generateIf(const int currentLineNum, const int totalLines, std::mt19937 &randGenerator);
+	static std::string intToString(const int x);
 };
 

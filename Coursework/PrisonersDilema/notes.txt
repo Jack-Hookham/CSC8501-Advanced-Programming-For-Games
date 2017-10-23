@@ -8,3 +8,9 @@ Error checking
 set line number increments
 
 map typedefs
+
+format with setw()
+
+process Prisoner::decisions::INVALID_FILE
+
+compare single characters

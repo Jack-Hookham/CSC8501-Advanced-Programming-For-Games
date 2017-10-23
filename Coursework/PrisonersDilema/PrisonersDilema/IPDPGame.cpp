@@ -14,16 +14,27 @@ void IPDPGame::play(const int gameNum, const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		int decisionA = Interpreter::interpretDecision(mPrisonerA);
 		//Friend? compare prisoner strategies
-
+		int decisionA = Interpreter::interpretDecision(mPrisonerA);
 		int decisionB = Interpreter::interpretDecision(mPrisonerB);
 
+		if (decisionA == Prisoner::INVALID_FILE || decisionB == Prisoner::INVALID_FILE)
+		{
+			std::cout << "Invalid file! Game aborted.\n";
+
+			mPrisonerA->softReset();
+			mPrisonerB->softReset();
+
+			return;
+		}
+
 		updateVariables(decisionA, decisionB);
+
 
 		//mPrisonerA->printVariables();
 		//mPrisonerB->printVariables();
 	}
+
 	std::cout << "\nGame " << gameNum << "\n";
 	//Print the variables for both prisoners at the end of the game
 	mPrisonerA->printVariables();

@@ -23,8 +23,8 @@ public:
 		INVALID_FILE
 	};
 
-	inline const std::map<int, std::string>& getStrategy() { return mStrategy; }
-	inline const std::string getStrategyLine(const int n) { return mStrategy.at(n); }
+	inline const std::map<int, std::string>& getStrategy() const { return mStrategy; }
+	inline const std::string getStrategyLine(const int n) const { return mStrategy.at(n); }
 	void setStrategy(const std::string filePath);
 
 	inline const int getVariable(const int n) const { return mVariables[n]; }

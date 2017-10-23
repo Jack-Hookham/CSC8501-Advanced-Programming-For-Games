@@ -21,9 +21,9 @@ int main()
 		tournamentStrategies.push_back(ossPath.str());
 	}
 
-	IPDPTournament* tournament = new IPDPTournament(tournamentStrategies);
+	IPDPTournament* tournament = new IPDPTournament(1, tournamentStrategies);
 	tournament->play();
-	tournament->printResults();
+	tournament->generateResults();
 
 	delete tournament;
 

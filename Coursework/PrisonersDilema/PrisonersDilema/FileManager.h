@@ -15,5 +15,6 @@ class FileManager
 public:
 	static void readFromFile(const std::string& filePath, std::map<int, std::string>& strategy);
 	static void writeToFile(const std::string& filePath, const std::map<int, std::string>& strategy);
+	static void writeToFile(const std::string& filePath, const std::string s);
 	static const std::string getFileName(const std::string filePath);
 };
