@@ -33,17 +33,17 @@ void Prisoner::printStrategy()
 
 void Prisoner::printVariables()
 {
-	std::cout << mStrategyName << "\t";
+	std::cout << std::setw(15) << std::left << mStrategyName;
 	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
 		if (i == PsilLang::varEnums::LASTOUTCOME)
 		{
-			std::cout << PsilLang::psilVars[mVariables[i]] << "\t\t";
+			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[mVariables[i]];
 		}
 		else
 		{
-			std::cout << mVariables[i] << "\t\t";
+			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << mVariables[i];
 		}
 	}
 	std::cout << "\n";

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <iomanip>
 
 #include "FileManager.h"
 #include "PsilLang.h"

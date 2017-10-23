@@ -32,10 +32,6 @@ void StrategyGenerator::generateStrategy(const int pathIndex, const bool gangStr
 	ossPath << folderPath << "Strategy" << pathIndex << ".txt";
 	std::string filePath = ossPath.str();
 
-	//std::random_device rd;
-	//std::default_random_engine dre{ rd() };
-	//std::mt19937 randGenerator(dre);
-
 	//random total line number distribution between 1 and max lines
 	//Set the number of lines for this strategy
 	const int totalLines = RandomGen::generateRandomWithinRange(1, PsilLang::MAX_WRITE_LINES);
@@ -266,7 +262,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 
 std::string StrategyGenerator::intToString(const int x)
 {
-	std::stringstream ss;
-	ss << x;
-	return ss.str();
+	std::ostringstream oss;
+	oss << x;
+	return oss.str();
 }

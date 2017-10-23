@@ -26,12 +26,14 @@ Tournament::~Tournament()
 void Tournament::play()
 {
 	std::cout << lineBreak;
-	std::cout << "\nStrategy Name\t";
+	std::cout << std::setw(15) << "\nStrategy Name";
+	
 	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
-		std::cout << PsilLang::psilVars[i] << "\t";
+		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
 	}
 	std::cout << "\n";
+	std::cout << lineBreak;
 
 	int gameNum = 1;
 	for (int i = 0; i < mPrisoners.size(); i++)
@@ -50,13 +52,13 @@ void Tournament::generateResults()
 {
 	std::ostringstream ossResults;
 	ossResults << lineBreak;
-	ossResults << "\nStrategy Name\t\tTotal Score\n\n";
+	ossResults << "\n" << std::left << std::setw(15) << "Strategy Name" << "Total Score" << "\n\n";
 
 	int winner = 0;
 	//Print each prisoner's cumulative score and determine a winner (lowest score)
 	for (int i = 0; i < mPrisoners.size(); i++)
 	{
-		ossResults << mPrisoners[i]->getStrategyName() << "\t\t" << mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) << "\n";
+		ossResults << std::left << std::setw(15) << mPrisoners[i]->getStrategyName() << mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) << "\n";
 
 		if (mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE))
 		{
