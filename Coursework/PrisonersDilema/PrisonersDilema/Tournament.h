@@ -1,13 +1,14 @@
 #pragma once
 
-#include "IPDPGame.h"
+#include "Game.h"
 #include "StrategyGenerator.h"
 
-class IPDPTournament
+class Tournament
 {
 public:
-	IPDPTournament(const int id, const std::vector<std::string>& strategies);
-	~IPDPTournament();
+	Tournament();
+	Tournament(const int id, const std::vector<std::string>& strategies);
+	~Tournament();
 
 	void play();
 	void generateResults();

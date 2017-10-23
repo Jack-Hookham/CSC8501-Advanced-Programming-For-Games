@@ -114,8 +114,10 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Gang.cpp" />
     <ClCompile Include="Interpreter.cpp" />
-    <ClCompile Include="IPDPGame.cpp" />
-    <ClCompile Include="IPDPTournament.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GangGame.cpp" />
+    <ClCompile Include="GangTournament.cpp" />
+    <ClCompile Include="Tournament.cpp" />
     <ClCompile Include="PsilLang.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prisoner.cpp" />
@@ -126,8 +128,11 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Gang.h" />
     <ClInclude Include="Interpreter.h" />
-    <ClInclude Include="IPDPGame.h" />
-    <ClInclude Include="IPDPTournament.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GangGame.h" />
+    <ClInclude Include="GangTournament.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Tournament.h" />
     <ClInclude Include="PsilLang.h" />
     <ClInclude Include="Prisoner.h" />
     <ClInclude Include="Spy.h" />

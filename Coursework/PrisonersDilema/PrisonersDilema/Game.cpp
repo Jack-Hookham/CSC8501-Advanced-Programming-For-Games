@@ -1,16 +1,20 @@
-#include "IPDPGame.h"
+#include "Game.h"
 
-IPDPGame::IPDPGame(Prisoner* a, Prisoner* b)
+Game::Game()
+{
+}
+
+Game::Game(Prisoner* a, Prisoner* b)
 {
 	mPrisonerA = a;
 	mPrisonerB = b;
 }
 
-IPDPGame::~IPDPGame()
+Game::~Game()
 {
 }
 
-void IPDPGame::play(const int gameNum, const int n)
+void Game::play(const int gameNum, const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -29,10 +33,6 @@ void IPDPGame::play(const int gameNum, const int n)
 		}
 
 		updateVariables(decisionA, decisionB);
-
-
-		//mPrisonerA->printVariables();
-		//mPrisonerB->printVariables();
 	}
 
 	std::cout << "\nGame " << gameNum << "\n";
@@ -50,7 +50,7 @@ void IPDPGame::play(const int gameNum, const int n)
 }
 
 //Update variables for both prisoners
-void IPDPGame::updateVariables(const int decisionA, const int decisionB)
+void Game::updateVariables(const int decisionA, const int decisionB)
 {
 	mPrisonerA->incrementIterations();
 	mPrisonerB->incrementIterations();

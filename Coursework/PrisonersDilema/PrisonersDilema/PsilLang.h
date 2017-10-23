@@ -28,17 +28,25 @@ public:
 	enum varEnums
 	{
 		LASTOUTCOME,
+		ITERATIONS,
+		MYSCORE,
 		ALLOUTCOMES_W,
 		ALLOUTCOMES_X,
 		ALLOUTCOMES_Y,
 		ALLOUTCOMES_Z,
-		ITERATIONS,
-		MYSCORE,
-		CUMULATIVE_SCORE,
+		INTEGER_PLACEHOLDER_1,	//used in strategy generation - if this value is generated in an if statement it will be replaced by a random integer
+		ALLOUTCOMES_A,
+		ALLOUTCOMES_B,
+		ALLOUTCOMES_C,
+		INTEGER_PLACEHOLDER_2,
 		W,
 		X,
 		Y,
-		Z
+		Z,
+		A,
+		B,
+		C,
+		CUMULATIVE_SCORE
 	};
 
 	static const std::string psilKeywords[];

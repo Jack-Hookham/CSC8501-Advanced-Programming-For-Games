@@ -5,11 +5,12 @@
 
 //The Iterated Prisoners Dilemma Problem Game between two prisoners
 
-class IPDPGame
+class Game
 {
 public:
-	IPDPGame(Prisoner* a, Prisoner* b);
-	~IPDPGame();
+	Game();
+	Game(Prisoner* a, Prisoner* b);
+	~Game();
 
 	//Plays a game of n iterations between to prisoner strategies
 	void play(const int gameNum, int n = 200);

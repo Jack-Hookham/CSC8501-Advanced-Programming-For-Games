@@ -34,7 +34,7 @@ void Prisoner::printStrategy()
 void Prisoner::printVariables()
 {
 	std::cout << mStrategyName << "\t";
-	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
 		if (i == PsilLang::varEnums::LASTOUTCOME)

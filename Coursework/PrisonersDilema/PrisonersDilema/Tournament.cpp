@@ -1,6 +1,10 @@
-#include "IPDPTournament.h"
+#include "Tournament.h"
 
-IPDPTournament::IPDPTournament(const int id, const std::vector<std::string>& strategies)
+Tournament::Tournament()
+{
+}
+
+Tournament::Tournament(const int id, const std::vector<std::string>& strategies)
 {
 	mID = id;
 	//Create a Prisoner for each strategy
@@ -10,7 +14,7 @@ IPDPTournament::IPDPTournament(const int id, const std::vector<std::string>& str
 	}
 }
 
-IPDPTournament::~IPDPTournament()
+Tournament::~Tournament()
 {
 	for (int i = 0; i < mPrisoners.size(); i++)
 	{
@@ -19,11 +23,11 @@ IPDPTournament::~IPDPTournament()
 	mPrisoners.clear();
 }
 
-void IPDPTournament::play()
+void Tournament::play()
 {
 	std::cout << lineBreak;
 	std::cout << "\nStrategy Name\t";
-	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		std::cout << PsilLang::psilVars[i] << "\t";
 	}
@@ -34,7 +38,7 @@ void IPDPTournament::play()
 	{
 		for (int j = i + 1; j < mPrisoners.size(); j++)
 		{
-			IPDPGame* game = new IPDPGame(mPrisoners[i], mPrisoners[j]);
+			Game* game = new Game(mPrisoners[i], mPrisoners[j]);
 			game->play(gameNum);
 			gameNum++;
 			delete game;
@@ -42,7 +46,7 @@ void IPDPTournament::play()
 	}
 }
 
-void IPDPTournament::generateResults()
+void Tournament::generateResults()
 {
 	std::ostringstream ossResults;
 	ossResults << lineBreak;
@@ -70,7 +74,7 @@ void IPDPTournament::generateResults()
 	printResults();
 }
 
-void IPDPTournament::printResults()
+void Tournament::printResults()
 {
 	std::cout << mTournamentResults << "\n";
 }
