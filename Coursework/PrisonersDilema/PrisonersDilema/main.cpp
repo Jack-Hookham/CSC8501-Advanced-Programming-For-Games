@@ -11,8 +11,8 @@
 int main()
 {
 	const int tournamentSize = 10;
-	StrategyGenerator::generate(tournamentSize);
-	StrategyGenerator::generate(tournamentSize, true);
+	StrategyGenerator::generate(tournamentSize, false, 10);
+	StrategyGenerator::generate(tournamentSize, true, 10);
 
 	std::vector<std::string> tournamentStrategies;
 	for (int i = 0; i < 10; i++)

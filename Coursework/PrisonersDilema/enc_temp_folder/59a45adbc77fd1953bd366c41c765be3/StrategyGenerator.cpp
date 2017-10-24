@@ -109,7 +109,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	//GOTO line number should be between (current line + 1) and total lines
 	//if on 2nd last line go to last line
 	int gotoLine = totalLines * lineNumIncrement;		//default to last line
-	//if not last or 2nd last line choose random line greater than current line
+	//if not 2nd last line choose random line greater than current line
 	if (currentLineIndex < totalLines - 1)
 	{
 		gotoLine = (RandomGen::generateRandomWithinRange(currentLineIndex + 2, totalLines)) * lineNumIncrement;
@@ -139,6 +139,7 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 		}
 	}
 
+	//Conditional Operator
 	ossLine << PsilLang::psilOperators[conditionalOperatorEnum] << ' ';
 
 	//Rhs vars and operators
@@ -236,6 +237,8 @@ const int StrategyGenerator::generateOperators(std::vector<int>& lhsOps, std::ve
 
 	return RandomGen::generateRandomWithinRange(PsilLang::operatorEnums::GREATER_THAN, PsilLang::operatorEnums::EQUALS);
 }
+
+
 
 std::string StrategyGenerator::intToString(const int x)
 {
