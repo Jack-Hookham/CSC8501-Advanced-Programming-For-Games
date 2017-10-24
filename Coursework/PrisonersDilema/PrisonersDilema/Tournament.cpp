@@ -4,9 +4,12 @@ Tournament::Tournament()
 {
 }
 
-Tournament::Tournament(const int id, const std::vector<std::string>& strategies)
+Tournament::Tournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations)
 {
 	mID = id;
+	mNumStrategies = strategies.size();
+	mGameIterations = gameIterations;
+	mTournamentIterations = tournamentIterations;
 	//Create a Prisoner for each strategy
 	for (int i = 0; i < strategies.size(); i++)
 	{
@@ -36,14 +39,17 @@ void Tournament::play()
 	std::cout << lineBreak;
 
 	int gameNum = 1;
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mTournamentIterations; i++)
 	{
-		for (int j = i + 1; j < mPrisoners.size(); j++)
+		for (int i = 0; i < mPrisoners.size(); i++)
 		{
-			Game* game = new Game(mPrisoners[i], mPrisoners[j]);
-			game->play(gameNum);
-			gameNum++;
-			delete game;
+			for (int j = i + 1; j < mPrisoners.size(); j++)
+			{
+				Game* game = new Game(mPrisoners[i], mPrisoners[j]);
+				game->play(gameNum, mGameIterations);
+				gameNum++;
+				delete game;
+			}
 		}
 	}
 }
@@ -52,7 +58,8 @@ void Tournament::generateResults()
 {
 	std::ostringstream ossResults;
 	ossResults << lineBreak;
-	ossResults << "\n" << std::left << std::setw(15) << "Strategy Name" << "Total Score" << "\n\n";
+	ossResults << "\nNumber of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << "   Game Iterations: " << mGameIterations << "\n\n";
+	ossResults << std::left << std::setw(15) << "Strategy Name" << "Total Score" << "\n\n";
 
 	int winner = 0;
 	//Print each prisoner's cumulative score and determine a winner (lowest score)

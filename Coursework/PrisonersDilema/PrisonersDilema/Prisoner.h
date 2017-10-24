@@ -40,7 +40,10 @@ public:
 	void outcomeZ();
 
 	void printStrategy();
-	void printVariables();
+
+	friend std::ostream& operator<<(std::ostream& os, const Prisoner* p);
+
+
 	//Reset all but CUMULATIVE_SCORE
 	void softReset();
 	//Reset all including CUMULATIVE_SCORE

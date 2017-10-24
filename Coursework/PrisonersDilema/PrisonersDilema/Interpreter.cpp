@@ -60,10 +60,6 @@ int Interpreter::processLine(Prisoner* prisoner, const int lineNumber, const int
 
 int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::vector<std::string>& tokens)
 {
-	////STRINGTOENUM? MAP???
-	////Tokens[even] > 1 is variable
-	////Tokens[odd] > 1 is operator
-
 	//Initialise next line number to the next line
 	//If the if statement returns true this number will be changed to the GOTO number
 	std::map<int, std::string>::const_iterator it = prisoner->getStrategy().find(lineNumber);
@@ -72,12 +68,6 @@ int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::ve
 
 	int lhsValue = 0;
 	int rhsValue = 0; 
-	//int lhsEnum;
-	//if (!PsilLang::isInteger(tokens[2]))
-	//{
-	//	lhsEnum = PsilLang::stringToEnumMap.at(tokens[2]);
-	//}
-
 
 	//lhs = LASTOUTCOME
 	if (tokens[2] == PsilLang::psilVars[PsilLang::varEnums::LASTOUTCOME])

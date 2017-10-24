@@ -37,8 +37,8 @@ void Game::play(const int gameNum, const int n)
 
 	std::cout << "\nGame " << gameNum << "\n";
 	//Print the variables for both prisoners at the end of the game
-	mPrisonerA->printVariables();
-	mPrisonerB->printVariables();
+	std::cout << mPrisonerA; 
+	std::cout << mPrisonerB;
 
 	//Add scores to cumulative scores
 	mPrisonerA->addScore();

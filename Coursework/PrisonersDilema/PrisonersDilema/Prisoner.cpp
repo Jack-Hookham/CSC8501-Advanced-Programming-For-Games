@@ -31,22 +31,23 @@ void Prisoner::printStrategy()
 	}
 }
 
-void Prisoner::printVariables()
+std::ostream& operator<<(std::ostream& os, const Prisoner* p)
 {
-	std::cout << std::setw(15) << std::left << mStrategyName;
+	os << std::setw(15) << std::left << p->getStrategyName();
 	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
 		if (i == PsilLang::varEnums::LASTOUTCOME)
 		{
-			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[mVariables[i]];
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[p->getVariable(i)];
 		}
 		else
 		{
-			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << mVariables[i];
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << p->getVariable(i);
 		}
 	}
-	std::cout << "\n";
+	os << "\n";
+	return os;
 }
 
 void Prisoner::softReset()

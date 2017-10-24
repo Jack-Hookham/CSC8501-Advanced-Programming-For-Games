@@ -5,6 +5,14 @@ const std::string StrategyGenerator::gangPath = "../Strategies/Generated/Gang/";
 
 void StrategyGenerator::generate(const int n, const bool gangStrategy, const int lineNumIncrement)
 {
+	if (gangStrategy)
+	{
+		std::cout << "Generating " << n << " gang prisoner strategies...\n";
+	}
+	else
+	{
+		std::cout << "Generating " << n << " prisoner strategies...\n";
+	}
 	for (int i = 0; i < n; i++)
 	{
 		//generate strategy number i
