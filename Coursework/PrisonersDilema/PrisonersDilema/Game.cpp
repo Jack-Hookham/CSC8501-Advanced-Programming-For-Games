@@ -14,9 +14,9 @@ Game::~Game()
 {
 }
 
-void Game::play(const int gamesPlayed, const int n)
+void Game::play(const int gamesPlayed, const int gameIterations)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < gameIterations; i++)
 	{
 		int decisionA = Interpreter::interpretDecision(mPrisonerA);
 		int decisionB = Interpreter::interpretDecision(mPrisonerB);

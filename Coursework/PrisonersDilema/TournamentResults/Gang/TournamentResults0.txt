@@ -1,20 +1,20 @@
 _______________________________________________________________________________________________________________________
 
-Number of Strategies: 10   Tournament Iterations: 2   Game Iterations: 100
+Number of Strategies: 0   Tournament Iterations: 0   Game Iterations: 0
 
 Strategy Name  Total Score
 
-Strategy1      4163
-Strategy2      4640
-Strategy3      6036
-Strategy4      4870
-Strategy5      5913
-Strategy6      3392
-Strategy7      4587
-Strategy8      3820
-Strategy9      4769
-Strategy10     5578
+Strategy1      0
+Strategy2      0
+Strategy3      0
+Strategy4      0
+Strategy5      0
+Strategy6      0
+Strategy7      0
+Strategy8      0
+Strategy9      0
+Strategy10     0
 _______________________________________________________________________________________________________________________
 
-Winning strategy: Strategy6
+Winning strategy: Strategy1
 _______________________________________________________________________________________________________________________

@@ -46,6 +46,7 @@ public:
 		A,						//Mixed response, most betrays
 		B,						//Mixed response, least betrays
 		C,						//Mixed response, both gangs same cumulative decision
+		UNKOWN_DECISION,		//Unknown decision - decisions will be initialised with this
 		CUMULATIVE_SCORE,		
 		NUM_VARS
 	};

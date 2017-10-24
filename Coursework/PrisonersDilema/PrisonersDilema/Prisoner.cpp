@@ -9,7 +9,8 @@ Prisoner::Prisoner(Prisoner* prisoner)
 	mStrategyName = prisoner->getStrategyName();
 	mStrategyPath = prisoner->getStrategyPath();
 	mStrategy = prisoner->getStrategy();
-	//mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
 Prisoner::Prisoner(const std::string& const filePath)
@@ -18,8 +19,8 @@ Prisoner::Prisoner(const std::string& const filePath)
 
 	//Read the file into the strategy map
 	FileManager::readFromFile(mStrategyPath, mStrategy);
-
 	mStrategyName = FileManager::getFileName(filePath);
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
 Prisoner::~Prisoner()
@@ -60,7 +61,7 @@ std::ostream& operator<<(std::ostream& os, const Prisoner* p)
 
 void Prisoner::softReset()
 {
-	for (int i = 0; i < PsilLang::varEnums::C; i++)
+	for (int i = 0; i < PsilLang::varEnums::UNKOWN_DECISION; i++)
 	{
 		mVariables[i] = 0;
 	}
@@ -101,4 +102,23 @@ void Prisoner::outcomeZ()
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
 	mVariables[PsilLang::varEnums::MYSCORE] += 4;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
+}
+
+void Prisoner::outcomeA()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
+}
+
+void Prisoner::outcomeB()
+{
+
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
+}
+
+void Prisoner::outcomeC()
+{
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
 }

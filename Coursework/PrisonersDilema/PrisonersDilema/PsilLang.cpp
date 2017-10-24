@@ -39,6 +39,7 @@ const std::string PsilLang::psilVars[] =
 	"A",
 	"B",
 	"C",
+	"-",			//Unknown decision - decisions will be initialised with this
 	"CUMULATIVE_SCORE"
 };
 
@@ -52,9 +53,9 @@ const std::map<std::string, int> PsilLang::stringToEnumMap =
 	{ "ALLOUTCOMES_Y", PsilLang::varEnums::ALLOUTCOMES_Y },
 	{ "ALLOUTCOMES_Z", PsilLang::varEnums::ALLOUTCOMES_Z },
 	{ "INTEGER_PLACEHOLDER_1", PsilLang::varEnums::INTEGER_PLACEHOLDER_1 },
-	{ "ALLOUTCOMES_Z", PsilLang::varEnums::ALLOUTCOMES_A },
-	{ "ALLOUTCOMES_Z", PsilLang::varEnums::ALLOUTCOMES_B },
-	{ "ALLOUTCOMES_Z", PsilLang::varEnums::ALLOUTCOMES_C },
+	{ "ALLOUTCOMES_A", PsilLang::varEnums::ALLOUTCOMES_A },
+	{ "ALLOUTCOMES_B", PsilLang::varEnums::ALLOUTCOMES_B },
+	{ "ALLOUTCOMES_C", PsilLang::varEnums::ALLOUTCOMES_C },
 	{ "INTEGER_PLACEHOLDER_2", PsilLang::varEnums::INTEGER_PLACEHOLDER_2 },
 	{ "W", PsilLang::varEnums::W },
 	{ "X", PsilLang::varEnums::X },
@@ -63,5 +64,6 @@ const std::map<std::string, int> PsilLang::stringToEnumMap =
 	{ "A", PsilLang::varEnums::A },
 	{ "B", PsilLang::varEnums::B },
 	{ "C", PsilLang::varEnums::C },
+	{ "-", PsilLang::varEnums::UNKOWN_DECISION },
 	{ "CUMULATIVE_SCORE", PsilLang::varEnums::CUMULATIVE_SCORE }
 };

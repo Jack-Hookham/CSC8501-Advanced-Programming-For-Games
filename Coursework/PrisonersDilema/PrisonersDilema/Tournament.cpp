@@ -32,29 +32,32 @@ void Tournament::generatePrisoners(const std::vector<std::string>& strategies)
 	}
 }
 
-void Tournament::play()
+void Tournament::printTournamentHeading()
 {
 	std::cout << lineBreak;
 	std::cout << std::setw(15) << "\nStrategy Name";
-	
+
 	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
 	}
 	std::cout << "\n";
 	std::cout << lineBreak;
+}
 
-	int gameNum = 1;
+void Tournament::play()
+{
+	printTournamentHeading();
+
 	for (int i = 0; i < mTournamentIterations; i++)
 	{
-		for (int i = 0; i < mPrisoners.size(); i++)
+		for (int j = 0; j < mPrisoners.size(); j++)
 		{
-			for (int j = i + 1; j < mPrisoners.size(); j++)
+			for (int k = j + 1; k < mPrisoners.size(); k++)
 			{
 				mGamesPlayed++;
-				Game* game = new Game(mPrisoners[i], mPrisoners[j]);
+				Game* game = new Game(mPrisoners[j], mPrisoners[k]);
 				game->play(mGamesPlayed, mGameIterations);
-				gameNum++;
 				delete game;
 			}
 		}

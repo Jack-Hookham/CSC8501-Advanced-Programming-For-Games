@@ -5,12 +5,38 @@ Error checking
 - files
 - interpretter
 
-set line number increments
-
 map typedefs
 
-format with setw()
+GangStrategyGenerator class, change upperbounds
 
 process Prisoner::decisions::INVALID_FILE
 
-compare single characters
+
+						CW1		CW2
+
+LASTOUTCOME,			P		B
+ITERATIONS,             P		G
+MYSCORE,                P		G
+ALLOUTCOMES_W,			P		G
+ALLOUTCOMES_X,			P       G
+ALLOUTCOMES_Y,			P       G
+ALLOUTCOMES_Z,			P       G
+INTEGER_PLACEHOLDER_1,			
+ALLOUTCOMES_A,			        P
+ALLOUTCOMES_B,			        P
+ALLOUTCOMES_C,			        P
+INTEGER_PLACEHOLDER_2,
+W,						P       G
+X,						P       G
+Y,						P       G
+Z,						P       G
+A,						        P
+B,						        P
+C,						        P
+UNKOWN_DECISION,		P		
+CUMULATIVE_SCORE,		P		G
+NUM_VARS
+
+
+
+

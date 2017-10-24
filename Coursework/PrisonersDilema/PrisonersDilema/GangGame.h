@@ -17,9 +17,7 @@ private:
 
 	Gang* mGangA;
 	Gang* mGangB;	
-	
-	//Track the total number of games played
-	int mGamesPlayed = 0;
+
 	const int GANG_SIZE = 5;
 };
 

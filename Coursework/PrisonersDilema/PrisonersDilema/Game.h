@@ -13,7 +13,7 @@ public:
 	~Game();
 
 	//Plays a game of n iterations between two prisoner strategies
-	virtual void play(const int gamesPlayed, int n = 200);
+	virtual void play(const int gamesPlayed, int gameIterations = 200);
 
 private:
 	void updateVariables(const int decisionA, const int decisionB);

@@ -6,7 +6,10 @@ GangTournament::GangTournament()
 
 GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations, const int numGangs)
 {
-	Tournament::Tournament(id, strategies, gameIterations, tournamentIterations);
+	mID = id;
+	mNumStrategies = strategies.size();
+	mGameIterations = gameIterations;
+	mTournamentIterations = tournamentIterations;
 
 	generatePrisoners(strategies);
 	//Randomly populate each gang with new prisoners
@@ -40,10 +43,23 @@ GangTournament::~GangTournament()
 
 void GangTournament::play()
 {
+	printTournamentHeading();
+
+	for (int i = 0; i < mTournamentIterations; i++)
+	{
+		for (int j = 0; j < mGangs.size(); j++)
+		{
+			for (int k = j + 1; k < mGangs.size(); k++)
+			{
+				mGamesPlayed++;
+				GangGame* game = new GangGame(mGangs[j], mGangs[k]);
+				game->play(mGamesPlayed, mGameIterations);
+				delete game;
+			}
+		}
+	}
 }
 
 void GangTournament::generateResults()
 {
 }
-
-

@@ -2,6 +2,7 @@
 
 #include "Tournament.h"
 #include "Gang.h"
+#include "GangGame.h"
 
 class GangTournament : public Tournament
 {

@@ -84,11 +84,13 @@ int main()
 	for (int i = 0; i < numGangStrats; i++)
 	{
 		std::ostringstream ossPath;
-		ossPath << "../Strategies/Generated/Prisoner/Strategy" << i + 1 << ".txt";
+		ossPath << "../Strategies/Generated/Gang/Strategy" << i + 1 << ".txt";
 		gangTournamentStrategies.push_back(ossPath.str());
 	}
 
 	GangTournament* gangTournament = new GangTournament(1, gangTournamentStrategies, 100, 1, 2);
+	gangTournament->play();
+	gangTournament->generateResults();
 
 	while (true)
 	{

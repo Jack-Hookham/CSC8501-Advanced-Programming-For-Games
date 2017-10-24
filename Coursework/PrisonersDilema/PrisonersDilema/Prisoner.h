@@ -36,10 +36,16 @@ public:
 
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
 	
+	//Part 1 outcomes
 	void outcomeW();
 	void outcomeX();
 	void outcomeY();
 	void outcomeZ();
+
+	//Part 2 outcomes
+	void outcomeA();
+	void outcomeB();
+	void outcomeC();
 
 	void printStrategy();
 

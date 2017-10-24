@@ -12,6 +12,7 @@ public:
 	inline const std::vector<Prisoner*>& getPrisoners() const { return mPrisoners; }
 	inline const Prisoner* getPrisoner(const int i) const { return mPrisoners[i]; }
 	inline const int getID() const { return mID; }
+	inline const int getVariable(const int n) const { return mVariables[n]; }
 
 	friend std::ostream& operator<<(std::ostream& os, const Gang* g);
 
@@ -21,9 +22,21 @@ public:
 	void hardReset();
 	//Add current score to cumulative score
 	inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
+
+	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
+
+	void outcomeW();
+	void outcomeX();
+	void outcomeY();
+	void outcomeZ();
+
+	void outcomeA();
+	void outcomeB();
+	void outcomeC();
+
 private:
 	int mID;
 	std::vector<Prisoner*> mPrisoners;
 
-	int mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = { 0 };
+	int mVariables[PsilLang::varEnums::NUM_VARS] = { 0 };
 };
