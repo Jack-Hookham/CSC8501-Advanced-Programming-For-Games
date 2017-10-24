@@ -10,11 +10,8 @@ Tournament::Tournament(const int id, const std::vector<std::string>& strategies,
 	mNumStrategies = strategies.size();
 	mGameIterations = gameIterations;
 	mTournamentIterations = tournamentIterations;
-	//Create a Prisoner for each strategy
-	for (int i = 0; i < strategies.size(); i++)
-	{
-		mPrisoners.push_back(new Prisoner(strategies[i]));
-	}
+
+	generatePrisoners(strategies);
 }
 
 Tournament::~Tournament()
@@ -24,6 +21,15 @@ Tournament::~Tournament()
 		delete mPrisoners[i];
 	}
 	mPrisoners.clear();
+}
+
+void Tournament::generatePrisoners(const std::vector<std::string>& strategies)
+{
+	//Create a Prisoner for each strategy
+	for (int i = 0; i < strategies.size(); i++)
+	{
+		mPrisoners.push_back(new Prisoner(strategies[i]));
+	}
 }
 
 void Tournament::play()
@@ -45,8 +51,9 @@ void Tournament::play()
 		{
 			for (int j = i + 1; j < mPrisoners.size(); j++)
 			{
+				mGamesPlayed++;
 				Game* game = new Game(mPrisoners[i], mPrisoners[j]);
-				game->play(gameNum, mGameIterations);
+				game->play(mGamesPlayed, mGameIterations);
 				gameNum++;
 				delete game;
 			}
@@ -80,10 +87,5 @@ void Tournament::generateResults()
 	std::ostringstream path;
 	path << resultsPath << "TournamentResults" << mID << ".txt";
 	FileManager::writeToFile(path.str(), mTournamentResults);
-	printResults();
-}
-
-void Tournament::printResults()
-{
-	std::cout << mTournamentResults << "\n";
+	std::cout << this;
 }

@@ -14,11 +14,10 @@ Game::~Game()
 {
 }
 
-void Game::play(const int gameNum, const int n)
+void Game::play(const int gamesPlayed, const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		//Friend? compare prisoner strategies
 		int decisionA = Interpreter::interpretDecision(mPrisonerA);
 		int decisionB = Interpreter::interpretDecision(mPrisonerB);
 
@@ -35,7 +34,7 @@ void Game::play(const int gameNum, const int n)
 		updateVariables(decisionA, decisionB);
 	}
 
-	std::cout << "\nGame " << gameNum << "\n";
+	std::cout << "\nGame " << gamesPlayed << "\n";
 	//Print the variables for both prisoners at the end of the game
 	std::cout << mPrisonerA; 
 	std::cout << mPrisonerB;

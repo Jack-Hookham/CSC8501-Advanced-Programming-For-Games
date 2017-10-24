@@ -12,8 +12,8 @@ public:
 	Game(Prisoner* a, Prisoner* b);
 	~Game();
 
-	//Plays a game of n iterations between to prisoner strategies
-	void play(const int gameNum, int n = 200);
+	//Plays a game of n iterations between two prisoner strategies
+	virtual void play(const int gamesPlayed, int n = 200);
 
 private:
 	void updateVariables(const int decisionA, const int decisionB);

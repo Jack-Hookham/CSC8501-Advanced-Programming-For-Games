@@ -30,23 +30,24 @@ public:
 		LASTOUTCOME,
 		ITERATIONS,
 		MYSCORE,
-		ALLOUTCOMES_W,
-		ALLOUTCOMES_X,
-		ALLOUTCOMES_Y,
-		ALLOUTCOMES_Z,
+		ALLOUTCOMES_W,			
+		ALLOUTCOMES_X,			
+		ALLOUTCOMES_Y,			
+		ALLOUTCOMES_Z,			
 		INTEGER_PLACEHOLDER_1,	//used in strategy generation - if this value is generated in an if statement it will be replaced by a random integer
-		ALLOUTCOMES_A,
-		ALLOUTCOMES_B,
-		ALLOUTCOMES_C,
+		ALLOUTCOMES_A,			
+		ALLOUTCOMES_B,			
+		ALLOUTCOMES_C,			
 		INTEGER_PLACEHOLDER_2,
-		W,
-		X,
-		Y,
-		Z,
-		A,
-		B,
-		C,
-		CUMULATIVE_SCORE
+		W,						//Both silent
+		X,						//Self silent, other betray
+		Y,						//Self betray, other silent
+		Z,						//Both betray
+		A,						//Mixed response, most betrays
+		B,						//Mixed response, least betrays
+		C,						//Mixed response, both gangs same cumulative decision
+		CUMULATIVE_SCORE,		
+		NUM_VARS
 	};
 
 	static const std::string psilKeywords[];

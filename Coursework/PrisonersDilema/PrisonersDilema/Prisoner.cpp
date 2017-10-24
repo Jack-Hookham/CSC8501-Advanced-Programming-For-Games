@@ -4,6 +4,14 @@ Prisoner::Prisoner()
 {
 }
 
+Prisoner::Prisoner(Prisoner* prisoner)
+{
+	mStrategyName = prisoner->getStrategyName();
+	mStrategyPath = prisoner->getStrategyPath();
+	mStrategy = prisoner->getStrategy();
+	//mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+}
+
 Prisoner::Prisoner(const std::string& const filePath)
 {
 	mStrategyPath = filePath;
@@ -52,7 +60,7 @@ std::ostream& operator<<(std::ostream& os, const Prisoner* p)
 
 void Prisoner::softReset()
 {
-	for (int i = 0; i <= PsilLang::varEnums::MYSCORE; i++)
+	for (int i = 0; i < PsilLang::varEnums::C; i++)
 	{
 		mVariables[i] = 0;
 	}
@@ -60,10 +68,8 @@ void Prisoner::softReset()
 
 void Prisoner::hardReset()
 {
-	for (int i = 0; i <= PsilLang::varEnums::CUMULATIVE_SCORE; i++)
-	{
-		mVariables[i] = 0;
-	}
+	softReset();
+	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = 0;
 }
 
 //Both silent

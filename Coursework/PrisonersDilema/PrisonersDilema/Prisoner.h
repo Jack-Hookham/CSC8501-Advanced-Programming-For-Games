@@ -13,6 +13,7 @@ class Prisoner
 
 public:
 	Prisoner();
+	Prisoner(Prisoner* prisoner);
 	//Reads a strategy from file and adds each line to the strategy map
 	Prisoner(const std::string& const folderPath);
 	~Prisoner();
@@ -25,13 +26,14 @@ public:
 	};
 
 	inline const std::map<int, std::string>& getStrategy() const { return mStrategy; }
-	inline const std::string getStrategyLine(const int n) const { return mStrategy.at(n); }
-	void setStrategy(const std::string& const filePath);
-
+	inline const std::string& getStrategyLine(const int n) const { return mStrategy.at(n); }
 	inline const int getVariable(const int n) const { return mVariables[n]; }
-	inline const std::string getStrategyName() const { return mStrategyName; }
+	inline const std::string& getStrategyName() const { return mStrategyName; }
+	inline const std::string& getStrategyPath() const { return mStrategyPath; }
 
+	void setStrategy(const std::string& const filePath);
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
+
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
 	
 	void outcomeW();
@@ -42,7 +44,6 @@ public:
 	void printStrategy();
 
 	friend std::ostream& operator<<(std::ostream& os, const Prisoner* p);
-
 
 	//Reset all but CUMULATIVE_SCORE
 	void softReset();
@@ -59,6 +60,6 @@ private:
 	//Key = line number, value = strategy string
 	std::map<int, std::string> mStrategy;
 
-	int mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	int mVariables[PsilLang::varEnums::NUM_VARS] = { 0 };
 };
 

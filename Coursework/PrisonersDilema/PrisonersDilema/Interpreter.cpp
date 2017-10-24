@@ -1,6 +1,6 @@
 #include "Interpreter.h"
 
-int Interpreter::interpretDecision(Prisoner* prisoner)
+int Interpreter::interpretDecision(const Prisoner* prisoner)
 {
 	//Process the first line of the strategy which will recursively process lines until a decision is reached
 	int decision = processLine(prisoner, prisoner->getStrategy().begin()->first, 1);
@@ -8,7 +8,7 @@ int Interpreter::interpretDecision(Prisoner* prisoner)
 	return decision;
 }
 
-int Interpreter::processLine(Prisoner* prisoner, const int lineNumber, const int lineIndex)
+int Interpreter::processLine(const Prisoner* prisoner, const int lineNumber, const int lineIndex)
 {
 	//Ensure the strategy file isn't too long
 	if (lineIndex > PsilLang::MAX_READ_LINES)
@@ -58,7 +58,7 @@ int Interpreter::processLine(Prisoner* prisoner, const int lineNumber, const int
 	}
 }
 
-int Interpreter::parseIf(Prisoner* prisoner, const int lineNumber, const std::vector<std::string>& tokens)
+int Interpreter::parseIf(const Prisoner* prisoner, const int lineNumber, const std::vector<std::string>& tokens)
 {
 	//Initialise next line number to the next line
 	//If the if statement returns true this number will be changed to the GOTO number

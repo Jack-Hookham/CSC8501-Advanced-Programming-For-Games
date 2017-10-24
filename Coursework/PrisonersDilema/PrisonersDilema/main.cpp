@@ -7,6 +7,7 @@
 #include "Interpreter.h"
 #include "StrategyGenerator.h"
 #include "Tournament.h"
+#include "GangTournament.h"
 
 void printOptions()
 {
@@ -47,7 +48,6 @@ void playTournament()
 	tournamentIterations = getInt();
 
 	StrategyGenerator::generate(numStrategies, false, 10);
-	StrategyGenerator::generate(numStrategies, true, 10);
 
 	std::vector<std::string> tournamentStrategies;
 	for (int i = 0; i < numStrategies; i++)
@@ -76,6 +76,20 @@ void playTournament()
 
 int main()
 {
+	//Gang test
+	int numGangStrats = 10;
+	StrategyGenerator::generate(numGangStrats, true, 10);
+
+	std::vector<std::string> gangTournamentStrategies;
+	for (int i = 0; i < numGangStrats; i++)
+	{
+		std::ostringstream ossPath;
+		ossPath << "../Strategies/Generated/Prisoner/Strategy" << i + 1 << ".txt";
+		gangTournamentStrategies.push_back(ossPath.str());
+	}
+
+	GangTournament* gangTournament = new GangTournament(1, gangTournamentStrategies, 100, 1, 2);
+
 	while (true)
 	{
 		printOptions();
