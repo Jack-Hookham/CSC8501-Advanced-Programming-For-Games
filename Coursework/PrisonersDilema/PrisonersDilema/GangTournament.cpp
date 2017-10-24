@@ -63,3 +63,21 @@ void GangTournament::play()
 void GangTournament::generateResults()
 {
 }
+
+void GangTournament::printTournamentHeading()
+{
+	std::cout << lineBreak;
+	std::cout << std::setw(15) << "\nGang Name";
+
+	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	{
+		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+	}
+
+	for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
+	{
+		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+	}
+	std::cout << "\n";
+	std::cout << lineBreak;
+}

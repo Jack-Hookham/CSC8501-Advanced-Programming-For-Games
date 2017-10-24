@@ -51,25 +51,37 @@ void Gang::hardReset()
 
 std::ostream& operator<<(std::ostream& os, const Gang* g)
 {
-	os << "\nGang" << g->getID() << "   LASTOUTCOME: " << PsilLang::psilVars[g->getVariable(PsilLang::varEnums::LASTOUTCOME)] << "\n";
-	for (int i = 0; i < g->getPrisoners().size(); i++)
+	std::ostringstream ossID;
+	ossID << "Gang " << g->getID();
+	os << std::setw(15) << std::left << ossID.str();
+	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
-		const Prisoner* p = g->getPrisoner(i);
-		os << std::setw(15) << std::left << p->getStrategyName();
-		for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+		//If LASTOUTCOME print the letter, otherwise print int value of the variable
+		if (i == PsilLang::varEnums::LASTOUTCOME)
 		{
-			//If LASTOUTCOME print the letter, otherwise print int value of the variable
-			if (i == PsilLang::varEnums::LASTOUTCOME)
-			{
-				os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[p->getVariable(i)];
-			}
-			else
-			{
-				os << std::setw(PsilLang::psilVars[i].length() + 2) << p->getVariable(i);
-			}
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[g->getVariable(i)];
 		}
-		os << "\n";
+		else
+		{
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getVariable(i);
+		}
+	}	
+	
+	for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
+	{
+		os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getPrisoner(0)->getVariable(i);
 	}
+
+	//for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	//{
+	//	std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+	//}
+
+	//for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
+	//{
+	//	std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+	//}
+	os << "\n";
 	return os;
 }
 

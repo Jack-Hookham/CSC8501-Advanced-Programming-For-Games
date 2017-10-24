@@ -20,5 +20,7 @@ private:
 	//Store the formatted tournament results in a string
 	std::string mTournamentResults;
 	const std::string resultsPath = "../TournamentResults/Gang/";
+
+	virtual void printTournamentHeading();
 };
 
