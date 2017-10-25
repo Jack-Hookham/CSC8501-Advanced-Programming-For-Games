@@ -12,7 +12,7 @@ public:
 
 	virtual void play();
 	virtual void generateResults();
-	inline const std::string getResults() const { return mTournamentResults; }
+	virtual inline const std::string getResults() const { return mTournamentResults; }
 	inline friend std::ostream& operator<<(std::ostream& os, const Tournament* t) { os << t->getResults() << "\n"; return os; }
 
 protected:
@@ -34,6 +34,6 @@ protected:
 	int mGamesPlayed = 0;
 
 	//Formatting
-	const std::string lineBreak = "_______________________________________________________________________________________________________________________\n";
+	const std::string lineBreak = "__________________________________________________________________________________________________________________________________________________________\n";
 private:
 };

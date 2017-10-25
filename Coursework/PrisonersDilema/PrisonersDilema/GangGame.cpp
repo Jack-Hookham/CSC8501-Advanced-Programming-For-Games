@@ -40,7 +40,7 @@ void GangGame::play(const int gamesPlayed, int gameIterations)
 		}
 		updateVariables(decisionsA, decisionsB);
 
-		std::cout << mGangA;
+		//std::cout << mGangA;
 		//std::cout << mGangB;
 	}
 	std::cout << "\nGame " << gamesPlayed << "\n";

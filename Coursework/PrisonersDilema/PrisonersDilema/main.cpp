@@ -88,7 +88,7 @@ int main()
 		gangTournamentStrategies.push_back(ossPath.str());
 	}
 
-	GangTournament* gangTournament = new GangTournament(1, gangTournamentStrategies, 10, 1);
+	GangTournament* gangTournament = new GangTournament(1, gangTournamentStrategies, 50, 1, 3);
 	gangTournament->play();
 	gangTournament->generateResults();
 	delete gangTournament;

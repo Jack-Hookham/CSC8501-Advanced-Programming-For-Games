@@ -36,21 +36,21 @@ public:
 
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
 
-	void outcomeW();
-	void outcomeX();
-	void outcomeY();
-	void outcomeZ();
+	virtual void outcomeW();
+	virtual void outcomeX();
+	virtual void outcomeY();
+	virtual void outcomeZ();
 
 	void printStrategy();
 
 	friend std::ostream& operator<<(std::ostream& os, const Prisoner* p);
 
 	//Reset all but CUMULATIVE_SCORE
-	void softReset();
+	virtual void softReset();
 	//Reset all including CUMULATIVE_SCORE
-	void hardReset();
+	virtual void hardReset();
 	//Add current score to cumulative score
-	inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
+	virtual inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
 
 protected:
 	std::string mStrategyName;

@@ -4,8 +4,9 @@ GangTournament::GangTournament()
 {
 }
 
-GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations)
+GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations, const int numGangs)
 {
+	const int gangSize = 5;
 	mID = id;
 	mNumStrategies = strategies.size();
 	mGameIterations = gameIterations;
@@ -13,26 +14,18 @@ GangTournament::GangTournament(const int id, const std::vector<std::string>& str
 
 	//Generate a prisoner for each strategy
 	generatePrisoners(strategies);
-
 	//Randomly populate each gang with new gang members from the selection of prisoners
 	//Each gang members uses one of the strategies provided
-	std::vector<GangMember*> purpleMembers;
-	for (int i = 0; i < Gang::GANG_SIZE; i++)
+	for (int i = 0; i < numGangs; i++)
 	{
-		int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
-		//mPrisoners[prisonerID]->setStrategy("../Strategies/Test/Betray.txt");
-		purpleMembers.push_back(new GangMember(mPrisoners[prisonerID]));
+		std::vector<GangMember*> gangMembers;
+		for (int i = 0; i < gangSize; i++)
+		{
+			int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
+			gangMembers.push_back(new GangMember(mPrisoners[prisonerID]));
+		}
+		mGangs.push_back(new Gang(i + 1, gangMembers));
 	}
-	mGangs.push_back(new Gang("Purple Hand", purpleMembers));
-
-	std::vector<GangMember*> magentaMembers;
-	for (int i = 0; i < Gang::GANG_SIZE; i++)
-	{
-		int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
-		//mPrisoners[prisonerID]->setStrategy("../Strategies/Test/Silence.txt");
-		magentaMembers.push_back(new GangMember(mPrisoners[prisonerID]));
-	}
-	mGangs.push_back(new Gang("Magenta Hand", magentaMembers));
 
 	for (int i = 0; i < mGangs.size(); i++)
 	{
@@ -53,6 +46,7 @@ GangTournament::~GangTournament()
 void GangTournament::play()
 {
 	printTournamentHeading();
+	printGangs();
 
 	for (int i = 0; i < mTournamentIterations; i++)
 	{
@@ -71,6 +65,44 @@ void GangTournament::play()
 
 void GangTournament::generateResults()
 {
+	std::ostringstream ossResults;
+	ossResults << lineBreak;
+	ossResults << "\nNumber of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << "   Game Iterations: " << mGameIterations << "\n\n";
+	ossResults << std::left << std::setw(15) << "Strategy Name" << "Total Score" << "\n\n";
+
+	int winner = 0;
+	//Print each prisoner's cumulative score and determine a winner (lowest score)
+	for (int i = 0; i < mGangs.size(); i++)
+	{
+		ossResults << std::left << std::setw(15) << mGangs[i]->getName() << mGangs[i]->getCumulativeScore() << "\n";
+
+		if (mGangs[i]->getCumulativeScore() < mGangs[winner]->getCumulativeScore())
+		{
+			winner = i;
+		}
+	}
+	ossResults << lineBreak;
+	ossResults << "\nWinning strategy: " << mGangs[winner]->getName() << "\n";
+	ossResults << lineBreak;
+
+	mTournamentResults = ossResults.str();
+	std::ostringstream path;
+	path << resultsPath << "TournamentResults" << mID << ".txt";
+	FileManager::writeToFile(path.str(), mTournamentResults);
+	std::cout << this;
+}
+
+void GangTournament::printGangs()
+{
+	for (int i = 0; i < mGangs.size(); i++)
+	{
+		std::cout << mGangs[i]->getName() << "\n";
+		for (int j = 0; j < mGangs[i]->getMembers().size(); j++)
+		{
+			std::cout << mGangs[i]->getMember(j)->getStrategyName() << "\n";
+		}
+		std::cout << "\n";
+	}
 }
 
 void GangTournament::printTournamentHeading()

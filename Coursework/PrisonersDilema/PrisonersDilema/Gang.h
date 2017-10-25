@@ -6,15 +6,17 @@ class Gang
 {
 public:
 	Gang();
-	Gang(const std::string& id, const std::vector<GangMember*>& prisoners);
+	Gang(const int id, const std::vector<GangMember*>& prisoners);
 	~Gang();
 
 	static const int GANG_SIZE = 5;
 
 	inline const std::vector<GangMember*>& getMembers() const { return mGangMembers; }
 	inline const GangMember* getMember(const int i) const { return mGangMembers[i]; }
-	inline const std::string& getID() const { return mID; }
+	inline const std::string& getName() const { return mName; }
 	inline const int getVariable(const int n) const { return mVariables[n]; }
+	inline const float getScore() const { return mScore; }
+	inline const float getCumulativeScore() const { return mCumulativeScore; }
 
 	friend std::ostream& operator<<(std::ostream& os, const Gang* g);
 
@@ -31,14 +33,15 @@ public:
 	void outcomeX();
 	void outcomeY();
 	void outcomeZ();
-
 	void outcomeA();
 	void outcomeB();
 	void outcomeC();
 
 private:
-	std::string mID;
+	std::string mName;
 	std::vector<GangMember*> mGangMembers;
 
 	int mVariables[PsilLang::varEnums::NUM_VARS] = { 0 };
+	float mScore = 0.0f;
+	float mCumulativeScore = 0.0f;
 };

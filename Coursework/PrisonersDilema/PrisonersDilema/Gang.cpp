@@ -4,9 +4,9 @@ Gang::Gang()
 {
 }
 
-Gang::Gang(const std::string& id, const std::vector<GangMember*>& gangMembers)
+Gang::Gang(const int id, const std::vector<GangMember*>& gangMembers)
 {
-	mID = id;
+	mName = "Gang " + std::to_string(id);
 	mGangMembers = gangMembers;
 
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
@@ -27,6 +27,7 @@ void Gang::softReset()
 	{
 		mVariables[i] = 0;
 	}
+	mScore = 0.0f;
 
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
@@ -40,6 +41,7 @@ void Gang::hardReset()
 	{
 		mVariables[i] = 0;
 	}
+	mCumulativeScore = 0.0f;
 
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
@@ -49,7 +51,7 @@ void Gang::hardReset()
 
 void Gang::addScore()
 {
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE];
+	mCumulativeScore += mScore;
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
 		mGangMembers[i]->addScore();
@@ -68,7 +70,7 @@ void Gang::incrementIterations()
 std::ostream& operator<<(std::ostream& os, const Gang* g)
 {
 	std::ostringstream ossID;
-	ossID << g->getID();
+	ossID << g->getName();
 	os << std::setw(15) << std::left << ossID.str();
 	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
@@ -76,6 +78,16 @@ std::ostream& operator<<(std::ostream& os, const Gang* g)
 		if (i == PsilLang::varEnums::LASTOUTCOME)
 		{
 			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[g->getVariable(i)];
+		}
+		//If MYSCORE print var as it's stored as a double and not in the array
+		else if (i == PsilLang::varEnums::MYSCORE)
+		{
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getScore();
+		}
+		//If CUMULATIVE_SCORE print var as it's stored as a double and not in the array
+		else if (i == PsilLang::varEnums::CUMULATIVE_SCORE)
+		{
+			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getCumulativeScore();
 		}
 		else
 		{
@@ -95,7 +107,7 @@ std::ostream& operator<<(std::ostream& os, const Gang* g)
 void Gang::outcomeW()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 2;
+	mScore += 2;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
 	
 	//Update the relevant prisoner vars
@@ -109,7 +121,7 @@ void Gang::outcomeW()
 void Gang::outcomeX()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 5;
+	mScore += 5;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
 
 	//Update the relevant prisoner vars
@@ -136,7 +148,7 @@ void Gang::outcomeY()
 void Gang::outcomeZ()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 4;
+	mScore += 4;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
 
 	//Update the relevant prisoner vars
@@ -150,7 +162,7 @@ void Gang::outcomeZ()
 void Gang::outcomeA()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 2.5;
+	mScore += 2.5;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
 
 	//Update the relevant prisoner vars
@@ -164,7 +176,7 @@ void Gang::outcomeA()
 void Gang::outcomeB()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 3;
+	mScore += 3;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
 
 	//Update the relevant prisoner vars
@@ -178,7 +190,7 @@ void Gang::outcomeB()
 void Gang::outcomeC()
 {
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 2;
+	mScore += 2;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
 
 	//Update the relevant prisoner vars
