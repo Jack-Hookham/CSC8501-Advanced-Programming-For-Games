@@ -4,23 +4,21 @@ Gang::Gang()
 {
 }
 
-Gang::Gang(int id, std::vector<Prisoner*> prisoners)
+Gang::Gang(const std::string& id, const std::vector<GangMember*>& gangMembers)
 {
 	mID = id;
-	for (int i = 0; i < prisoners.size(); i++)
-	{
-		mPrisoners.push_back(prisoners[i]);
-	}
+	mGangMembers = gangMembers;
 
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
 Gang::~Gang()
 {
-	for (int i = 0; i < mPrisoners.size(); i++)
-	{
-		delete mPrisoners[i];
-	}
+	//for (int i = 0; i < mGangMembers.size(); i++)
+	//{
+	//	delete mGangMembers[i];
+	//}
+	//mGangMembers.clear();
 }
 
 void Gang::softReset()
@@ -30,29 +28,47 @@ void Gang::softReset()
 		mVariables[i] = 0;
 	}
 
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->softReset();
+		mGangMembers[i]->softReset();
 	}
 }
 
 void Gang::hardReset()
 {
-	for (int i = 0; i < mPrisoners.size(); i++)
-	{
-		mPrisoners[i]->hardReset();
-	}
-
 	for (int i = 0; i < PsilLang::varEnums::CUMULATIVE_SCORE; i++)
 	{
 		mVariables[i] = 0;
+	}
+
+	for (int i = 0; i < mGangMembers.size(); i++)
+	{
+		mGangMembers[i]->hardReset();
+	}
+}
+
+void Gang::addScore()
+{
+	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE];
+	for (int i = 0; i < mGangMembers.size(); i++)
+	{
+		mGangMembers[i]->addScore();
+	}
+}
+
+void Gang::incrementIterations()
+{
+	mVariables[PsilLang::varEnums::ITERATIONS]++;
+	for (int i = 0; i < mGangMembers.size(); i++)
+	{
+		mGangMembers[i]->incrementIterations();
 	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Gang* g)
 {
 	std::ostringstream ossID;
-	ossID << "Gang " << g->getID();
+	ossID << g->getID();
 	os << std::setw(15) << std::left << ossID.str();
 	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
@@ -69,18 +85,8 @@ std::ostream& operator<<(std::ostream& os, const Gang* g)
 	
 	for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
 	{
-		os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getPrisoner(0)->getVariable(i);
+		os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getVariable(i);
 	}
-
-	//for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
-	//{
-	//	std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
-	//}
-
-	//for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
-	//{
-	//	std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
-	//}
 	os << "\n";
 	return os;
 }
@@ -93,9 +99,9 @@ void Gang::outcomeW()
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
 	
 	//Update the relevant prisoner vars
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeW();
+		mGangMembers[i]->outcomeW();
 	}
 }
 
@@ -107,9 +113,9 @@ void Gang::outcomeX()
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
 
 	//Update the relevant prisoner vars
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeX();
+		mGangMembers[i]->outcomeX();
 	}
 }
 
@@ -120,9 +126,9 @@ void Gang::outcomeY()
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Y;
 
 	//Update the relevant prisoner vars
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeY();
+		mGangMembers[i]->outcomeY();
 	}
 }
 
@@ -134,32 +140,50 @@ void Gang::outcomeZ()
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
 
 	//Update the relevant prisoner vars
-	for (int i = 0; i < mPrisoners.size(); i++)
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeZ();
+		mGangMembers[i]->outcomeZ();
 	}
 }
 
+//Mixed, most betrays
 void Gang::outcomeA()
 {
-	for (int i = 0; i < mPrisoners.size(); i++)
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 2.5;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
+
+	//Update the relevant prisoner vars
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeA();
+		mGangMembers[i]->outcomeA();
 	}
 }
 
+//Mixed, least betrays
 void Gang::outcomeB()
 {
-	for (int i = 0; i < mPrisoners.size(); i++)
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 3;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
+
+	//Update the relevant prisoner vars
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeB();
+		mGangMembers[i]->outcomeB();
 	}
 }
 
+//Mixed, equal
 void Gang::outcomeC()
 {
-	for (int i = 0; i < mPrisoners.size(); i++)
+	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
+	mVariables[PsilLang::varEnums::MYSCORE] += 2;
+	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
+
+	//Update the relevant prisoner vars
+	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mPrisoners[i]->outcomeC();
+		mGangMembers[i]->outcomeC();
 	}
 }

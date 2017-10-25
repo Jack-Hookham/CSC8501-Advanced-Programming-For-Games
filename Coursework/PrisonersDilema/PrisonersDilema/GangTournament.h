@@ -8,7 +8,7 @@ class GangTournament : public Tournament
 {
 public:
 	GangTournament();
-	GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations = 200, const int tournamentIterations = 1, const int numGangs = 2);
+	GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations = 200, const int tournamentIterations = 1);
 	~GangTournament();
 
 	void play();

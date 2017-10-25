@@ -37,6 +37,9 @@
     <ClCompile Include="Tournament.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GangMember.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileManager.h">
@@ -73,6 +76,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GangMember.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

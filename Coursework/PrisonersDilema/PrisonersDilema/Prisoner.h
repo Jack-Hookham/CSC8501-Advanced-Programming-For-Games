@@ -35,17 +35,11 @@ public:
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
 
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
-	
-	//Part 1 outcomes
+
 	void outcomeW();
 	void outcomeX();
 	void outcomeY();
 	void outcomeZ();
-
-	//Part 2 outcomes
-	void outcomeA();
-	void outcomeB();
-	void outcomeC();
 
 	void printStrategy();
 
@@ -58,7 +52,7 @@ public:
 	//Add current score to cumulative score
 	inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
 
-private:
+protected:
 	std::string mStrategyName;
 	std::string mStrategyPath;
 

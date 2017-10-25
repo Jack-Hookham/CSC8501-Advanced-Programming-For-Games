@@ -2,6 +2,7 @@
 
 void FileManager::readFromFile(const std::string& filePath, std::map<int, std::string>& const strategy)
 {
+	strategy.erase(strategy.begin(), strategy.end());
 	std::string line;
 	std::ifstream file(filePath);
 

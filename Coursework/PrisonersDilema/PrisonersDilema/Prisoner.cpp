@@ -13,13 +13,14 @@ Prisoner::Prisoner(Prisoner* prisoner)
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
-Prisoner::Prisoner(const std::string& const filePath)
+Prisoner::Prisoner(const std::string& const folderPath)
 {
-	mStrategyPath = filePath;
+	mStrategyPath = folderPath;
 
 	//Read the file into the strategy map
 	FileManager::readFromFile(mStrategyPath, mStrategy);
-	mStrategyName = FileManager::getFileName(filePath);
+	//Remove the path and extension from the strategy name and store it
+	mStrategyName = FileManager::getFileName(mStrategyPath);
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
@@ -29,7 +30,9 @@ Prisoner::~Prisoner()
 
 void Prisoner::setStrategy(const std::string& const filePath)
 {
+	mStrategyPath = filePath;
 	FileManager::readFromFile(filePath, mStrategy);
+	mStrategyName = FileManager::getFileName(mStrategyPath);
 }
 
 void Prisoner::printStrategy()
@@ -102,23 +105,4 @@ void Prisoner::outcomeZ()
 	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
 	mVariables[PsilLang::varEnums::MYSCORE] += 4;
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
-}
-
-void Prisoner::outcomeA()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
-}
-
-void Prisoner::outcomeB()
-{
-
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
-}
-
-void Prisoner::outcomeC()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
 }

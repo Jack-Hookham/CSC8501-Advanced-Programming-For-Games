@@ -13,11 +13,9 @@ public:
 	//Plays a game of n iterations between two prisoner strategies
 	virtual void play(const int gameNum, int n = 200);
 private:
-	void updateVariables(const std::vector<int>& decisionsA, const std::vector<int>& decisionsB);
+	void updateVariables(const int decisionsA[], const int decisionsB[]);
 
 	Gang* mGangA;
-	Gang* mGangB;	
-
-	const int GANG_SIZE = 5;
+	Gang* mGangB;
 };
 

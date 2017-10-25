@@ -4,26 +4,35 @@ GangTournament::GangTournament()
 {
 }
 
-GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations, const int numGangs)
+GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations)
 {
 	mID = id;
 	mNumStrategies = strategies.size();
 	mGameIterations = gameIterations;
 	mTournamentIterations = tournamentIterations;
 
+	//Generate a prisoner for each strategy
 	generatePrisoners(strategies);
-	//Randomly populate each gang with new prisoners
-	//Each prisoner uses one of the strategies provided
-	for (int i = 0; i < numGangs; i++)
+
+	//Randomly populate each gang with new gang members from the selection of prisoners
+	//Each gang members uses one of the strategies provided
+	std::vector<GangMember*> purpleMembers;
+	for (int i = 0; i < Gang::GANG_SIZE; i++)
 	{
-		std::vector<Prisoner*> prisoners;
-		for (int i = 0; i < 5; i++)
-		{
-			int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
-			prisoners.push_back(new Prisoner(mPrisoners[prisonerID]));
-		}
-		mGangs.push_back(new Gang(i + 1, prisoners));
+		int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
+		//mPrisoners[prisonerID]->setStrategy("../Strategies/Test/Betray.txt");
+		purpleMembers.push_back(new GangMember(mPrisoners[prisonerID]));
 	}
+	mGangs.push_back(new Gang("Purple Hand", purpleMembers));
+
+	std::vector<GangMember*> magentaMembers;
+	for (int i = 0; i < Gang::GANG_SIZE; i++)
+	{
+		int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
+		//mPrisoners[prisonerID]->setStrategy("../Strategies/Test/Silence.txt");
+		magentaMembers.push_back(new GangMember(mPrisoners[prisonerID]));
+	}
+	mGangs.push_back(new Gang("Magenta Hand", magentaMembers));
 
 	for (int i = 0; i < mGangs.size(); i++)
 	{

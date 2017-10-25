@@ -1,17 +1,19 @@
 #pragma once
 
-#include "Prisoner.h"
+#include "GangMember.h"
 
 class Gang
 {
 public:
 	Gang();
-	Gang(int id, std::vector<Prisoner*> prisoners);
+	Gang(const std::string& id, const std::vector<GangMember*>& prisoners);
 	~Gang();
 
-	inline const std::vector<Prisoner*>& getPrisoners() const { return mPrisoners; }
-	inline const Prisoner* getPrisoner(const int i) const { return mPrisoners[i]; }
-	inline const int getID() const { return mID; }
+	static const int GANG_SIZE = 5;
+
+	inline const std::vector<GangMember*>& getMembers() const { return mGangMembers; }
+	inline const GangMember* getMember(const int i) const { return mGangMembers[i]; }
+	inline const std::string& getID() const { return mID; }
 	inline const int getVariable(const int n) const { return mVariables[n]; }
 
 	friend std::ostream& operator<<(std::ostream& os, const Gang* g);
@@ -21,9 +23,9 @@ public:
 	//Reset all including CUMULATIVE_SCORE
 	void hardReset();
 	//Add current score to cumulative score
-	inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
+	void addScore();
 
-	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
+	void incrementIterations();
 
 	void outcomeW();
 	void outcomeX();
@@ -35,8 +37,8 @@ public:
 	void outcomeC();
 
 private:
-	int mID;
-	std::vector<Prisoner*> mPrisoners;
+	std::string mID;
+	std::vector<GangMember*> mGangMembers;
 
 	int mVariables[PsilLang::varEnums::NUM_VARS] = { 0 };
 };
