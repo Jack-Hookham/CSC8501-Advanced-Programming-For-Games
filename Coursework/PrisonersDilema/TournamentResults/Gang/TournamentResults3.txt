@@ -1,20 +1,14 @@
 __________________________________________________________________________________________________________________________________________________________
 
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 200
+Number of Strategies: 3   Tournament Iterations: 3   Game Iterations: 3
 
-Strategy Name  Total Score
+                                               Gang Member Strategies
+Gang Name      Total Score    Member 1       Member 2       Member 3       
 
-strategy1      2528
-strategy2      6600
-strategy3      6600
-strategy4      2528
-strategy5      6600
-strategy6      6600
-strategy7      6600
-strategy8      2528
-strategy9      2528
-strategy10     3872
+Gang 1         44.5           Strategy2      Strategy3      Strategy2      
+Gang 2         48             Strategy2      Strategy1      Strategy1      
+Gang 3         48.5           Strategy2      Strategy1      Strategy3      
 __________________________________________________________________________________________________________________________________________________________
 
-Winning strategy: strategy1
+Winning gang: Gang 1
 __________________________________________________________________________________________________________________________________________________________

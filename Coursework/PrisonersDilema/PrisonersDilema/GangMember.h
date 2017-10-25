@@ -8,11 +8,13 @@ public:
 	GangMember();
 	GangMember(Prisoner* p);
 	GangMember(GangMember* gm);
-	GangMember(const std::string& const folderPath);
 	~GangMember();
 
 	inline const float getScore() const { return mScore; }
 	inline const float getCumulativeScore() const { return mCumulativeScore; }
+
+	inline const bool getSpy() const { return mIsSpy; }
+	inline void setSpy(const bool spy) { mIsSpy = spy; }
 
 	void outcomeW();
 	void outcomeX();
@@ -34,5 +36,7 @@ public:
 private:
 	float mScore = 0.0f;
 	float mCumulativeScore = 0.0f;
+
+	bool mIsSpy;
 };
 

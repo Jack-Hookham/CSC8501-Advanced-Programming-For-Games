@@ -122,7 +122,6 @@
     <ClCompile Include="PsilLang.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prisoner.cpp" />
-    <ClCompile Include="Spy.cpp" />
     <ClCompile Include="StrategyGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +136,6 @@
     <ClInclude Include="Tournament.h" />
     <ClInclude Include="PsilLang.h" />
     <ClInclude Include="Prisoner.h" />
-    <ClInclude Include="Spy.h" />
     <ClInclude Include="StrategyGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

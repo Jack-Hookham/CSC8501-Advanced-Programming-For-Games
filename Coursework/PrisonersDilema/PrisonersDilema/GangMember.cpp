@@ -20,17 +20,7 @@ GangMember::GangMember(GangMember* gm)
 	mStrategy = gm->getStrategy();
 	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
-}
-
-GangMember::GangMember(const std::string & const folderPath)
-{
-	mStrategyPath = folderPath;
-
-	//Read the file into the strategy map
-	FileManager::readFromFile(mStrategyPath, mStrategy);
-	//Remove the path and extension from the strategy name and store it
-	mStrategyName = FileManager::getFileName(mStrategyPath);
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mIsSpy = gm->getSpy();
 }
 
 GangMember::~GangMember()

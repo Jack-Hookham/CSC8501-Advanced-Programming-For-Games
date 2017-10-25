@@ -22,7 +22,7 @@ protected:
 	int mTournamentIterations;
 
 	void generatePrisoners(const std::vector<std::string>& strategies);
-	virtual void printTournamentHeading();
+	void printTournamentHeading();
 
 	std::vector<Prisoner*> mPrisoners;
 

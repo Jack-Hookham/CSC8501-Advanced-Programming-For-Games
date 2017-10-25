@@ -37,6 +37,9 @@ public:
 	void outcomeB();
 	void outcomeC();
 
+	void setSpy(const int index);
+	//Set spy values of all members to false
+	void removeSpies();
 private:
 	std::string mName;
 	std::vector<GangMember*> mGangMembers;

@@ -14,11 +14,11 @@ Gang::Gang(const int id, const std::vector<GangMember*>& gangMembers)
 
 Gang::~Gang()
 {
-	//for (int i = 0; i < mGangMembers.size(); i++)
-	//{
-	//	delete mGangMembers[i];
-	//}
-	//mGangMembers.clear();
+	for (int i = 0; i < mGangMembers.size(); i++)
+	{
+		delete mGangMembers[i];
+	}
+	mGangMembers.clear();
 }
 
 void Gang::softReset()
@@ -197,5 +197,18 @@ void Gang::outcomeC()
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
 		mGangMembers[i]->outcomeC();
+	}
+}
+
+void Gang::setSpy(const int index)
+{
+	mGangMembers[index]->setSpy(true);
+}
+
+void Gang::removeSpies()
+{
+	for (int i = 0; i < GANG_SIZE; i++)
+	{
+		mGangMembers[i]->setSpy(false);
 	}
 }

@@ -1,13 +1,15 @@
 #include "GangGame.h"
+#include "Random.h"
 
 GangGame::GangGame()
 {
 }
 
-GangGame::GangGame(Gang* a, Gang* b)
+GangGame::GangGame(Gang* a, Gang* b, int spyChance)
 {
 	mGangA = a;
 	mGangB = b;
+	mSpyChance = spyChance;
 }
 
 GangGame::~GangGame()
@@ -19,6 +21,9 @@ void GangGame::play(const int gamesPlayed, int gameIterations)
 	//Play n games
 	for (int i = 0; i < gameIterations; i++)
 	{
+		addSpy(mGangA);
+		addSpy(mGangB);
+
 		int decisionsA[Gang::GANG_SIZE];
 		int decisionsB[Gang::GANG_SIZE];
 
@@ -40,8 +45,8 @@ void GangGame::play(const int gamesPlayed, int gameIterations)
 		}
 		updateVariables(decisionsA, decisionsB);
 
-		//std::cout << mGangA;
-		//std::cout << mGangB;
+		mGangA->removeSpies();
+		mGangB->removeSpies();
 	}
 	std::cout << "\nGame " << gamesPlayed << "\n";
 	//Print the variables for both gangs at the end of the game
@@ -55,6 +60,29 @@ void GangGame::play(const int gamesPlayed, int gameIterations)
 	//Reset the variables after the game
 	mGangA->softReset();
 	mGangB->softReset();
+}
+
+void GangGame::addSpy(Gang* g)
+{
+	std::vector<double> spyWeights = { (100.0 - mSpyChance), (double)mSpyChance };
+
+	//Determine whether this gang contains a spy
+	bool spyInGang;
+	if (RandomGen::generateRandomWeighted(spyWeights) == 0)
+	{
+		spyInGang = false;
+	}
+	else
+	{
+		spyInGang = true;
+	}
+
+	//If a spy is needed then generate its index
+	if (spyInGang)
+	{
+		int spyIndex = RandomGen::generateRandomWithinRange(0, Gang::GANG_SIZE - 1);
+		g->setSpy(spyIndex);
+	}
 }
 
 void GangGame::updateVariables(const int decisionsA[], const int decisionsB[])
