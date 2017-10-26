@@ -16,9 +16,8 @@ GangGame::~GangGame()
 {
 }
 
-void GangGame::play(const int gamesPlayed, const int gameIterations, const int gameDetail)
+void GangGame::play(const int gamesPlayed, const bool leaderChange, const int gameIterations, const int gameDetail)
 {
-	bool leaderChange = true;
 	//Play n games
 	for (int i = 0; i < gameIterations; i++)
 	{

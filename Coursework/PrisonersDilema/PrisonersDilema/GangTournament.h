@@ -8,8 +8,8 @@ class GangTournament : public Tournament
 {
 public:
 	GangTournament();
-	GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations = 200, const int tournamentIterations = 1, 
-		const int numGangs = 2, const int spyChance = 0);
+	GangTournament(const int id, const std::vector<std::string>& strategies, const bool leaderChoice, const int gameIterations = 200, 
+		const int tournamentIterations = 1, const int numGangs = 2, const int spyChance = 0);
 	~GangTournament();
 
 	inline const std::string getResults() const { return mTournamentResults; }
@@ -21,6 +21,10 @@ public:
 private:
 	std::vector<Gang*> mGangs;
 	int mSpyChance;
+	//Does the leader change their choice
+	//true - yes
+	//false - no
+	bool mLeaderChange;
 
 	//Print the strategies of each gang
 	void printGangs();

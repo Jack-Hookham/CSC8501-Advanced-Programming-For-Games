@@ -4,8 +4,8 @@ GangTournament::GangTournament()
 {
 }
 
-GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const int gameIterations, const int tournamentIterations, 
-	const int numGangs, const int spyChance)
+GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const bool leaderChoice, const int gameIterations, 
+	const int tournamentIterations, const int numGangs, const int spyChance)
 {
 	const int gangSize = 5;
 	mID = id;
@@ -13,6 +13,7 @@ GangTournament::GangTournament(const int id, const std::vector<std::string>& str
 	mGameIterations = gameIterations;
 	mTournamentIterations = tournamentIterations;
 	mSpyChance = spyChance;
+	mLeaderChange = leaderChoice;
 
 	//Generate a prisoner for each strategy
 	generatePrisoners(strategies);
@@ -67,7 +68,7 @@ void GangTournament::play(const int gameDetail)
 			{
 				mGamesPlayed++;
 				GangGame* game = new GangGame(mGangs[j], mGangs[k], mSpyChance);
-				game->play(mGamesPlayed, mGameIterations, gameDetail);
+				game->play(mGamesPlayed, mLeaderChange, mGameIterations, gameDetail);
 				delete game;
 			}
 		}
@@ -78,22 +79,23 @@ void GangTournament::generateResults(const int tournamentDetail)
 {
 	//Calculate the percentage of discovered spies
 	float discoveredPercent = 0.0f;
+	int totalSpies = 0;
+	int totalDiscovered = 0;
 	if (mSpyChance > 0)
 	{
 		for (int i = 0; i < mGangs.size(); i++)
 		{
-			try
-			{
-				mGangs[i]->setDiscoveredPercent(util::computePercent(mGangs[i]->getCDiscoveredSpies(), mGangs[i]->getCTotalSpies()));
-				
-			}
-			catch (const std::invalid_argument& iae)
-			{
-				std::cout << "Unable to compute average: " << iae.what() << "\n";
-			}
-			discoveredPercent += mGangs[i]->getDiscoveredPercent();
+			totalSpies += mGangs[i]->getCTotalSpies();
+			totalDiscovered += mGangs[i]->getCDiscoveredSpies();
 		}
-		discoveredPercent = discoveredPercent / mGangs.size();
+	}
+	try
+	{
+		discoveredPercent = util::computePercent(totalDiscovered, totalSpies);
+	}
+	catch (const std::invalid_argument& iae)
+	{
+		std::cout << "Unable to compute average: " << iae.what() << "\n";
 	}
 
 	std::ostringstream ossResults;
@@ -153,6 +155,14 @@ void GangTournament::generateResults(const int tournamentDetail)
 				winner = i;
 			}
 		}
+		ossResults << "\n";
+		std::string choice;
+		if (mLeaderChange) { choice = "Yes"; } else { choice = "No"; }
+
+		ossResults << "Leader Changes Choice: " << choice << "\n";
+		ossResults << "Toal Spies: " << totalSpies << "\n";
+		ossResults << "Total Spies Discovered: " << totalDiscovered << "\n";
+		ossResults << "Percent Discovered: " << std::setprecision(3) << discoveredPercent << "%\n";
 		ossResults << lineBreak;
 		ossResults << "\nWinning Combination: " << mGangs[winner]->getName() << "\n\n";
 		for (int i = 0; i < Gang::GANG_SIZE; i++)

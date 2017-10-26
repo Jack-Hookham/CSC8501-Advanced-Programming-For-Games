@@ -143,6 +143,7 @@ void playGangTournament(const int total)
 	std::cout << "2 - 10%\n";
 	std::cout << "3 - 15%\n";
 	std::cout << "4 - 20%\n";
+	std::cout << "5 - Custom Value\n";
 
 	int spyChance = -1;
 
@@ -165,16 +166,52 @@ void playGangTournament(const int total)
 		case 4:
 			spyChance = 20;
 			break;
+		case 5:
+			while (spyChance < 0 || spyChance > 100)
+			{
+				std::cout << "Enter value (0 - 100): ";
+				spyChance = getInt();
+				if (spyChance > 100) { std::cout << "Value must be less than 100\n"; }
+				else if (spyChance < 0) { std::cout << "Value must be greater than 0\n"; }
+			}
+			break;
 		default:
 			std::cout << "Not an option\n";
 			break;
 		}
 	}
 
+
+	std::cout << "\nShould the leader change their choice after a member is revealed as not the spy?\n";
+	std::cout << "0 - No\n";
+	std::cout << "1 - Yes\n";
+
+	int lc = -1;
+	bool leaderChange;
+	while (lc < 0)
+	{
+		switch (getInt())
+		{
+		case 0:
+			lc = 0;
+			leaderChange = false;
+			break;
+		case 1:
+			lc = 1;
+			leaderChange = true;
+			break;
+		default:
+			std::cout << "Not an option\n";
+			break;
+		}
+	}
+
+
 	std::cout << "\nDetail for game stats?\n";
 	std::cout << "0 - None\n";
 	std::cout << "1 - Simple\n";
 	std::cout << "2 - Detailed\n";
+
 
 	int gameDetail = -1;
 
@@ -223,7 +260,7 @@ void playGangTournament(const int total)
 		tournamentStrategies.push_back(ossPath.str());
 	}
 
-	GangTournament* gt = new GangTournament(total, tournamentStrategies, gameIterations, tournamentIterations, numGangs, spyChance);
+	GangTournament* gt = new GangTournament(total, tournamentStrategies, leaderChange, gameIterations, tournamentIterations, numGangs, spyChance);
 	gt->play(gameDetail);
 	gt->generateResults(tournamentDetail);
 
@@ -263,7 +300,7 @@ int main()
 	testGangStrategies.push_back("../strategies/test/Silence.txt");
 	testGangStrategies.push_back("../strategies/test/Silence.txt");
 
-	GangTournament* gangTournament = new GangTournament(1, testGangStrategies, 50, 1, 10, 20);
+	GangTournament* gangTournament = new GangTournament(1, testGangStrategies, false, 50, 1, 10, 20);
 	gangTournament->play(2);
 	gangTournament->generateResults(2);
 	delete gangTournament;

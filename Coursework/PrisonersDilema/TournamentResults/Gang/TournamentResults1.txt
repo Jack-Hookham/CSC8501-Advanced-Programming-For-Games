@@ -9,23 +9,28 @@ ________________________________________________________________________________
 
 Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         1204           Silence        Silence        Silence        Silence        Silence        
-Gang 2         1136           Betray         Betray         Silence        Silence        Silence        
-Gang 3         1148.5         Silence        Betray         Silence        Betray         Silence        
-Gang 4         1237.5         Silence        Silence        Silence        Silence        Silence        
-Gang 5         1223.5         Silence        Silence        Silence        Silence        Silence        
-Gang 6         1222.5         Betray         Silence        Silence        Silence        Silence        
-Gang 7         1213           Silence        Silence        Silence        Silence        Silence        
-Gang 8         1189           Silence        Silence        Silence        Silence        Silence        
-Gang 9         1221           Silence        Silence        Silence        Silence        Silence        
-Gang 10        1145           Silence        Betray         Betray         Silence        Silence        
+Gang 1         1250.5         Silence        Silence        Silence        Silence        Silence        
+Gang 2         1104           Betray         Betray         Silence        Silence        Silence        
+Gang 3         1087.5         Silence        Silence        Silence        Betray         Silence        
+Gang 4         1106.5         Betray         Silence        Silence        Silence        Betray         
+Gang 5         1099           Silence        Silence        Silence        Silence        Betray         
+Gang 6         1217           Silence        Silence        Silence        Silence        Silence        
+Gang 7         1091.5         Betray         Silence        Silence        Silence        Silence        
+Gang 8         1211.5         Silence        Silence        Silence        Silence        Silence        
+Gang 9         1105           Silence        Betray         Silence        Silence        Silence        
+Gang 10        1111.5         Betray         Silence        Silence        Silence        Silence        
+
+Leader Changes Choice: No
+Toal Spies: 888
+Total Spies Discovered: 155
+Percent Discovered: 17.5%
 ______________________________________________________________________________________________________________________________________________________________________
 
-Winning Combination: Gang 2
+Winning Combination: Gang 3
 
-Member 1 - Betray
-Member 2 - Betray
+Member 1 - Silence
+Member 2 - Silence
 Member 3 - Silence
-Member 4 - Silence
+Member 4 - Betray
 Member 5 - Silence
 ______________________________________________________________________________________________________________________________________________________________________

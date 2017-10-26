@@ -21,9 +21,6 @@ public:
 	inline const int getDiscoveredSpies() const { return mDiscoveredSpies; }
 	inline const int getCTotalSpies() const { return mCTotalSpies; }
 	inline const int getCDiscoveredSpies() const { return mCDiscoveredSpies; }
-	inline const int getDiscoveredPercent() const { return mDiscoveredPercent; }
-
-	inline void setDiscoveredPercent(const float value) { mDiscoveredPercent = value; }
 
 	friend std::ostream& operator<<(std::ostream& os, const Gang* g);
 
@@ -58,7 +55,6 @@ private:
 	int mDiscoveredSpies = 0;
 	int mCTotalSpies = 0;
 	int mCDiscoveredSpies = 0;
-	float mDiscoveredPercent = 0.0f;
 
 	int mVariables[PsiLang::varEnums::NUM_VARS] = { 0 };
 	float mScore = 0.0f;
