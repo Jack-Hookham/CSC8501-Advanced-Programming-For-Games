@@ -18,6 +18,9 @@ public:
 	void play(const int gameDetail);
 	void generateResults(const int tournamentDetail);
 
+	inline void setSpyChance(const int value) { mSpyChance = value; }
+	inline void setLeaderChange(const bool value) { mLeaderChange = value; }
+
 private:
 	std::vector<Gang*> mGangs;
 	int mSpyChance;
@@ -35,13 +38,3 @@ private:
 
 	virtual void printTournamentHeading(const int gameDetail);
 };
-
-template<typename T>
-inline float operator/(const T x, const T y)
-{
-	if (y == 0)
-	{
-		throw std::invalid_argument("Divide by zero exception");
-	}
-	return x / y;
-}

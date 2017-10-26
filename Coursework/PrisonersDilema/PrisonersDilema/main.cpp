@@ -38,7 +38,7 @@ int getInt()
 
 void playTournament(const int total)
 {
-	std::cout << "How many strategies would you like to generate? ";
+	std::cout << "How many strategies would you like to generate?\n(Entering 0 will load 10 already generated strategies)\n";
 	int numStrategies;
 	numStrategies = getInt();
 
@@ -92,13 +92,30 @@ void playTournament(const int total)
 		}
 	}
 
-	StrategyGenerator::generate(numStrategies, false, 10);
+	bool generate;
+	if (numStrategies > 0)
+	{
+		generate = true;
+		StrategyGenerator::generate(numStrategies, false, 10);
+	}
+	else
+	{
+		generate = false;
+		numStrategies = 10;
+	}
 
 	std::vector<std::string> tournamentStrategies;
 	for (int i = 0; i < numStrategies; i++)
 	{
 		std::ostringstream ossPath;
-		ossPath << "../Strategies/Generated/Prisoner/Strategy" << i + 1 << ".txt";
+		if (generate)
+		{
+			ossPath << "../Strategies/Generated/Prisoner/Strategy" << i + 1 << ".txt";
+		}
+		else
+		{
+			ossPath << "../Strategies/Test/Prisoner/Strategy" << i + 1 << ".txt";
+		}
 		tournamentStrategies.push_back(ossPath.str());
 	}
 
@@ -121,11 +138,11 @@ void playTournament(const int total)
 
 void playGangTournament(const int total)
 {
-	std::cout << "How many strategies would you like to generate? ";
+	std::cout << "How many strategies would you like to generate?\n(Entering 0 will load 10 already generated strategies)\n";
 	int numStrategies;
 	numStrategies = getInt();
 
-	std::cout << "How many gangs would you like to generate from these strategies? ";
+	std::cout << "How many gang combinations would you like to generate from these strategies? ";
 	int numGangs;
 	numGangs = getInt();
 
@@ -181,31 +198,32 @@ void playGangTournament(const int total)
 		}
 	}
 
-
-	std::cout << "\nShould the leader change their choice after a member is revealed as not the spy?\n";
-	std::cout << "0 - No\n";
-	std::cout << "1 - Yes\n";
-
-	int lc = -1;
-	bool leaderChange;
-	while (lc < 0)
+	bool leaderChange = false;
+	if (spyChance > 0)
 	{
-		switch (getInt())
+		std::cout << "\nShould the leader change their choice after a member is revealed as not the spy?\n";
+		std::cout << "0 - No\n";
+		std::cout << "1 - Yes\n";
+
+		int lc = -1;
+		while (lc < 0)
 		{
-		case 0:
-			lc = 0;
-			leaderChange = false;
-			break;
-		case 1:
-			lc = 1;
-			leaderChange = true;
-			break;
-		default:
-			std::cout << "Not an option\n";
-			break;
+			switch (getInt())
+			{
+			case 0:
+				lc = 0;
+				leaderChange = false;
+				break;
+			case 1:
+				lc = 1;
+				leaderChange = true;
+				break;
+			default:
+				std::cout << "Not an option\n";
+				break;
+			}
 		}
 	}
-
 
 	std::cout << "\nDetail for game stats?\n";
 	std::cout << "0 - None\n";
@@ -250,13 +268,30 @@ void playGangTournament(const int total)
 		}
 	}
 
-	StrategyGenerator::generate(numStrategies, true, 10);
+	bool generate;
+	if (numStrategies > 0)
+	{
+		generate = true;
+		StrategyGenerator::generate(numStrategies, true, 10);
+	}
+	else
+	{
+		generate = false;
+		numStrategies = 10;
+	}
 
 	std::vector<std::string> tournamentStrategies;
 	for (int i = 0; i < numStrategies; i++)
 	{
 		std::ostringstream ossPath;
-		ossPath << "../Strategies/Generated/Gang/Strategy" << i + 1 << ".txt";
+		if (generate)
+		{
+			ossPath << "../Strategies/Generated/Gang/Strategy" << i + 1 << ".txt";
+		}
+		else
+		{
+			ossPath << "../Strategies/Test/Gang/Strategy" << i + 1 << ".txt";
+		}
 		tournamentStrategies.push_back(ossPath.str());
 	}
 
@@ -271,17 +306,81 @@ void playGangTournament(const int total)
 
 int main()
 {
+	//Count the number of tournaments played of each type - used for tournament ID
+	int totalTournaments = 0;
+	int totalGangTournaments = 0;
+
 	//Set console dimensions
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r);
 	MoveWindow(console, r.left, r.top, 1550, 900, TRUE);
 
-	//Gang test
+	//Answer Questions
 	int numGangStrats = 10;
-	//StrategyGenerator::generate(numGangStrats, true, 10);
+	StrategyGenerator::generate(numGangStrats, true, 10);
 
 	std::vector<std::string> gangTournamentStrategies;
+	for (int i = 0; i < numGangStrats; i++)
+	{
+		std::ostringstream ossPath;
+		ossPath << "../Strategies/Generated/Gang/Strategy" << i + 1 << ".txt";
+		gangTournamentStrategies.push_back(ossPath.str());
+	}
+
+	totalGangTournaments++;
+	//Run a tournament with 0 spy chance
+	GangTournament* gangTournament = new GangTournament(totalGangTournaments, gangTournamentStrategies, false, 10, 1, 20, 0);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(5);
+	gangTournament->setLeaderChange(true);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(5);
+	gangTournament->setLeaderChange(false);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(10);
+	gangTournament->setLeaderChange(true);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(10);
+	gangTournament->setLeaderChange(false);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(15);
+	gangTournament->setLeaderChange(true);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(15);
+	gangTournament->setLeaderChange(false);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(20);
+	gangTournament->setLeaderChange(true);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	gangTournament->setSpyChance(20);
+	gangTournament->setLeaderChange(false);
+	gangTournament->play(0);
+	gangTournament->generateResults(2);
+
+	delete gangTournament;
+
+	//Gang test
+	//int numGangStrats = 10;
+	//StrategyGenerator::generate(numGangStrats, true, 10);
+
+	//std::vector<std::string> gangTournamentStrategies;
 	//for (int i = 0; i < numGangStrats; i++)
 	//{
 	//	std::ostringstream ossPath;
@@ -325,10 +424,6 @@ int main()
 	//tournament->play();
 	//tournament->generateResults();
 	//delete tournament;
-
-	//Count the number of tournaments played of each type - used for tournament ID
-	int totalTournaments = 0;
-	int totalGangTournaments = 0;
 
 	while (true)
 	{

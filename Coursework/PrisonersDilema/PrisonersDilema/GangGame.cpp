@@ -22,8 +22,13 @@ void GangGame::play(const int gamesPlayed, const bool leaderChange, const int ga
 	for (int i = 0; i < gameIterations; i++)
 	{
 		//Store the index of the spy in each gang (no spy = -1)
-		int spyIndexA = addSpy(mGangA);
-		int spyIndexB = addSpy(mGangB);
+		int spyIndexA = -1;
+		int spyIndexB = -1;
+		if (mSpyChance > 0)
+		{
+			spyIndexA = addSpy(mGangB);
+			spyIndexB = addSpy(mGangA);
+		}
 
 		int decisionsA[Gang::GANG_SIZE] = { -1, -1, -1, -1, -1 };
 		int decisionsB[Gang::GANG_SIZE] = { -1, -1, -1, -1, -1 };

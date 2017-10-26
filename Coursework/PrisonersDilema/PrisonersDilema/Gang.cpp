@@ -56,6 +56,8 @@ void Gang::hardReset()
 	mCScore = 0.0f;
 	mTotalSpies = 0;
 	mDiscoveredSpies = 0;
+	mCDiscoveredSpies = 0;
+	mCTotalSpies = 0;
 
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{

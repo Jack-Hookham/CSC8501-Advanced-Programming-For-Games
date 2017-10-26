@@ -6,7 +6,7 @@ namespace util
 {
 	//Compute value as a percentage of total
 	template<typename T>
-	inline float computePercent(const T value, const T total)
+	inline T computePercent(const T value, const T total)
 	{
 		if (total == 0)
 		{
@@ -15,7 +15,7 @@ namespace util
 		else
 		{
 			float result = ((float)value / (float)total) * 100.0f;
-			return result;
+			return (T)result;
 		}
 	}
 }

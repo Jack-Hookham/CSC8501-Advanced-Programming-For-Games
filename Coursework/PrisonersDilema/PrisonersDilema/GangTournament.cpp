@@ -62,6 +62,11 @@ GangTournament::~GangTournament()
 
 void GangTournament::play(const int gameDetail)
 {
+	//Reset variables
+	for (int i = 0; i < mGangs.size(); i++)
+	{
+		mGangs[i]->hardReset();
+	}
 	printTournamentHeading(gameDetail);
 
 	for (int i = 0; i < mTournamentIterations; i++)
@@ -82,7 +87,7 @@ void GangTournament::play(const int gameDetail)
 void GangTournament::generateResults(const int tournamentDetail)
 {
 	//Calculate the percentage of discovered spies
-	float discoveredPercent = 0.0f;
+	float discoveredPercent = 100.0f;
 	int totalSpies = 0;
 	int totalDiscovered = 0;
 	if (mSpyChance > 0)
@@ -92,14 +97,14 @@ void GangTournament::generateResults(const int tournamentDetail)
 			totalSpies += mGangs[i]->getCTotalSpies();
 			totalDiscovered += mGangs[i]->getCDiscoveredSpies();
 		}
-	}
-	try
-	{
-		discoveredPercent = util::computePercent(totalDiscovered, totalSpies);
-	}
-	catch (const std::invalid_argument& iae)
-	{
-		std::cout << "Unable to compute average: " << iae.what() << "\n";
+		try
+		{
+			discoveredPercent = util::computePercent(totalDiscovered, totalSpies);
+		}
+		catch (const std::invalid_argument& iae)
+		{
+			std::cout << "Unable to compute average: " << iae.what() << "\n";
+		}
 	}
 
 	std::ostringstream ossResults;
@@ -110,7 +115,7 @@ void GangTournament::generateResults(const int tournamentDetail)
 		mTournamentResults = "";
 		break;
 	case 1:
-		//Print each prisoner's cumulative score and determine a winner (lowest score)
+		//Print each gang's cumulative score and determine a winner (lowest score)
 		for (int i = 0; i < mPrisoners.size(); i++)
 		{
 			if (mPrisoners[i]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE))
@@ -159,9 +164,12 @@ void GangTournament::generateResults(const int tournamentDetail)
 				winner = i;
 			}
 		}
+
 		ossResults << "\n";
 		std::string choice;
-		if (mLeaderChange) { choice = "Yes"; } else { choice = "No"; }
+		if (mSpyChance < 0) { choice = "N/A"; }
+		else if (mLeaderChange) { choice = "Yes"; } 
+		else { choice = "No"; }
 
 		ossResults << "Leader Changes Choice: " << choice << "\n";
 		ossResults << "Toal Spies: " << totalSpies << "\n";

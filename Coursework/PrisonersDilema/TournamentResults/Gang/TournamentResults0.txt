@@ -1,0 +1,46 @@
+______________________________________________________________________________________________________________________________________________________________________
+
+Gang Tournament 0 Results
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 10   Spy Chance: 20%
+
+______________________________________________________________________________________________________________________________________________________________________
+
+                                               Gang Member Strategies
+
+Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
+
+Gang 1         4274.5         Strategy2      Strategy2      Strategy3      Strategy1      Strategy2      
+Gang 2         4582.5         Strategy4      Strategy1      Strategy1      Strategy3      Strategy7      
+Gang 3         4910.5         Strategy4      Strategy9      Strategy6      Strategy4      Strategy4      
+Gang 4         4607           Strategy9      Strategy4      Strategy3      Strategy5      Strategy8      
+Gang 5         4257.5         Strategy7      Strategy3      Strategy1      Strategy9      Strategy2      
+Gang 6         4459           Strategy5      Strategy8      Strategy10     Strategy8      Strategy8      
+Gang 7         4268.5         Strategy9      Strategy4      Strategy10     Strategy4      Strategy7      
+Gang 8         4476           Strategy6      Strategy8      Strategy2      Strategy8      Strategy8      
+Gang 9         4813.5         Strategy3      Strategy5      Strategy6      Strategy4      Strategy7      
+Gang 10        4289           Strategy2      Strategy8      Strategy10     Strategy8      Strategy7      
+Gang 11        4445.5         Strategy5      Strategy9      Strategy10     Strategy5      Strategy3      
+Gang 12        4439           Strategy8      Strategy2      Strategy10     Strategy6      Strategy1      
+Gang 13        4475           Strategy1      Strategy6      Strategy2      Strategy9      Strategy3      
+Gang 14        4331.5         Strategy8      Strategy9      Strategy3      Strategy7      Strategy1      
+Gang 15        4338.5         Strategy3      Strategy1      Strategy8      Strategy9      Strategy7      
+Gang 16        4323           Strategy10     Strategy9      Strategy10     Strategy7      Strategy3      
+Gang 17        4226           Strategy1      Strategy2      Strategy2      Strategy1      Strategy7      
+Gang 18        4333           Strategy2      Strategy2      Strategy4      Strategy10     Strategy3      
+Gang 19        4841.5         Strategy5      Strategy9      Strategy6      Strategy6      Strategy4      
+Gang 20        4464.5         Strategy9      Strategy6      Strategy10     Strategy6      Strategy9      
+
+Leader Changes Choice: No
+Toal Spies: 3827
+Total Spies Discovered: 973
+Percent Discovered: 25%
+______________________________________________________________________________________________________________________________________________________________________
+
+Winning Combination: Gang 17
+
+Member 1 - Strategy1
+Member 2 - Strategy2
+Member 3 - Strategy2
+Member 4 - Strategy1
+Member 5 - Strategy7
+______________________________________________________________________________________________________________________________________________________________________
