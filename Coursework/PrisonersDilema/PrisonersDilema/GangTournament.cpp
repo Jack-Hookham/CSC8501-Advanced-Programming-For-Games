@@ -39,6 +39,8 @@ GangTournament::GangTournament(const int id, const std::vector<std::string>& str
 
 			gangMembers.push_back(new GangMember(mPrisoners[prisonerID]));
 		}
+		//Set the first member of each gang as the leader
+		gangMembers[0]->setLeader(true);
 		mGangs.push_back(new Gang(i + 1, gangMembers));
 	}
 }
@@ -74,6 +76,26 @@ void GangTournament::play(const int gameDetail)
 
 void GangTournament::generateResults(const int tournamentDetail)
 {
+	//Calculate the percentage of discovered spies
+	float discoveredPercent = 0.0f;
+	if (mSpyChance > 0)
+	{
+		for (int i = 0; i < mGangs.size(); i++)
+		{
+			try
+			{
+				mGangs[i]->setDiscoveredPercent(util::computePercent(mGangs[i]->getCDiscoveredSpies(), mGangs[i]->getCTotalSpies()));
+				
+			}
+			catch (const std::invalid_argument& iae)
+			{
+				std::cout << "Unable to compute average: " << iae.what() << "\n";
+			}
+			discoveredPercent += mGangs[i]->getDiscoveredPercent();
+		}
+		discoveredPercent = discoveredPercent / mGangs.size();
+	}
+
 	std::ostringstream ossResults;
 	int winner = 0;
 	switch (tournamentDetail)
@@ -85,14 +107,14 @@ void GangTournament::generateResults(const int tournamentDetail)
 		//Print each prisoner's cumulative score and determine a winner (lowest score)
 		for (int i = 0; i < mPrisoners.size(); i++)
 		{
-			if (mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE))
+			if (mPrisoners[i]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE))
 			{
 				winner = i;
 			}
 		}
 		ossResults << lineBreak;
 		ossResults << "\nGang Tournament " << mID << " Results\n";
-		ossResults << "\nWinning gang: " << mGangs[winner]->getName() << "\n\n";
+		ossResults << "\nWinning Combination: " << mGangs[winner]->getName() << "\n\n";
 		for (int i = 0; i < Gang::GANG_SIZE; i++)
 		{
 			ossResults << "Member " << i + 1 << " - " << mGangs[winner]->getMember(i)->getStrategyName() << "\n";
@@ -132,7 +154,7 @@ void GangTournament::generateResults(const int tournamentDetail)
 			}
 		}
 		ossResults << lineBreak;
-		ossResults << "\nWinning gang: " << mGangs[winner]->getName() << "\n\n";
+		ossResults << "\nWinning Combination: " << mGangs[winner]->getName() << "\n\n";
 		for (int i = 0; i < Gang::GANG_SIZE; i++)
 		{
 			ossResults << "Member " << i + 1 << " - " << mGangs[winner]->getMember(i)->getStrategyName() << "\n";
@@ -174,14 +196,13 @@ void GangTournament::printGangs()
 
 void GangTournament::printTournamentHeading(const int gameDetail)
 {
-
 	switch (gameDetail)
 	{
 	case 0:
 		break;
 	case 1:
 		std::cout << lineBreak;
-		std::cout << "\n" << std::left << std::setw(15) << "Gang" << std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << PsilLang::psilVars[PsilLang::varEnums::MYSCORE];
+		std::cout << "\n" << std::left << std::setw(15) << "Gang" << std::setw(PsiLang::psilVars[PsiLang::varEnums::MYSCORE].length() + 2) << PsiLang::psilVars[PsiLang::varEnums::MYSCORE];
 		std::cout << "\n";
 		std::cout << lineBreak;
 		break;
@@ -189,15 +210,21 @@ void GangTournament::printTournamentHeading(const int gameDetail)
 		std::cout << lineBreak;
 		std::cout << "\n" << std::left << std::setw(15) << "Gang";
 
-		for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+		for (int i = 0; i <= PsiLang::varEnums::ALLOUTCOMES_Z; i++)
 		{
-			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
-		}	
-		
-		for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
-		{
-			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+			std::cout << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[i];
 		}
+		
+		for (int i = PsiLang::varEnums::ALLOUTCOMES_A; i <= PsiLang::varEnums::ALLOUTCOMES_C; i++)
+		{
+			std::cout << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[i];
+		}
+
+		//Spy headings
+		std::string s = "Spy Count";
+		std::cout << std::setw(s.length() + 2) << s;
+		s = "Spies Discovered";
+		std::cout << std::setw(s.length() + 2) << s;
 
 		std::cout << "\n";
 		std::cout << lineBreak;

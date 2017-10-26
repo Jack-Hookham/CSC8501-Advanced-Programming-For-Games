@@ -9,8 +9,8 @@ Prisoner::Prisoner(Prisoner* prisoner)
 	mStrategyName = prisoner->getStrategyName();
 	mStrategyPath = prisoner->getStrategyPath();
 	mStrategy = prisoner->getStrategy();
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mVariables[PsiLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::UNKOWN_DECISION;
 }
 
 Prisoner::Prisoner(const std::string& folderPath)
@@ -29,7 +29,7 @@ Prisoner::Prisoner(const std::string& folderPath)
 	}
 	//Remove the path and extension from the strategy name and store it
 	mStrategyName = FileManager::getFileName(mStrategyPath);
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::UNKOWN_DECISION;
 }
 
 Prisoner::~Prisoner()
@@ -62,16 +62,16 @@ void Prisoner::printStrategy()
 std::ostream& operator<<(std::ostream& os, const Prisoner* p)
 {
 	os << std::setw(15) << std::left << p->getStrategyName();
-	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	for (int i = 0; i <= PsiLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
-		if (i == PsilLang::varEnums::LASTOUTCOME)
+		if (i == PsiLang::varEnums::LASTOUTCOME)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[p->getVariable(i)];
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[p->getVariable(i)];
 		}
 		else
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << p->getVariable(i);
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << p->getVariable(i);
 		}
 	}
 	os << "\n";
@@ -80,7 +80,7 @@ std::ostream& operator<<(std::ostream& os, const Prisoner* p)
 
 void Prisoner::softReset()
 {
-	for (int i = 0; i < PsilLang::varEnums::UNKOWN_DECISION; i++)
+	for (int i = 0; i < PsiLang::varEnums::UNKOWN_DECISION; i++)
 	{
 		mVariables[i] = 0;
 	}
@@ -89,36 +89,36 @@ void Prisoner::softReset()
 void Prisoner::hardReset()
 {
 	softReset();
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = 0;
+	mVariables[PsiLang::varEnums::CUMULATIVE_SCORE] = 0;
 }
 
 //Both silent
 void Prisoner::outcomeW()
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 2;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_W]++;
+	mVariables[PsiLang::varEnums::MYSCORE] += 2;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::W;
 }
 
 //A silent, B betray
 void Prisoner::outcomeX()
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 5;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_X]++;
+	mVariables[PsiLang::varEnums::MYSCORE] += 5;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::X;
 }
 
 //A betray, B silent
 void Prisoner::outcomeY()
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Y;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Y]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Y;
 }
 
 //Both betray
 void Prisoner::outcomeZ()
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
-	mVariables[PsilLang::varEnums::MYSCORE] += 4;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Z]++;
+	mVariables[PsiLang::varEnums::MYSCORE] += 4;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Z;
 }

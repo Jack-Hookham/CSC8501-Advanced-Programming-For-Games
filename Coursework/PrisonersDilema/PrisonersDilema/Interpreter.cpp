@@ -11,7 +11,7 @@ int Interpreter::interpretDecision(const Prisoner* prisoner)
 int Interpreter::processLine(const Prisoner* prisoner, const int lineNumber, const int lineIndex)
 {
 	//Ensure the strategy file isn't too long
-	if (lineIndex > PsilLang::MAX_READ_LINES)
+	if (lineIndex > PsiLang::MAX_READ_LINES)
 	{
 		return Prisoner::decisions::INVALID_FILE;
 	}
@@ -22,27 +22,27 @@ int Interpreter::processLine(const Prisoner* prisoner, const int lineNumber, con
 	std::copy(std::istream_iterator<std::string>(issLine), std::istream_iterator<std::string>(), std::back_inserter(tokens));
 
 	//Check whether first word is an integer
-	if (!PsilLang::isInteger(tokens[0]))
+	if (!PsiLang::isInteger(tokens[0]))
 	{
 		//error
 		std::cout << "Invalid file! No line number found.\n";
 		return Prisoner::decisions::INVALID_FILE;
 	}
-	if (tokens[1] == PsilLang::psilKeywords[PsilLang::keywordEnums::IF])
+	if (tokens[1] == PsiLang::psilKeywords[PsiLang::keywordEnums::IF])
 	{
 		//Parse the if statement which will then call processLine again on the resulting line number
 		return parseIf(prisoner, lineNumber, tokens);
 		//processLine(prisoner, nextLineNumber);
 	}
-	else if (tokens[1] == PsilLang::psilKeywords[PsilLang::keywordEnums::BETRAY])
+	else if (tokens[1] == PsiLang::psilKeywords[PsiLang::keywordEnums::BETRAY])
 	{
 		return Prisoner::decisions::BETRAY;
 	}
-	else if (tokens[1] == PsilLang::psilKeywords[PsilLang::keywordEnums::SILENCE])
+	else if (tokens[1] == PsiLang::psilKeywords[PsiLang::keywordEnums::SILENCE])
 	{
 		return Prisoner::decisions::SILENCE;
 	}
-	else if (tokens[1] == PsilLang::psilKeywords[PsilLang::keywordEnums::RANDOM])
+	else if (tokens[1] == PsiLang::psilKeywords[PsiLang::keywordEnums::RANDOM])
 	{
 		//Choose BETRAY(0) or SILENCE(1)
 		std::random_device rd;
@@ -70,13 +70,13 @@ int Interpreter::parseIf(const Prisoner* prisoner, const int lineNumber, const s
 	int rhsValue = 0; 
 
 	//lhs = LASTOUTCOME
-	if (tokens[2] == PsilLang::psilVars[PsilLang::varEnums::LASTOUTCOME])
+	if (tokens[2] == PsiLang::psilVars[PsiLang::varEnums::LASTOUTCOME])
 	{
-		if (tokens[3] == PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS])
+		if (tokens[3] == PsiLang::psilOperators[PsiLang::operatorEnums::EQUALS])
 		{
-			if (prisoner->getVariable(PsilLang::LASTOUTCOME) == PsilLang::stringToEnumMap.at(tokens[4]))
+			if (prisoner->getVariable(PsiLang::LASTOUTCOME) == PsiLang::stringToEnumMap.at(tokens[4]))
 			{
-				if (PsilLang::isInteger(tokens[6]))
+				if (PsiLang::isInteger(tokens[6]))
 				{
 					nextLineNum = std::stoi(tokens[6]);
 				}
@@ -94,13 +94,13 @@ int Interpreter::parseIf(const Prisoner* prisoner, const int lineNumber, const s
 		}
 	}
 	//rhs = LASTOUTCOME
-	else if (tokens[4] == PsilLang::psilVars[PsilLang::varEnums::LASTOUTCOME])
+	else if (tokens[4] == PsiLang::psilVars[PsiLang::varEnums::LASTOUTCOME])
 	{
-		if (tokens[3] == PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS])
+		if (tokens[3] == PsiLang::psilOperators[PsiLang::operatorEnums::EQUALS])
 		{
-			if (prisoner->getVariable(PsilLang::LASTOUTCOME) == PsilLang::stringToEnumMap.at(tokens[2]))
+			if (prisoner->getVariable(PsiLang::LASTOUTCOME) == PsiLang::stringToEnumMap.at(tokens[2]))
 			{			
-				if (PsilLang::isInteger(tokens[6]))
+				if (PsiLang::isInteger(tokens[6]))
 				{
 					nextLineNum = std::stoi(tokens[6]);
 				}
@@ -122,48 +122,48 @@ int Interpreter::parseIf(const Prisoner* prisoner, const int lineNumber, const s
 	{
 		int tokenIterator = 2;
 
-		if (PsilLang::isInteger(tokens[tokenIterator]))
+		if (PsiLang::isInteger(tokens[tokenIterator]))
 		{
 			lhsValue += std::stoi(tokens[tokenIterator]);
 		}
 		else
 		{
-			lhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator]));
+			lhsValue += prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator]));
 		}
 		tokenIterator++;
 		//lhs var value
 		//loop until equality operator is found
-		while (tokens[tokenIterator] != PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS] &&
-			tokens[tokenIterator] != PsilLang::psilOperators[PsilLang::operatorEnums::GREATER_THAN] &&
-			tokens[tokenIterator] != PsilLang::psilOperators[PsilLang::operatorEnums::LESS_THAN])
+		while (tokens[tokenIterator] != PsiLang::psilOperators[PsiLang::operatorEnums::EQUALS] &&
+			tokens[tokenIterator] != PsiLang::psilOperators[PsiLang::operatorEnums::GREATER_THAN] &&
+			tokens[tokenIterator] != PsiLang::psilOperators[PsiLang::operatorEnums::LESS_THAN])
 		{
-			if (tokens[tokenIterator + 1] == PsilLang::psilVars[PsilLang::varEnums::LASTOUTCOME])
+			if (tokens[tokenIterator + 1] == PsiLang::psilVars[PsiLang::varEnums::LASTOUTCOME])
 			{
 				//error
 				std::cout << "Invalid strategy. LASTOUTCOME invalid here.\n";
 			}
 			//if PLUS operator
-			if (tokens[tokenIterator] == PsilLang::psilOperators[PsilLang::operatorEnums::PLUS])
+			if (tokens[tokenIterator] == PsiLang::psilOperators[PsiLang::operatorEnums::PLUS])
 			{
-				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				if (PsiLang::isInteger(tokens[tokenIterator + 1]))
 				{
 					lhsValue += std::stoi(tokens[tokenIterator + 1]);
 				}
 				else
 				{
-					lhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+					lhsValue += prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
 				}
 			}
 			//if MINUS operator
 			else
 			{
-				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				if (PsiLang::isInteger(tokens[tokenIterator + 1]))
 				{
 					lhsValue -= std::stoi(tokens[tokenIterator + 1]);
 				}
 				else
 				{
-					lhsValue -= prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+					lhsValue -= prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
 				}
 			}
 			tokenIterator += 2;
@@ -174,57 +174,57 @@ int Interpreter::parseIf(const Prisoner* prisoner, const int lineNumber, const s
 		tokenIterator++;
 
 		//rhs var value
-		if (PsilLang::isInteger(tokens[tokenIterator]))
+		if (PsiLang::isInteger(tokens[tokenIterator]))
 		{
 			rhsValue += std::stoi(tokens[tokenIterator]);
 		}
 		else
 		{
-			rhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator]));
+			rhsValue += prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator]));
 		}
 		tokenIterator++;
 
 		//loop until GOTO keyword is found
-		while (tokens[tokenIterator] != PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO])
+		while (tokens[tokenIterator] != PsiLang::psilKeywords[PsiLang::keywordEnums::GOTO])
 		{
-			if (tokens[tokenIterator + 1] == PsilLang::psilVars[PsilLang::varEnums::LASTOUTCOME])
+			if (tokens[tokenIterator + 1] == PsiLang::psilVars[PsiLang::varEnums::LASTOUTCOME])
 			{
 				//error
 				std::cout << "Invalid strategy. LASTOUTCOME invalid here.\n";
 			}
 			//if PLUS operator
-			if (tokens[tokenIterator] == PsilLang::psilOperators[PsilLang::operatorEnums::PLUS])
+			if (tokens[tokenIterator] == PsiLang::psilOperators[PsiLang::operatorEnums::PLUS])
 			{
-				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				if (PsiLang::isInteger(tokens[tokenIterator + 1]))
 				{
 					rhsValue += std::stoi(tokens[tokenIterator + 1]);
 				}
 				else
 				{
-					rhsValue += prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+					rhsValue += prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
 				}
 			}
 			//if MINUS operator
 			else
 			{
-				if (PsilLang::isInteger(tokens[tokenIterator + 1]))
+				if (PsiLang::isInteger(tokens[tokenIterator + 1]))
 				{
 					rhsValue -= std::stoi(tokens[tokenIterator + 1]);
 				}
 				else
 				{
-					rhsValue -= prisoner->getVariable(PsilLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
+					rhsValue -= prisoner->getVariable(PsiLang::stringToEnumMap.at(tokens[tokenIterator + 1]));
 				}
 			}
 			tokenIterator += 2;
 		}
 
-		if ((conditionalOperator == PsilLang::psilOperators[PsilLang::operatorEnums::GREATER_THAN] && lhsValue > rhsValue) ||
-			(conditionalOperator == PsilLang::psilOperators[PsilLang::operatorEnums::LESS_THAN] && lhsValue < rhsValue) ||
-			(conditionalOperator == PsilLang::psilOperators[PsilLang::operatorEnums::EQUALS] && lhsValue == rhsValue))
+		if ((conditionalOperator == PsiLang::psilOperators[PsiLang::operatorEnums::GREATER_THAN] && lhsValue > rhsValue) ||
+			(conditionalOperator == PsiLang::psilOperators[PsiLang::operatorEnums::LESS_THAN] && lhsValue < rhsValue) ||
+			(conditionalOperator == PsiLang::psilOperators[PsiLang::operatorEnums::EQUALS] && lhsValue == rhsValue))
 		{
 			tokenIterator++;
-			if (PsilLang::isInteger(tokens[tokenIterator]))
+			if (PsiLang::isInteger(tokens[tokenIterator]))
 			{
 				nextLineNum = std::stoi(tokens[tokenIterator]);
 			}

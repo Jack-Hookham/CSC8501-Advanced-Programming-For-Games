@@ -9,7 +9,7 @@
 #include <iterator>
 #include <stdexcept>
 
-#include "PsilLang.h"
+#include "PsiLang.h"
 
 class FileManager
 {

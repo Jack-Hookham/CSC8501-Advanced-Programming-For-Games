@@ -6,7 +6,7 @@
 #include <iomanip>
 
 #include "FileManager.h"
-#include "PsilLang.h"
+#include "PsiLang.h"
 
 class Prisoner
 {
@@ -34,7 +34,7 @@ public:
 	void setStrategy(const std::string& filePath);
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
 
-	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }
+	inline void incrementIterations() { mVariables[PsiLang::varEnums::ITERATIONS]++; }
 
 	virtual void outcomeW();
 	virtual void outcomeX();
@@ -50,7 +50,7 @@ public:
 	//Reset all including CUMULATIVE_SCORE
 	virtual void hardReset();
 	//Add current score to cumulative score
-	virtual inline void addScore() { mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsilLang::varEnums::MYSCORE]; }
+	virtual inline void addScore() { mVariables[PsiLang::varEnums::CUMULATIVE_SCORE] += mVariables[PsiLang::varEnums::MYSCORE]; }
 
 protected:
 	std::string mStrategyName;
@@ -60,6 +60,6 @@ protected:
 	//Key = line number, value = strategy string
 	std::map<int, std::string> mStrategy;
 
-	int mVariables[PsilLang::varEnums::NUM_VARS] = { 0 };
+	int mVariables[PsiLang::varEnums::NUM_VARS] = { 0 };
 };
 

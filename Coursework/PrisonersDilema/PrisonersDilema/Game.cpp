@@ -43,9 +43,9 @@ void Game::play(const int gamesPlayed, const int gameIterations, const int gameD
 	case 1:
 		std::cout << "\nGame " << gamesPlayed << "\n";
 		std::cout << std::setw(15) << std::left << mPrisonerA->getStrategyName() 
-			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mPrisonerA->getVariable(PsilLang::varEnums::MYSCORE) << "\n";
+			<< std::setw(PsiLang::psilVars[PsiLang::varEnums::MYSCORE].length() + 2) << mPrisonerA->getVariable(PsiLang::varEnums::MYSCORE) << "\n";
 		std::cout << std::setw(15) << std::left << mPrisonerB->getStrategyName()
-			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mPrisonerB->getVariable(PsilLang::varEnums::MYSCORE) << "\n";
+			<< std::setw(PsiLang::psilVars[PsiLang::varEnums::MYSCORE].length() + 2) << mPrisonerB->getVariable(PsiLang::varEnums::MYSCORE) << "\n";
 		break;
 	case 2:
 		std::cout << "\nGame " << gamesPlayed << "\n";

@@ -42,7 +42,7 @@ void StrategyGenerator::generateStrategy(const int pathIndex, const bool gangStr
 
 	//random total line number distribution between 1 and max lines
 	//Set the number of lines for this strategy
-	const int totalLines = RandomGen::generateRandomWithinRange(1, PsilLang::MAX_WRITE_LINES);
+	const int totalLines = RandomGen::generateRandomWithinRange(1, PsiLang::MAX_WRITE_LINES);
 
 	int currentLineIndex = 0;	//Line number by index 0, 1, 2 etc
 	int currentLineNum = lineNumIncrement;	//Line number by value to be written to file e.g. 10, 20, 30 etc
@@ -76,15 +76,15 @@ void StrategyGenerator::generateStrategy(const int pathIndex, const bool gangStr
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 1: //BETRAY
-			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::BETRAY];
+			ossLine << PsiLang::psilKeywords[PsiLang::keywordEnums::BETRAY];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 2: //SILENCE
-			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::SILENCE];
+			ossLine << PsiLang::psilKeywords[PsiLang::keywordEnums::SILENCE];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		case 3: //RANDOM
-			ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::RANDOM];
+			ossLine << PsiLang::psilKeywords[PsiLang::keywordEnums::RANDOM];
 			strategy.insert(std::pair<int, std::string>(currentLineNum, ossLine.str()));
 			break;
 		}
@@ -117,9 +117,9 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 	conditionalOperatorEnum = generateOperators(lhsOperatorEnums, rhsOperatorEnums);
 
 	//If either lhs or rhs var is LASTOUTCOME then conditionalOperator must be equality so overwrite it
-	if (lhsVars[0] == PsilLang::varEnums::LASTOUTCOME || rhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
+	if (lhsVars[0] == PsiLang::varEnums::LASTOUTCOME || rhsVars[0] == PsiLang::varEnums::LASTOUTCOME)
 	{
-		conditionalOperatorEnum = PsilLang::operatorEnums::EQUALS;
+		conditionalOperatorEnum = PsiLang::operatorEnums::EQUALS;
 	}
 
 	//GOTO line number should be between (current line + 1) and total lines
@@ -133,48 +133,48 @@ std::string StrategyGenerator::generateIf(const int currentLineIndex, const int 
 
 	std::ostringstream ossLine;
 	//Concatenate the final if statement
-	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::IF] << ' ';
+	ossLine << PsiLang::psilKeywords[PsiLang::keywordEnums::IF] << ' ';
 
 	//Lhs vars and operators
 	for (int i = 0; i < lhsVars.size(); i++)
 	{
 		//if the current variable is an integer value then generate that value
 		//else just used the string represented by the value
-		if ((gangStrategy && lhsVars[i] == PsilLang::varEnums::INTEGER_PLACEHOLDER_2) || (lhsVars[i] == PsilLang::varEnums::INTEGER_PLACEHOLDER_1))
+		if ((gangStrategy && lhsVars[i] == PsiLang::varEnums::INTEGER_PLACEHOLDER_2) || (lhsVars[i] == PsiLang::varEnums::INTEGER_PLACEHOLDER_1))
 		{
 			ossLine << intToString(RandomGen::generateRandomWithinRange(INT_VAR_MIN, INT_VAR_MAX)) << ' ';
 		}
 		else
 		{
-			ossLine << PsilLang::psilVars[lhsVars[i]] << ' ';
+			ossLine << PsiLang::psilVars[lhsVars[i]] << ' ';
 		}
 
 		if (i < lhsVars.size() - 1)
 		{
-			ossLine << PsilLang::psilOperators[lhsOperatorEnums[i]] << ' ';
+			ossLine << PsiLang::psilOperators[lhsOperatorEnums[i]] << ' ';
 		}
 	}
 
-	ossLine << PsilLang::psilOperators[conditionalOperatorEnum] << ' ';
+	ossLine << PsiLang::psilOperators[conditionalOperatorEnum] << ' ';
 
 	//Rhs vars and operators
 	for (int i = 0; i < rhsVars.size(); i++)
 	{
-		if ((gangStrategy && rhsVars[i] == PsilLang::varEnums::ALLOUTCOMES_C + 1) || (rhsVars[i] == PsilLang::varEnums::ALLOUTCOMES_Z + 1))
+		if ((gangStrategy && rhsVars[i] == PsiLang::varEnums::ALLOUTCOMES_C + 1) || (rhsVars[i] == PsiLang::varEnums::ALLOUTCOMES_Z + 1))
 		{
 			ossLine << intToString(RandomGen::generateRandomWithinRange(INT_VAR_MIN, INT_VAR_MAX)) << ' ';
 		}
 		else
 		{
-			ossLine << PsilLang::psilVars[rhsVars[i]] << ' ';
+			ossLine << PsiLang::psilVars[rhsVars[i]] << ' ';
 		}
 		if (i < rhsVars.size() - 1)
 		{
-			ossLine << PsilLang::psilOperators[rhsOperatorEnums[i]] << ' ';
+			ossLine << PsiLang::psilOperators[rhsOperatorEnums[i]] << ' ';
 		}
 	}
 	
-	ossLine << PsilLang::psilKeywords[PsilLang::keywordEnums::GOTO] << ' ' << gotoLine;
+	ossLine << PsiLang::psilKeywords[PsiLang::keywordEnums::GOTO] << ' ' << gotoLine;
 
 	std::string lineString = ossLine.str();
 	return lineString;
@@ -188,13 +188,13 @@ void StrategyGenerator::generateVars(std::vector<int>& lhsVars, std::vector<int>
 
 	if (gangStrategy)
 	{
-		varGenUpperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_2;
-		wxyzabcUpperBound = PsilLang::varEnums::C;
+		varGenUpperBound = PsiLang::varEnums::INTEGER_PLACEHOLDER_2;
+		wxyzabcUpperBound = PsiLang::varEnums::C;
 	}
 	else
 	{
-		varGenUpperBound = PsilLang::varEnums::INTEGER_PLACEHOLDER_1;
-		wxyzabcUpperBound = PsilLang::varEnums::Z;
+		varGenUpperBound = PsiLang::varEnums::INTEGER_PLACEHOLDER_1;
+		wxyzabcUpperBound = PsiLang::varEnums::Z;
 	}
 	//Chance of 1, 2 or 3 variables on each side of the equation
 	std::vector<double> numVarsWeights = { 4, 2, 1 };
@@ -204,20 +204,20 @@ void StrategyGenerator::generateVars(std::vector<int>& lhsVars, std::vector<int>
 	int numRhsVars = RandomGen::generateRandomWeighted(numVarsWeights) + 1;
 
 	//First vars for both sides
-	lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, varGenUpperBound));
-	rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::LASTOUTCOME, varGenUpperBound));
+	lhsVars.push_back(RandomGen::generateRandomWithinRange(PsiLang::varEnums::LASTOUTCOME, varGenUpperBound));
+	rhsVars.push_back(RandomGen::generateRandomWithinRange(PsiLang::varEnums::LASTOUTCOME, varGenUpperBound));
 
 	//if first variable is LASTOUTCOME it must be compared with w, x, y, z instead of the other variables and operator must be EQUALS
-	if (lhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
+	if (lhsVars[0] == PsiLang::varEnums::LASTOUTCOME)
 	{
 		//set the other side of the equation to w, x, y or z (a, b, c included if strategy is for a gang prisoner)
-		rhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, wxyzabcUpperBound);
+		rhsVars[0] = RandomGen::generateRandomWithinRange(PsiLang::varEnums::W, wxyzabcUpperBound);
 		numLhsVars = 1;
 		numRhsVars = 1;
 	}
-	else if (rhsVars[0] == PsilLang::varEnums::LASTOUTCOME)
+	else if (rhsVars[0] == PsiLang::varEnums::LASTOUTCOME)
 	{
-		lhsVars[0] = RandomGen::generateRandomWithinRange(PsilLang::varEnums::W, wxyzabcUpperBound);
+		lhsVars[0] = RandomGen::generateRandomWithinRange(PsiLang::varEnums::W, wxyzabcUpperBound);
 		numLhsVars = 1;
 		numRhsVars = 1;
 	}
@@ -227,12 +227,12 @@ void StrategyGenerator::generateVars(std::vector<int>& lhsVars, std::vector<int>
 		//Populate the rest of the lhs and rhs vars
 		for (int i = 1; i < numLhsVars; i++)
 		{
-			lhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
+			lhsVars.push_back(RandomGen::generateRandomWithinRange(PsiLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
 		}
 
 		for (int i = 1; i < numRhsVars; i++)
 		{
-			rhsVars.push_back(RandomGen::generateRandomWithinRange(PsilLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
+			rhsVars.push_back(RandomGen::generateRandomWithinRange(PsiLang::varEnums::ALLOUTCOMES_W, varGenUpperBound));
 		}
 	}
 }
@@ -242,15 +242,15 @@ const int StrategyGenerator::generateOperators(std::vector<int>& lhsOps, std::ve
 	//Populate lhs and rhs operators
 	for (int i = 0; i < lhsOps.size() - 1; i++)
 	{
-		lhsOps[i] = (RandomGen::generateRandomWithinRange(PsilLang::operatorEnums::PLUS, PsilLang::operatorEnums::MINUS));
+		lhsOps[i] = (RandomGen::generateRandomWithinRange(PsiLang::operatorEnums::PLUS, PsiLang::operatorEnums::MINUS));
 	}
 
 	for (int i = 0; i < rhsOps.size() - 1; i++)
 	{
-		rhsOps[i] = (RandomGen::generateRandomWithinRange(PsilLang::operatorEnums::PLUS, PsilLang::operatorEnums::MINUS));
+		rhsOps[i] = (RandomGen::generateRandomWithinRange(PsiLang::operatorEnums::PLUS, PsiLang::operatorEnums::MINUS));
 	}
 
-	return RandomGen::generateRandomWithinRange(PsilLang::operatorEnums::GREATER_THAN, PsilLang::operatorEnums::EQUALS);
+	return RandomGen::generateRandomWithinRange(PsiLang::operatorEnums::GREATER_THAN, PsiLang::operatorEnums::EQUALS);
 }
 
 std::string StrategyGenerator::intToString(const int x)

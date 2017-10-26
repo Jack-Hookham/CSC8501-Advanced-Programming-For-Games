@@ -32,3 +32,12 @@ private:
 	virtual void printTournamentHeading(const int gameDetail);
 };
 
+template<typename T>
+inline float operator/(const T x, const T y)
+{
+	if (y == 0)
+	{
+		throw std::invalid_argument("Divide by zero exception");
+	}
+	return x / y;
+}

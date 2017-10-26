@@ -4,7 +4,7 @@
 #include <regex>
 #include <map>
 
-class PsilLang
+class PsiLang
 {
 public:
 	enum keywordEnums

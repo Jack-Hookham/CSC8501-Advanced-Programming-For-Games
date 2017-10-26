@@ -9,7 +9,7 @@ Gang::Gang(const int id, const std::vector<GangMember*>& gangMembers)
 	mName = "Gang " + std::to_string(id);
 	mGangMembers = gangMembers;
 
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::UNKOWN_DECISION;
 }
 
 Gang::~Gang()
@@ -21,13 +21,24 @@ Gang::~Gang()
 	mGangMembers.clear();
 }
 
+void Gang::addToScore(const float x)
+{
+	mScore += x;
+	for (int i = 0; i < GANG_SIZE; i++)
+	{
+		mGangMembers[i]->addToScore(x);
+	}
+}
+
 void Gang::softReset()
 {
-	for (int i = 0; i < PsilLang::varEnums::UNKOWN_DECISION; i++)
+	for (int i = 0; i < PsiLang::varEnums::UNKOWN_DECISION; i++)
 	{
 		mVariables[i] = 0;
 	}
 	mScore = 0.0f;
+	mTotalSpies = 0;
+	mDiscoveredSpies = 0;
 
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
@@ -37,11 +48,14 @@ void Gang::softReset()
 
 void Gang::hardReset()
 {
-	for (int i = 0; i < PsilLang::varEnums::CUMULATIVE_SCORE; i++)
+	for (int i = 0; i < PsiLang::varEnums::CUMULATIVE_SCORE; i++)
 	{
 		mVariables[i] = 0;
 	}
-	mCumulativeScore = 0.0f;
+	mScore = 0.0f;
+	mCScore = 0.0f;
+	mTotalSpies = 0;
+	mDiscoveredSpies = 0;
 
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
@@ -51,7 +65,9 @@ void Gang::hardReset()
 
 void Gang::addScore()
 {
-	mCumulativeScore += mScore;
+	mCScore += mScore;
+	mCTotalSpies += mTotalSpies;
+	mCDiscoveredSpies += mDiscoveredSpies;
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
 		mGangMembers[i]->addScore();
@@ -60,7 +76,7 @@ void Gang::addScore()
 
 void Gang::incrementIterations()
 {
-	mVariables[PsilLang::varEnums::ITERATIONS]++;
+	mVariables[PsiLang::varEnums::ITERATIONS]++;
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
 		mGangMembers[i]->incrementIterations();
@@ -72,131 +88,157 @@ std::ostream& operator<<(std::ostream& os, const Gang* g)
 	std::ostringstream ossID;
 	ossID << g->getName();
 	os << std::setw(15) << std::left << ossID.str();
-	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	for (int i = PsiLang::varEnums::LASTOUTCOME; i <= PsiLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
-		if (i == PsilLang::varEnums::LASTOUTCOME)
+		if (i == PsiLang::varEnums::LASTOUTCOME)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[g->getVariable(i)];
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[g->getVariable(i)];
 		}
 		//If MYSCORE print var as it's stored as a double and not in the array
-		else if (i == PsilLang::varEnums::MYSCORE)
+		else if (i == PsiLang::varEnums::MYSCORE)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getScore();
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << g->getScore();
 		}
 		//If CUMULATIVE_SCORE print var as it's stored as a double and not in the array
-		else if (i == PsilLang::varEnums::CUMULATIVE_SCORE)
+		else if (i == PsiLang::varEnums::CUMULATIVE_SCORE)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getCumulativeScore();
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << g->getCumulativeScore();
 		}
 		else
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getVariable(i);
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << g->getVariable(i);
 		}
 	}	
 	
-	for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
+	for (int i = PsiLang::varEnums::ALLOUTCOMES_A; i <= PsiLang::varEnums::ALLOUTCOMES_C; i++)
 	{
-		os << std::setw(PsilLang::psilVars[i].length() + 2) << g->getVariable(i);
+		os << std::setw(PsiLang::psilVars[i].length() + 2) << g->getVariable(i);
 	}
+
+	//Spy vars
+	std::string s = "Spy Count";
+	os << std::setw(s.length() + 2) << g->getTotalSpies();
+	s = "Spies Discovered";
+	os << std::setw(s.length() + 2) << g->getDiscoveredSpies();
 	os << "\n";
 	return os;
 }
 
 //Both silent
-void Gang::outcomeW()
+void Gang::outcomeW(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
-	mScore += 2;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
+	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 2;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_W]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::W;
 	
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeW();
+		mGangMembers[i]->outcomeW(updated);
 	}
 }
 
 //A silent, B betray
-void Gang::outcomeX()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
-	mScore += 5;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
+void Gang::outcomeX(const bool updated)
+{	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 5;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_X]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::X;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeX();
+		mGangMembers[i]->outcomeX(updated);
 	}
 }
 
 //A betray, B silent
-void Gang::outcomeY()
+void Gang::outcomeY(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Y;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Y]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Y;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeY();
+		mGangMembers[i]->outcomeY(updated);
 	}
 }
 
 //Both betray
-void Gang::outcomeZ()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
-	mScore += 4;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
+void Gang::outcomeZ(const bool updated)
+{	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 4;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Z]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Z;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeZ();
+		mGangMembers[i]->outcomeZ(updated);
 	}
 }
 
 //Mixed, most betrays
-void Gang::outcomeA()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
-	mScore += 2.5;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
+void Gang::outcomeA(const bool updated)
+{	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 2.5;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_A]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::A;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeA();
+		mGangMembers[i]->outcomeA(updated);
 	}
 }
 
 //Mixed, least betrays
-void Gang::outcomeB()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
-	mScore += 3;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
+void Gang::outcomeB(const bool updated)
+{	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 3;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_B]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::B;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeB();
+		mGangMembers[i]->outcomeB(updated);
 	}
 }
 
 //Mixed, equal
-void Gang::outcomeC()
-{
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
-	mScore += 2;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
+void Gang::outcomeC(const bool updated)
+{	
+	//Update the score if it hasn't already been updated due to the leader finding the spy
+	if (!updated)
+	{
+		mScore += 2;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_C]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::C;
 
 	//Update the relevant prisoner vars
 	for (int i = 0; i < mGangMembers.size(); i++)
 	{
-		mGangMembers[i]->outcomeC();
+		mGangMembers[i]->outcomeC(updated);
 	}
 }
 

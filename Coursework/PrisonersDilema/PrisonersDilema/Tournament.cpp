@@ -40,7 +40,7 @@ void Tournament::printTournamentHeading(const int gameDetail)
 		break;
 	case 1:
 		std::cout << lineBreak;
-		std::cout << std::setw(15) << "\nStrategy" << std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << PsilLang::psilVars[PsilLang::varEnums::MYSCORE];
+		std::cout << std::setw(15) << "\nStrategy" << std::setw(PsiLang::psilVars[PsiLang::varEnums::MYSCORE].length() + 2) << PsiLang::psilVars[PsiLang::varEnums::MYSCORE];
 		std::cout << "\n";
 		std::cout << lineBreak;
 		break;
@@ -48,9 +48,9 @@ void Tournament::printTournamentHeading(const int gameDetail)
 		std::cout << lineBreak;
 		std::cout << std::setw(15) << "\nStrategy";
 
-		for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+		for (int i = 0; i <= PsiLang::varEnums::ALLOUTCOMES_Z; i++)
 		{
-			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+			std::cout << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[i];
 		}
 		std::cout << "\n";
 		std::cout << lineBreak;
@@ -90,7 +90,7 @@ void Tournament::generateResults(const int tournamentDetail)
 		//Print each prisoner's cumulative score and determine a winner (lowest score)
 		for (int i = 0; i < mPrisoners.size(); i++)
 		{
-			if (mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE))
+			if (mPrisoners[i]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE))
 			{
 				winner = i;
 			}
@@ -112,9 +112,9 @@ void Tournament::generateResults(const int tournamentDetail)
 		//Print each prisoner's cumulative score and determine a winner (lowest score)
 		for (int i = 0; i < mPrisoners.size(); i++)
 		{
-			ossResults << std::left << std::setw(15) << mPrisoners[i]->getStrategyName() << mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) << "\n";
+			ossResults << std::left << std::setw(15) << mPrisoners[i]->getStrategyName() << mPrisoners[i]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE) << "\n";
 
-			if (mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE))
+			if (mPrisoners[i]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsiLang::varEnums::CUMULATIVE_SCORE))
 			{
 				winner = i;
 			}

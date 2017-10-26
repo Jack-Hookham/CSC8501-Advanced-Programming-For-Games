@@ -14,7 +14,7 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 			std::string firstWord = line.substr(0, line.find(" "));
 
 			//Check whether first word of line is an integer
-			if (!PsilLang::isInteger(firstWord))
+			if (!PsiLang::isInteger(firstWord))
 			{
 				std::cout << "Invalid file! No line number found.\n";
 			}

@@ -13,9 +13,6 @@
     <ClCompile Include="Prisoner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PsilLang.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StrategyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +34,9 @@
     <ClCompile Include="GangMember.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PsiLang.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileManager.h">
@@ -46,9 +46,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Prisoner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PsilLang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StrategyGenerator.h">
@@ -69,10 +66,13 @@
     <ClInclude Include="Tournament.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
+    <ClInclude Include="GangMember.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GangMember.h">
+    <ClInclude Include="PsiLang.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

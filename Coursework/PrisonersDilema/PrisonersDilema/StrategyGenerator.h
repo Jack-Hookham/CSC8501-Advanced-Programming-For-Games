@@ -5,8 +5,8 @@
 #include <sstream>
 
 #include "FileManager.h"
-#include "PsilLang.h"
-#include "Random.h"
+#include "PsiLang.h"
+#include "Util.h"
 
 class StrategyGenerator
 {

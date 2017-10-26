@@ -9,6 +9,8 @@ map typedefs
 
 GangStrategyGenerator class, change upperbounds
 
+Time interpretter to prevent infinite loops
+
 process Prisoner::decisions::INVALID_FILE
 
 

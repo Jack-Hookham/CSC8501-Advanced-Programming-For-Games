@@ -9,8 +9,8 @@ GangMember::GangMember(Prisoner* p)
 	mStrategyName = p->getStrategyName();
 	mStrategyPath = p->getStrategyPath();
 	mStrategy = p->getStrategy();
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mVariables[PsiLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::UNKOWN_DECISION;
 }
 
 GangMember::GangMember(GangMember* gm)
@@ -18,8 +18,8 @@ GangMember::GangMember(GangMember* gm)
 	mStrategyName = gm->getStrategyName();
 	mStrategyPath = gm->getStrategyPath();
 	mStrategy = gm->getStrategy();
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
+	mVariables[PsiLang::varEnums::CUMULATIVE_SCORE + 1] = { 0 };
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::UNKOWN_DECISION;
 	mIsSpy = gm->getSpy();
 }
 
@@ -36,85 +36,103 @@ void GangMember::softReset()
 void GangMember::hardReset()
 {
 	softReset();
-	mVariables[PsilLang::varEnums::CUMULATIVE_SCORE] = 0;
-	mCumulativeScore = 0.0f;
+	mVariables[PsiLang::varEnums::CUMULATIVE_SCORE] = 0;
+	mCScore = 0.0f;
 }
 
 //Both silent
-void GangMember::outcomeW()
+void GangMember::outcomeW(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_W]++;
-	mScore += 2;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::W;
+	if (!updated)
+	{
+		mScore += 2;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_W]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::W;
 }
 
 //A silent, B betray
-void GangMember::outcomeX()
+void GangMember::outcomeX(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_X]++;
-	mScore += 5;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::X;
+	if (!updated)
+	{
+		mScore += 5;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_X]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::X;
 }
 
 //A betray, B silent
-void GangMember::outcomeY()
+void GangMember::outcomeY(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Y]++;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Y;
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Y]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Y;
 }
 
 //Both betray
-void GangMember::outcomeZ()
+void GangMember::outcomeZ(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_Z]++;
-	mScore += 4;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::Z;
+	if (!updated)
+	{
+		mScore += 4;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_Z]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::Z;
 }
 
-void GangMember::outcomeA()
+void GangMember::outcomeA(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_A]++;
-	mScore += 2.5;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::A;
+	if (!updated)
+	{
+		mScore += 2.5;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_A]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::A;
 }
 
-void GangMember::outcomeB()
+void GangMember::outcomeB(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_B]++;
-	mScore += 3;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::B;
+	if (!updated)
+	{
+		mScore += 3;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_B]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::B;
 }
 
-void GangMember::outcomeC()
+void GangMember::outcomeC(const bool updated)
 {
-	mVariables[PsilLang::varEnums::ALLOUTCOMES_C]++;
-	mScore += 2;
-	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::C;
+	if (!updated)
+	{
+		mScore += 2;
+	}
+	mVariables[PsiLang::varEnums::ALLOUTCOMES_C]++;
+	mVariables[PsiLang::varEnums::LASTOUTCOME] = PsiLang::varEnums::C;
 }
 
 std::ostream& operator<<(std::ostream & os, const GangMember* gm)
 {
 	os << std::setw(15) << std::left << gm->getStrategyName();
-	for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	for (int i = 0; i <= PsiLang::varEnums::ALLOUTCOMES_Z; i++)
 	{
 		//If LASTOUTCOME print the letter, otherwise print int value of the variable
-		if (i == PsilLang::varEnums::LASTOUTCOME)
+		if (i == PsiLang::varEnums::LASTOUTCOME)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[gm->getVariable(i)];
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << PsiLang::psilVars[gm->getVariable(i)];
 		}
 		//If MYSCORE print var as it's stored as a double and not in the array
-		else if (i == PsilLang::varEnums::MYSCORE)
+		else if (i == PsiLang::varEnums::MYSCORE)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << gm->getScore();
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << gm->getScore();
 		}
 		//If CUMULATIVE_SCORE print var as it's stored as a double and not in the array
-		else if (i == PsilLang::varEnums::CUMULATIVE_SCORE)
+		else if (i == PsiLang::varEnums::CUMULATIVE_SCORE)
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << gm->getCumulativeScore();
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << gm->getCumulativeScore();
 		}
 		else
 		{
-			os << std::setw(PsilLang::psilVars[i].length() + 2) << gm->getVariable(i);
+			os << std::setw(PsiLang::psilVars[i].length() + 2) << gm->getVariable(i);
 		}
 	}
 	os << "\n";

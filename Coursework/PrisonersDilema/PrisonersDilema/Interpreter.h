@@ -7,7 +7,7 @@
 #include <iterator>
 #include <random>
 
-#include "PsilLang.h"
+#include "PsiLang.h"
 #include "prisoner.h"
 
 class Interpreter
