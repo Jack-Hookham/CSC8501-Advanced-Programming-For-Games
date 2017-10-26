@@ -2,7 +2,7 @@
 
 #include "GangMember.h"
 
-class Gang// : public GangMember
+class Gang
 {
 public:
 	Gang();
@@ -13,6 +13,10 @@ public:
 
 	inline const std::vector<GangMember*>& getMembers() const { return mGangMembers; }
 	inline const GangMember* getMember(const int i) const { return mGangMembers[i]; }
+	inline void setMember(const int i, GangMember* gm) { delete mGangMembers[i]; mGangMembers[i] = gm; }
+
+	inline void setLeader(const int i) { mGangMembers[i]->setLeader(true); }
+
 	inline const std::string& getName() const { return mName; }
 	inline const int getVariable(const int n) const { return mVariables[n]; }
 	inline const float getScore() const { return mScore; }

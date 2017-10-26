@@ -288,22 +288,24 @@ int main()
 	//	ossPath << "../Strategies/Test/Strategy" << i + 1 << ".txt";
 	//	gangTournamentStrategies.push_back(ossPath.str());
 	//}
-	std::vector<std::string> testGangStrategies;
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Betray.txt");
-	testGangStrategies.push_back("../strategies/test/Betray.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
-	testGangStrategies.push_back("../strategies/test/Silence.txt");
 
-	GangTournament* gangTournament = new GangTournament(1, testGangStrategies, false, 50, 1, 10, 20);
-	gangTournament->play(2);
-	gangTournament->generateResults(2);
-	delete gangTournament;
+
+	//std::vector<std::string> testGangStrategies;
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Betray.txt");
+	//testGangStrategies.push_back("../strategies/test/Betray.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+	//testGangStrategies.push_back("../strategies/test/Silence.txt");
+
+	//GangTournament* gangTournament = new GangTournament(1, testGangStrategies, false, 50, 1, 10, 20);
+	//gangTournament->play(2);
+	//gangTournament->generateResults(2);
+	//delete gangTournament;
 
 
 	//Hardcoded testing

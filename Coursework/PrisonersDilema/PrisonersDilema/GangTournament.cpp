@@ -7,7 +7,6 @@ GangTournament::GangTournament()
 GangTournament::GangTournament(const int id, const std::vector<std::string>& strategies, const bool leaderChoice, const int gameIterations, 
 	const int tournamentIterations, const int numGangs, const int spyChance)
 {
-	const int gangSize = 5;
 	mID = id;
 	mNumStrategies = strategies.size();
 	mGameIterations = gameIterations;
@@ -17,32 +16,37 @@ GangTournament::GangTournament(const int id, const std::vector<std::string>& str
 
 	//Generate a prisoner for each strategy
 	generatePrisoners(strategies);
-	//Track the number of strategies used to ensure that all strategies get used
-	int strategiesUsed = 0;
+
 	//Randomly populate each gang with new gang members from the selection of prisoners
 	//Each gang members uses one of the strategies provided
 	for (int i = 0; i < numGangs; i++)
 	{
 		std::vector<GangMember*> gangMembers;
-		for (int j = 0; j < gangSize; j++)
+		for (int j = 0; j < Gang::GANG_SIZE; j++)
 		{
-			int prisonerID;
-			//ensure each strategy is used at least once
-			if (strategiesUsed < strategies.size())
-			{
-				prisonerID = strategiesUsed;
-				strategiesUsed++;
-			}
-			else
-			{
-				prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
-			}
-
+			int prisonerID = RandomGen::generateRandomWithinRange(0, mPrisoners.size() - 1);
 			gangMembers.push_back(new GangMember(mPrisoners[prisonerID]));
 		}
-		//Set the first member of each gang as the leader
-		gangMembers[0]->setLeader(true);
 		mGangs.push_back(new Gang(i + 1, gangMembers));
+	}
+
+	//Track the number of strategies used to ensure that all strategies get used
+	int strategiesUsed = 0;
+	std::vector<double> gangDist(numGangs * Gang::GANG_SIZE, 1);
+	while (strategiesUsed < strategies.size() && strategiesUsed < numGangs * Gang::GANG_SIZE )
+	{
+		int gangIndex = RandomGen::generateRandomWeighted(gangDist);
+		gangDist[gangIndex] = 0;
+		int gangID = gangIndex / Gang::GANG_SIZE;
+		gangIndex = gangIndex % Gang::GANG_SIZE;
+		mGangs[gangID]->setMember(gangIndex, new GangMember(mPrisoners[strategiesUsed]));
+		strategiesUsed++;
+	}
+
+	//Set the first member of each gang as the leader
+	for (int i = 0; i < numGangs; i++)
+	{
+		mGangs[i]->setLeader(0);
 	}
 }
 

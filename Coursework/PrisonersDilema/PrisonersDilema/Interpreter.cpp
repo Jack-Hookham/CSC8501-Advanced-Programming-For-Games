@@ -2,6 +2,7 @@
 
 int Interpreter::interpretDecision(const Prisoner* prisoner)
 {
+
 	//Process the first line of the strategy which will recursively process lines until a decision is reached
 	int decision = processLine(prisoner, prisoner->getStrategy().begin()->first, 1);
 	

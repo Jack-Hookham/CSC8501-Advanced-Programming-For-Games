@@ -1,14 +1,31 @@
-__________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________
 
-Number of Strategies: 10   Tournament Iterations: 3   Game Iterations: 3
+Gang Tournament 3 Results
+Number of Strategies: 10   Tournament Iterations: 10   Game Iterations: 5   Spy Chance: 20%
+
+______________________________________________________________________________________________________________________________________________________________________
 
                                                Gang Member Strategies
+
 Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         43.5           Strategy1      Strategy2      Strategy3      Strategy4      Strategy5      
-Gang 2         44.5           Strategy6      Strategy7      Strategy8      Strategy9      Strategy10     
-Gang 3         44             Strategy10     Strategy8      Strategy5      Strategy9      Strategy5      
-__________________________________________________________________________________________________________________________________________________________
+Gang 1         537.5          Strategy8      Strategy9      Strategy9      Strategy6      Strategy7      
+Gang 2         566.5          Strategy6      Strategy10     Strategy7      Strategy10     Strategy8      
+Gang 3         541.5          Strategy5      Strategy2      Strategy2      Strategy10     Strategy1      
+Gang 4         549            Strategy7      Strategy1      Strategy3      Strategy5      Strategy7      
+Gang 5         505            Strategy6      Strategy4      Strategy5      Strategy3      Strategy1      
 
-Winning gang: Gang 1
-__________________________________________________________________________________________________________________________________________________________
+Leader Changes Choice: Yes
+Toal Spies: 207
+Total Spies Discovered: 70
+Percent Discovered: 33.8%
+______________________________________________________________________________________________________________________________________________________________________
+
+Winning Combination: Gang 5
+
+Member 1 - Strategy6
+Member 2 - Strategy4
+Member 3 - Strategy5
+Member 4 - Strategy3
+Member 5 - Strategy1
+______________________________________________________________________________________________________________________________________________________________________

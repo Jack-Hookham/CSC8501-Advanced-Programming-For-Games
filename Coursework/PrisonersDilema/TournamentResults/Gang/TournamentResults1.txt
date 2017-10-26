@@ -1,7 +1,7 @@
 ______________________________________________________________________________________________________________________________________________________________________
 
 Gang Tournament 1 Results
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 50   Spy Chance: 20%
+Number of Strategies: 10   Tournament Iterations: 10   Game Iterations: 10   Spy Chance: 20%
 
 ______________________________________________________________________________________________________________________________________________________________________
 
@@ -9,28 +9,20 @@ ________________________________________________________________________________
 
 Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         1250.5         Silence        Silence        Silence        Silence        Silence        
-Gang 2         1104           Betray         Betray         Silence        Silence        Silence        
-Gang 3         1087.5         Silence        Silence        Silence        Betray         Silence        
-Gang 4         1106.5         Betray         Silence        Silence        Silence        Betray         
-Gang 5         1099           Silence        Silence        Silence        Silence        Betray         
-Gang 6         1217           Silence        Silence        Silence        Silence        Silence        
-Gang 7         1091.5         Betray         Silence        Silence        Silence        Silence        
-Gang 8         1211.5         Silence        Silence        Silence        Silence        Silence        
-Gang 9         1105           Silence        Betray         Silence        Silence        Silence        
-Gang 10        1111.5         Betray         Silence        Silence        Silence        Silence        
+Gang 1         270            Strategy5      Strategy7      Strategy3      Strategy8      Strategy10     
+Gang 2         268            Strategy2      Strategy6      Strategy9      Strategy4      Strategy1      
 
-Leader Changes Choice: No
-Toal Spies: 888
-Total Spies Discovered: 155
-Percent Discovered: 17.5%
+Leader Changes Choice: Yes
+Toal Spies: 48
+Total Spies Discovered: 20
+Percent Discovered: 41.7%
 ______________________________________________________________________________________________________________________________________________________________________
 
-Winning Combination: Gang 3
+Winning Combination: Gang 2
 
-Member 1 - Silence
-Member 2 - Silence
-Member 3 - Silence
-Member 4 - Betray
-Member 5 - Silence
+Member 1 - Strategy2
+Member 2 - Strategy6
+Member 3 - Strategy9
+Member 4 - Strategy4
+Member 5 - Strategy1
 ______________________________________________________________________________________________________________________________________________________________________
