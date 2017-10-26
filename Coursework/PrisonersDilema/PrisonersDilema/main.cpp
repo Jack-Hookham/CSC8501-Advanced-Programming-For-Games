@@ -2,12 +2,15 @@
 
 #include <iostream>
 #include <filesystem>
+#include <windows.h>
 
 #include "prisoner.h"
 #include "Interpreter.h"
 #include "StrategyGenerator.h"
 #include "Tournament.h"
 #include "GangTournament.h"
+
+#undef max
 
 void printOptions()
 {
@@ -29,7 +32,6 @@ int getInt()
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Not an option\n";
-		printOptions();
 		return getInt();
 	}
 }
@@ -48,6 +50,48 @@ void playTournament(const int total)
 	int tournamentIterations;
 	tournamentIterations = getInt();
 
+	std::cout << "\nDetail for game stats?\n";
+	std::cout << "0 - None\n";
+	std::cout << "1 - Simple\n";
+	std::cout << "2 - Detailed\n";
+
+	int gameDetail = -1;
+
+	while (gameDetail < 0)
+	{
+		gameDetail = getInt();
+		if (gameDetail < 0 || gameDetail > 2)
+		{
+			gameDetail = -1;
+			std::cout << "Not an option\n";
+		}
+		else
+		{
+			break;
+		}
+	}	
+
+	std::cout << "\nDetail for tournament stats?\n";
+	std::cout << "0 - None\n";
+	std::cout << "1 - Simple\n";
+	std::cout << "2 - Detailed\n";
+
+	int tournamentDetail = -1;
+
+	while (tournamentDetail < 0)
+	{
+		tournamentDetail = getInt();
+		if (tournamentDetail < 0 || tournamentDetail > 2)
+		{
+			tournamentDetail = -1;
+			std::cout << "Not an option\n";
+		}
+		else
+		{
+			break;
+		}
+	}
+
 	StrategyGenerator::generate(numStrategies, false, 10);
 
 	std::vector<std::string> tournamentStrategies;
@@ -59,8 +103,8 @@ void playTournament(const int total)
 	}
 
 	Tournament* t = new Tournament(total, tournamentStrategies, gameIterations, tournamentIterations);
-	t->play();
-	t->generateResults();
+	t->play(gameDetail);
+	t->generateResults(tournamentDetail);
 
 	//Hardcoded testing
 	//std::vector<std::string> testStrategies;
@@ -102,7 +146,7 @@ void playGangTournament(const int total)
 
 	int spyChance = -1;
 
-	while (true)
+	while (spyChance < 0)
 	{
 		switch (getInt())
 		{
@@ -125,7 +169,45 @@ void playGangTournament(const int total)
 			std::cout << "Not an option\n";
 			break;
 		}
-		if (spyChance != -1)
+	}
+
+	std::cout << "\nDetail for game stats?\n";
+	std::cout << "0 - None\n";
+	std::cout << "1 - Simple\n";
+	std::cout << "2 - Detailed\n";
+
+	int gameDetail = -1;
+
+	while (gameDetail < 0)
+	{
+		gameDetail = getInt();
+		if (gameDetail < 0 || gameDetail > 2)
+		{
+			gameDetail = -1;
+			std::cout << "Not an option\n";
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	std::cout << "\nDetail for tournament stats?\n";
+	std::cout << "0 - None\n";
+	std::cout << "1 - Simple\n";
+	std::cout << "2 - Detailed\n";
+
+	int tournamentDetail = -1;
+
+	while (tournamentDetail < 0)
+	{
+		tournamentDetail = getInt();
+		if (tournamentDetail < 0 || tournamentDetail > 2)
+		{
+			tournamentDetail = -1;
+			std::cout << "Not an option\n";
+		}
+		else
 		{
 			break;
 		}
@@ -142,8 +224,8 @@ void playGangTournament(const int total)
 	}
 
 	GangTournament* gt = new GangTournament(total, tournamentStrategies, gameIterations, tournamentIterations, numGangs, spyChance);
-	gt->play();
-	gt->generateResults();
+	gt->play(gameDetail);
+	gt->generateResults(tournamentDetail);
 
 	delete gt;
 
@@ -152,24 +234,43 @@ void playGangTournament(const int total)
 
 int main()
 {
+	//Set console dimensions
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, 1280, 900, TRUE);
+
 	//Gang test
-	//int numGangStrats = 10;
+	int numGangStrats = 10;
 	//StrategyGenerator::generate(numGangStrats, true, 10);
 
-	//std::vector<std::string> gangTournamentStrategies;
+	std::vector<std::string> gangTournamentStrategies;
 	//for (int i = 0; i < numGangStrats; i++)
 	//{
 	//	std::ostringstream ossPath;
-	//	ossPath << "../Strategies/Generated/Gang/Strategy" << i + 1 << ".txt";
+	//	ossPath << "../Strategies/Test/Strategy" << i + 1 << ".txt";
 	//	gangTournamentStrategies.push_back(ossPath.str());
 	//}
+	std::vector<std::string> testGangStrategies;
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Betray.txt");
+	testGangStrategies.push_back("../strategies/test/Betray.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
+	testGangStrategies.push_back("../strategies/test/Silence.txt");
 
-	//GangTournament* gangTournament = new GangTournament(1, gangTournamentStrategies, 50, 1, 3);
-	//gangTournament->play();
-	//gangTournament->generateResults();
-	//delete gangTournament;
+	GangTournament* gangTournament = new GangTournament(1, testGangStrategies, 50, 1, 10, 20);
+	gangTournament->play(2);
+	gangTournament->generateResults(2);
+	delete gangTournament;
+
 
 	//Hardcoded testing
+
 	//std::vector<std::string> teststrategies;
 	//teststrategies.push_back("../strategies/test/strategy1.txt");
 	//teststrategies.push_back("../strategies/test/strategy2.txt");
@@ -189,6 +290,7 @@ int main()
 	//Count the number of tournaments played of each type - used for tournament ID
 	int totalTournaments = 0;
 	int totalGangTournaments = 0;
+
 	while (true)
 	{
 		printOptions();

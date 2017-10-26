@@ -1,6 +1,6 @@
 #include "fileManager.h"
 
-void FileManager::readFromFile(const std::string& filePath, std::map<int, std::string>& const strategy)
+void FileManager::readFromFile(const std::string& filePath, std::map<int, std::string>& strategy)
 {
 	strategy.erase(strategy.begin(), strategy.end());
 	std::string line;
@@ -28,11 +28,11 @@ void FileManager::readFromFile(const std::string& filePath, std::map<int, std::s
 	}
 	else
 	{
-		std::cout << "Unable to open file\n";
+		throw std::invalid_argument("No file exists at " + filePath);
 	}
 }
 
-void FileManager::writeToFile(const std::string& filePath, const std::map<int, std::string>& const strategy)
+void FileManager::writeToFile(const std::string& filePath, const std::map<int, std::string>& strategy)
 {
 	std::ofstream file(filePath);
 	if (file.is_open())
@@ -46,11 +46,11 @@ void FileManager::writeToFile(const std::string& filePath, const std::map<int, s
 	}
 	else
 	{
-		std::cout << "Unable to open file\n";
+		throw std::invalid_argument("No file exists at" + filePath);
 	}
 }
 
-void FileManager::writeToFile(const std::string & filePath, const std::string& const s)
+void FileManager::writeToFile(const std::string & filePath, const std::string& s)
 {
 	std::ofstream file(filePath);
 	if (file.is_open())
@@ -60,12 +60,12 @@ void FileManager::writeToFile(const std::string & filePath, const std::string& c
 	}
 	else
 	{
-		std::cout << "Unable to open file\n";
+		throw std::invalid_argument("No file exists at" + filePath);
 	}
 }
 
 //Return the raw file name from a file path
-const std::string FileManager::getFileName(const std::string& const filePath)
+const std::string FileManager::getFileName(const std::string& filePath)
 {
 	//Remove folder path
 	std::size_t botDirPos = filePath.find_last_of('/');

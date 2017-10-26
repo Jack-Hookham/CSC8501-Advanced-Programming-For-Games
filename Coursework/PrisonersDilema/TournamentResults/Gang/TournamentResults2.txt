@@ -1,14 +1,61 @@
 __________________________________________________________________________________________________________________________________________________________
 
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 10
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 200
 
                                                Gang Member Strategies
-Gang Name      Total Score    Member 1       Member 2       Member 3       
+Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         50             Strategy1      Strategy2      Strategy3      
-Gang 2         53             Strategy6      Strategy7      Strategy8      
-Gang 3         54.5           Strategy1      Strategy10     Strategy3      
+Gang 1         26001.5        Strategy1      Strategy2      Strategy3      Strategy4      Strategy5      
+Gang 2         24165.5        Strategy6      Strategy7      Strategy8      Strategy9      Strategy10     
+Gang 3         24244.5        Strategy10     Strategy9      Strategy9      Strategy1      Strategy6      
+Gang 4         25709          Strategy4      Strategy3      Strategy3      Strategy7      Strategy8      
+Gang 5         25106          Strategy9      Strategy3      Strategy5      Strategy3      Strategy3      
+Gang 6         25016.5        Strategy3      Strategy2      Strategy5      Strategy4      Strategy5      
+Gang 7         24207.5        Strategy9      Strategy5      Strategy10     Strategy1      Strategy2      
+Gang 8         24996.5        Strategy6      Strategy4      Strategy9      Strategy9      Strategy8      
+Gang 9         26106.5        Strategy6      Strategy9      Strategy8      Strategy1      Strategy6      
+Gang 10        24960.5        Strategy7      Strategy8      Strategy1      Strategy1      Strategy5      
+Gang 11        24805.5        Strategy10     Strategy10     Strategy8      Strategy10     Strategy2      
+Gang 12        24554.5        Strategy6      Strategy1      Strategy8      Strategy10     Strategy1      
+Gang 13        24537          Strategy7      Strategy4      Strategy1      Strategy5      Strategy9      
+Gang 14        24615.5        Strategy4      Strategy1      Strategy10     Strategy8      Strategy8      
+Gang 15        24446          Strategy2      Strategy5      Strategy9      Strategy5      Strategy8      
+Gang 16        27817          Strategy3      Strategy2      Strategy8      Strategy3      Strategy3      
+Gang 17        25977.5        Strategy8      Strategy9      Strategy8      Strategy3      Strategy6      
+Gang 18        23271.5        Strategy7      Strategy5      Strategy10     Strategy7      Strategy5      
+Gang 19        24228          Strategy4      Strategy5      Strategy1      Strategy7      Strategy10     
+Gang 20        27896          Strategy1      Strategy6      Strategy6      Strategy1      Strategy4      
+Gang 21        25032.5        Strategy3      Strategy9      Strategy3      Strategy2      Strategy5      
+Gang 22        25707.5        Strategy4      Strategy7      Strategy2      Strategy8      Strategy4      
+Gang 23        24996.5        Strategy1      Strategy3      Strategy7      Strategy4      Strategy5      
+Gang 24        23721.5        Strategy5      Strategy10     Strategy10     Strategy5      Strategy5      
+Gang 25        24247.5        Strategy6      Strategy7      Strategy9      Strategy3      Strategy10     
+Gang 26        24436.5        Strategy5      Strategy10     Strategy5      Strategy8      Strategy10     
+Gang 27        24290.5        Strategy9      Strategy2      Strategy10     Strategy2      Strategy6      
+Gang 28        24492          Strategy9      Strategy5      Strategy6      Strategy2      Strategy7      
+Gang 29        26001.5        Strategy8      Strategy6      Strategy6      Strategy7      Strategy2      
+Gang 30        24219.5        Strategy5      Strategy10     Strategy6      Strategy9      Strategy5      
+Gang 31        24499.5        Strategy1      Strategy5      Strategy1      Strategy5      Strategy5      
+Gang 32        25938          Strategy6      Strategy8      Strategy8      Strategy3      Strategy7      
+Gang 33        24462          Strategy4      Strategy7      Strategy1      Strategy5      Strategy7      
+Gang 34        24120.5        Strategy10     Strategy7      Strategy2      Strategy8      Strategy3      
+Gang 35        27697.5        Strategy1      Strategy4      Strategy3      Strategy1      Strategy2      
+Gang 36        24984          Strategy8      Strategy3      Strategy2      Strategy7      Strategy9      
+Gang 37        24228.5        Strategy3      Strategy9      Strategy3      Strategy10     Strategy3      
+Gang 38        24199.5        Strategy10     Strategy7      Strategy4      Strategy5      Strategy7      
+Gang 39        25091          Strategy3      Strategy9      Strategy5      Strategy4      Strategy2      
+Gang 40        26063          Strategy9      Strategy8      Strategy2      Strategy4      Strategy1      
+Gang 41        25029.5        Strategy8      Strategy7      Strategy1      Strategy8      Strategy9      
+Gang 42        24204.5        Strategy5      Strategy10     Strategy1      Strategy2      Strategy1      
+Gang 43        24976.5        Strategy6      Strategy5      Strategy1      Strategy8      Strategy7      
+Gang 44        25174.5        Strategy6      Strategy6      Strategy5      Strategy5      Strategy3      
+Gang 45        24365          Strategy7      Strategy10     Strategy1      Strategy6      Strategy10     
+Gang 46        24270          Strategy5      Strategy5      Strategy5      Strategy4      Strategy5      
+Gang 47        24734.5        Strategy1      Strategy10     Strategy6      Strategy3      Strategy4      
+Gang 48        26077.5        Strategy5      Strategy8      Strategy3      Strategy3      Strategy6      
+Gang 49        24187.5        Strategy5      Strategy3      Strategy10     Strategy2      Strategy5      
+Gang 50        25132.5        Strategy8      Strategy3      Strategy6      Strategy7      Strategy5      
 __________________________________________________________________________________________________________________________________________________________
 
-Winning gang: Gang 1
+Winning gang: Gang 18
 __________________________________________________________________________________________________________________________________________________________

@@ -15,12 +15,12 @@ public:
 	inline const std::string getResults() const { return mTournamentResults; }
 	inline friend std::ostream& operator<<(std::ostream& os, const GangTournament* gt) { os << gt->getResults() << "\n"; return os; }
 
-	void play();
-	void generateResults();
+	void play(const int gameDetail);
+	void generateResults(const int tournamentDetail);
 
 private:
 	std::vector<Gang*> mGangs;
-	int mSpychance;
+	int mSpyChance;
 
 	//Print the strategies of each gang
 	void printGangs();
@@ -29,6 +29,6 @@ private:
 	std::string mTournamentResults;
 	const std::string resultsPath = "../TournamentResults/Gang/";
 
-	virtual void printTournamentHeading();
+	virtual void printTournamentHeading(const int gameDetail);
 };
 

@@ -1,15 +1,31 @@
 __________________________________________________________________________________________________________________________________________________________
 
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 1
+Gang Tournament 1 Results
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 50   Spy Chance: 20%
 
-                                               Gang Member Strategies
-Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
-
-Gang 1         8.5            Strategy1      Strategy2      Strategy3      Strategy4      Strategy5      
-Gang 2         8              Strategy6      Strategy7      Strategy8      Strategy9      Strategy10     
-Gang 3         9              Strategy3      Strategy1      Strategy3      Strategy2      Strategy6      
-Gang 4         7.5            Strategy2      Strategy8      Strategy10     Strategy8      Strategy8      
 __________________________________________________________________________________________________________________________________________________________
 
-Winning gang: Gang 4
+                                               Gang Member Strategies
+
+Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
+
+Gang 1         1300           Silence        Silence        Silence        Silence        Silence        
+Gang 2         1075           Betray         Betray         Silence        Silence        Silence        
+Gang 3         1100           Betray         Silence        Silence        Silence        Silence        
+Gang 4         1100           Silence        Silence        Silence        Silence        Betray         
+Gang 5         1100           Silence        Betray         Silence        Silence        Silence        
+Gang 6         1075           Silence        Betray         Betray         Silence        Silence        
+Gang 7         1100           Betray         Silence        Silence        Silence        Silence        
+Gang 8         1075           Silence        Silence        Silence        Betray         Betray         
+Gang 9         1100           Silence        Betray         Silence        Silence        Silence        
+Gang 10        1300           Silence        Silence        Silence        Silence        Silence        
+__________________________________________________________________________________________________________________________________________________________
+
+Winning gang: Gang 2
+
+Member 1 - Betray
+Member 2 - Betray
+Member 3 - Silence
+Member 4 - Silence
+Member 5 - Silence
 __________________________________________________________________________________________________________________________________________________________

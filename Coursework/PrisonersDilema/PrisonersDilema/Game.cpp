@@ -14,7 +14,7 @@ Game::~Game()
 {
 }
 
-void Game::play(const int gamesPlayed, const int gameIterations)
+void Game::play(const int gamesPlayed, const int gameIterations, const int gameDetil)
 {
 	for (int i = 0; i < gameIterations; i++)
 	{
@@ -23,6 +23,7 @@ void Game::play(const int gamesPlayed, const int gameIterations)
 
 		if (decisionA == Prisoner::INVALID_FILE || decisionB == Prisoner::INVALID_FILE)
 		{
+			std::cout << "\nGame " << gamesPlayed << "\n";
 			std::cout << "Invalid file! Game aborted.\n";
 
 			mPrisonerA->softReset();
@@ -34,10 +35,24 @@ void Game::play(const int gamesPlayed, const int gameIterations)
 		updateVariables(decisionA, decisionB);
 	}
 
-	std::cout << "\nGame " << gamesPlayed << "\n";
 	//Print the variables for both prisoners at the end of the game
-	std::cout << mPrisonerA; 
-	std::cout << mPrisonerB;
+	switch (gameDetil)
+	{
+	case 0:
+		break;
+	case 1:
+		std::cout << "\nGame " << gamesPlayed << "\n";
+		std::cout << std::setw(15) << std::left << mPrisonerA->getStrategyName() 
+			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mPrisonerA->getVariable(PsilLang::varEnums::MYSCORE) << "\n";
+		std::cout << std::setw(15) << std::left << mPrisonerB->getStrategyName()
+			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mPrisonerB->getVariable(PsilLang::varEnums::MYSCORE) << "\n";
+		break;
+	case 2:
+		std::cout << "\nGame " << gamesPlayed << "\n";
+		std::cout << mPrisonerA;
+		std::cout << mPrisonerB;
+		break;
+	}
 
 	//Add scores to cumulative scores
 	mPrisonerA->addScore();
@@ -73,9 +88,5 @@ void Game::updateVariables(const int decisionA, const int decisionB)
 	{
 		mPrisonerA->outcomeZ();
 		mPrisonerB->outcomeZ();
-	}
-	else
-	{
-		//ERROR
 	}
 }

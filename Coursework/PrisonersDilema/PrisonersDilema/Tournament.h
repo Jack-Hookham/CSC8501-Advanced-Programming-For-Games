@@ -10,8 +10,8 @@ public:
 	Tournament(const int id, const std::vector<std::string>& strategies, const int gameIterations = 200, const int tournamentIterations = 1);
 	virtual ~Tournament();
 
-	virtual void play();
-	virtual void generateResults();
+	virtual void play(const int gameDetail);
+	virtual void generateResults(const int tournamentDetail);
 	virtual inline const std::string getResults() const { return mTournamentResults; }
 	inline friend std::ostream& operator<<(std::ostream& os, const Tournament* t) { os << t->getResults() << "\n"; return os; }
 
@@ -22,7 +22,7 @@ protected:
 	int mTournamentIterations;
 
 	void generatePrisoners(const std::vector<std::string>& strategies);
-	void printTournamentHeading();
+	void printTournamentHeading(const int gameDetail);
 
 	std::vector<Prisoner*> mPrisoners;
 

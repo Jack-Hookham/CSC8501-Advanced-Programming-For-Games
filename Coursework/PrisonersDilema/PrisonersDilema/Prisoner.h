@@ -15,7 +15,7 @@ public:
 	Prisoner();
 	Prisoner(Prisoner* prisoner);
 	//Reads a strategy from file and adds each line to the strategy map
-	Prisoner(const std::string& const folderPath);
+	Prisoner(const std::string& folderPath);
 	~Prisoner();
 
 	enum decisions
@@ -31,7 +31,7 @@ public:
 	inline const std::string& getStrategyName() const { return mStrategyName; }
 	inline const std::string& getStrategyPath() const { return mStrategyPath; }
 
-	void setStrategy(const std::string& const filePath);
+	void setStrategy(const std::string& filePath);
 	inline void setVariable(const int n, const int value) { mVariables[n] = value; }
 
 	inline void incrementIterations() { mVariables[PsilLang::varEnums::ITERATIONS]++; }

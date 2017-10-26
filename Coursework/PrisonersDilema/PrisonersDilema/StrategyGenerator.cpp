@@ -7,11 +7,11 @@ void StrategyGenerator::generate(const int n, const bool gangStrategy, const int
 {
 	if (gangStrategy)
 	{
-		std::cout << "Generating " << n << " gang prisoner strategies...\n";
+		std::cout << "\nGenerating " << n << " gang prisoner strategies...\n";
 	}
 	else
 	{
-		std::cout << "Generating " << n << " prisoner strategies...\n";
+		std::cout << "\nGenerating " << n << " prisoner strategies...\n";
 	}
 	for (int i = 0; i < n; i++)
 	{
@@ -93,7 +93,15 @@ void StrategyGenerator::generateStrategy(const int pathIndex, const bool gangStr
 		currentLineNum += lineNumIncrement;
 	}
 
-	FileManager::writeToFile(filePath, strategy);
+	try
+	{
+		FileManager::writeToFile(filePath, strategy);
+	}
+	catch (const std::invalid_argument& iae)
+	{
+		std::cout << "Invalid argument: " << iae.what() << "\n";
+		exit(1);
+	}
 }
 
 //generate a PSIL if statement

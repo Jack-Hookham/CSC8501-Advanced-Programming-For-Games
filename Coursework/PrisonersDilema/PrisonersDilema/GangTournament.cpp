@@ -12,7 +12,7 @@ GangTournament::GangTournament(const int id, const std::vector<std::string>& str
 	mNumStrategies = strategies.size();
 	mGameIterations = gameIterations;
 	mTournamentIterations = tournamentIterations;
-	mSpychance = spyChance;
+	mSpyChance = spyChance;
 
 	//Generate a prisoner for each strategy
 	generatePrisoners(strategies);
@@ -53,9 +53,9 @@ GangTournament::~GangTournament()
 	mGangs.clear();
 }
 
-void GangTournament::play()
+void GangTournament::play(const int gameDetail)
 {
-	printTournamentHeading();
+	printTournamentHeading(gameDetail);
 
 	for (int i = 0; i < mTournamentIterations; i++)
 	{
@@ -64,52 +64,98 @@ void GangTournament::play()
 			for (int k = j + 1; k < mGangs.size(); k++)
 			{
 				mGamesPlayed++;
-				GangGame* game = new GangGame(mGangs[j], mGangs[k], mSpychance);
-				game->play(mGamesPlayed, mGameIterations);
+				GangGame* game = new GangGame(mGangs[j], mGangs[k], mSpyChance);
+				game->play(mGamesPlayed, mGameIterations, gameDetail);
 				delete game;
 			}
 		}
 	}
 }
 
-void GangTournament::generateResults()
+void GangTournament::generateResults(const int tournamentDetail)
 {
 	std::ostringstream ossResults;
-	ossResults << lineBreak;
-	ossResults << "\nNumber of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << "   Game Iterations: " << mGameIterations << "\n\n";
-	ossResults << std::setw(70) << "Gang Member Strategies\n";
-	ossResults << std::left << std::setw(15) << "Gang Name" << std::setw(15) << "Total Score";
-	for (int i = 0; i < Gang::GANG_SIZE; i++)
-	{
-		std::string s = "Member " + std::to_string(i + 1);
-		ossResults << std::setw(15) << s;
-	}
-	ossResults << "\n\n";
-
 	int winner = 0;
-	//Print each prisoner's cumulative score and determine a winner (lowest score)
-	for (int i = 0; i < mGangs.size(); i++)
+	switch (tournamentDetail)
 	{
-		ossResults << std::left << std::setw(15) << mGangs[i]->getName() << std::setw(15) << mGangs[i]->getCumulativeScore();
-		for (int j = 0; j < Gang::GANG_SIZE; j++)
+	case 0:
+		mTournamentResults = "";
+		break;
+	case 1:
+		//Print each prisoner's cumulative score and determine a winner (lowest score)
+		for (int i = 0; i < mPrisoners.size(); i++)
 		{
-			ossResults << std::setw(15) << mGangs[i]->getMember(j)->getStrategyName();
+			if (mPrisoners[i]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE) < mPrisoners[winner]->getVariable(PsilLang::varEnums::CUMULATIVE_SCORE))
+			{
+				winner = i;
+			}
 		}
-		ossResults << "\n";
+		ossResults << lineBreak;
+		ossResults << "\nGang Tournament " << mID << " Results\n";
+		ossResults << "\nWinning gang: " << mGangs[winner]->getName() << "\n\n";
+		for (int i = 0; i < Gang::GANG_SIZE; i++)
+		{
+			ossResults << "Member " << i + 1 << " - " << mGangs[winner]->getMember(i)->getStrategyName() << "\n";
+		}
+		ossResults << lineBreak;
 
-		if (mGangs[i]->getCumulativeScore() < mGangs[winner]->getCumulativeScore())
+		mTournamentResults = ossResults.str();
+		break;
+	case 2:
+		ossResults << lineBreak;
+		ossResults << "\nGang Tournament " << mID << " Results\n";
+		ossResults << "Number of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << 
+			"   Game Iterations: " << mGameIterations << "   Spy Chance: " << mSpyChance << "%" << "\n\n";
+		ossResults << lineBreak;
+		ossResults << "\n" << std::setw(70) << "Gang Member Strategies\n";
+		ossResults << "\n" << std::left << std::setw(15) << "Gang Name" << std::setw(15) << "Total Score";
+		for (int i = 0; i < Gang::GANG_SIZE; i++)
 		{
-			winner = i;
+			std::string s = "Member " + std::to_string(i + 1);
+			ossResults << std::setw(15) << s;
 		}
+		ossResults << "\n\n";
+
+		//Print each gang's cumulative score and determine a winner (lowest score)
+		for (int i = 0; i < mGangs.size(); i++)
+		{
+			ossResults << std::left << std::setw(15) << mGangs[i]->getName() << std::setw(15) << mGangs[i]->getCumulativeScore();
+			for (int j = 0; j < Gang::GANG_SIZE; j++)
+			{
+				ossResults << std::setw(15) << mGangs[i]->getMember(j)->getStrategyName();
+			}
+			ossResults << "\n";
+
+			if (mGangs[i]->getCumulativeScore() < mGangs[winner]->getCumulativeScore())
+			{
+				winner = i;
+			}
+		}
+		ossResults << lineBreak;
+		ossResults << "\nWinning gang: " << mGangs[winner]->getName() << "\n\n";
+		for (int i = 0; i < Gang::GANG_SIZE; i++)
+		{
+			ossResults << "Member " << i + 1 << " - " << mGangs[winner]->getMember(i)->getStrategyName() << "\n";
+		}
+		ossResults << lineBreak;
+
+		mTournamentResults = ossResults.str();
+		break;
 	}
-	ossResults << lineBreak;
-	ossResults << "\nWinning gang: " << mGangs[winner]->getName() << "\n";
-	ossResults << lineBreak;
 
-	mTournamentResults = ossResults.str();
 	std::ostringstream path;
 	path << resultsPath << "TournamentResults" << mID << ".txt";
-	FileManager::writeToFile(path.str(), mTournamentResults);
+
+	try
+	{
+		FileManager::writeToFile(path.str(), mTournamentResults);
+	}
+	catch (const std::invalid_argument& iae)
+	{
+		std::cout << "Invalid argument: " << iae.what() << "\n";
+		exit(1);
+	}
+
 	std::cout << this;
 }
 
@@ -126,20 +172,35 @@ void GangTournament::printGangs()
 	}
 }
 
-void GangTournament::printTournamentHeading()
+void GangTournament::printTournamentHeading(const int gameDetail)
 {
-	std::cout << lineBreak;
-	std::cout << std::setw(15) << "\nGang Name";
 
-	for (int i = PsilLang::varEnums::LASTOUTCOME; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+	switch (gameDetail)
 	{
-		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
-	}
+	case 0:
+		break;
+	case 1:
+		std::cout << lineBreak;
+		std::cout << "\n" << std::left << std::setw(15) << "Gang" << std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << PsilLang::psilVars[PsilLang::varEnums::MYSCORE];
+		std::cout << "\n";
+		std::cout << lineBreak;
+		break;
+	case 2:
+		std::cout << lineBreak;
+		std::cout << "\n" << std::left << std::setw(15) << "Gang";
 
-	for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
-	{
-		std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+		for (int i = 0; i <= PsilLang::varEnums::ALLOUTCOMES_Z; i++)
+		{
+			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+		}	
+		
+		for (int i = PsilLang::varEnums::ALLOUTCOMES_A; i <= PsilLang::varEnums::ALLOUTCOMES_C; i++)
+		{
+			std::cout << std::setw(PsilLang::psilVars[i].length() + 2) << PsilLang::psilVars[i];
+		}
+
+		std::cout << "\n";
+		std::cout << lineBreak;
+		break;
 	}
-	std::cout << "\n";
-	std::cout << lineBreak;
 }

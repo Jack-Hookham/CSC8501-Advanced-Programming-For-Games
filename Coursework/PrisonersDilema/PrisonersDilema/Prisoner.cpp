@@ -13,12 +13,20 @@ Prisoner::Prisoner(Prisoner* prisoner)
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
 }
 
-Prisoner::Prisoner(const std::string& const folderPath)
+Prisoner::Prisoner(const std::string& folderPath)
 {
 	mStrategyPath = folderPath;
 
 	//Read the file into the strategy map
-	FileManager::readFromFile(mStrategyPath, mStrategy);
+	try
+	{
+		FileManager::readFromFile(mStrategyPath, mStrategy);
+	}
+	catch (const std::invalid_argument& iae)
+	{
+		std::cout << "Invalid argument: " << iae.what() << "\n";
+		exit(1);
+	}
 	//Remove the path and extension from the strategy name and store it
 	mStrategyName = FileManager::getFileName(mStrategyPath);
 	mVariables[PsilLang::varEnums::LASTOUTCOME] = PsilLang::varEnums::UNKOWN_DECISION;
@@ -28,10 +36,18 @@ Prisoner::~Prisoner()
 {
 }
 
-void Prisoner::setStrategy(const std::string& const filePath)
+void Prisoner::setStrategy(const std::string& filePath)
 {
 	mStrategyPath = filePath;
-	FileManager::readFromFile(filePath, mStrategy);
+	try
+	{
+		FileManager::readFromFile(mStrategyPath, mStrategy);
+	}
+	catch (const std::invalid_argument& iae)
+	{
+		std::cout << "Invalid argument: " << iae.what() << "\n";
+		exit(1);
+	}
 	mStrategyName = FileManager::getFileName(mStrategyPath);
 }
 

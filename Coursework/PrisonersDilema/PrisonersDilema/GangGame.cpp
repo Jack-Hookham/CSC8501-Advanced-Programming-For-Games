@@ -16,7 +16,7 @@ GangGame::~GangGame()
 {
 }
 
-void GangGame::play(const int gamesPlayed, int gameIterations)
+void GangGame::play(const int gamesPlayed, const int gameIterations, const int gameDetail)
 {
 	//Play n games
 	for (int i = 0; i < gameIterations; i++)
@@ -48,10 +48,24 @@ void GangGame::play(const int gamesPlayed, int gameIterations)
 		mGangA->removeSpies();
 		mGangB->removeSpies();
 	}
-	std::cout << "\nGame " << gamesPlayed << "\n";
 	//Print the variables for both gangs at the end of the game
-	std::cout << mGangA;
-	std::cout << mGangB;
+	switch (gameDetail)
+	{
+	case 0:
+		break;
+	case 1:
+		std::cout << "\nGame " << gamesPlayed << "\n";
+		std::cout << std::setw(15) << std::left << mGangA->getName()
+			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mGangA->getScore() << "\n";
+		std::cout << std::setw(15) << std::left << mGangB->getName()
+			<< std::setw(PsilLang::psilVars[PsilLang::varEnums::MYSCORE].length() + 2) << mGangB->getScore() << "\n";
+		break;
+	case 2:
+		std::cout << "\nGame " << gamesPlayed << "\n";
+		std::cout << mGangA;
+		std::cout << mGangB;
+		break;
+	}
 
 	//Add scores to cumulative scores
 	mGangA->addScore();
@@ -151,6 +165,6 @@ void GangGame::updateVariables(const int decisionsA[], const int decisionsB[])
 	}
 	else
 	{
-		std::cout << "Something went wrong when determining an outcome.\n";
+		std::cout << "Unable to determine an outcome.\n";
 	}
 }
