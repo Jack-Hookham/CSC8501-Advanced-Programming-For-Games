@@ -77,7 +77,7 @@ void Tournament::play(const int gameDetail)
 	}
 }
 
-void Tournament::generateResults(const int tournamentDetail)
+const std::string Tournament::generateResults(const int tournamentDetail)
 {
 	std::ostringstream ossResults;
 	int winner = 0;
@@ -105,9 +105,9 @@ void Tournament::generateResults(const int tournamentDetail)
 	case 2:
 		ossResults << lineBreak;
 		ossResults << "\nTournament " << mID << " Results\n";
-		ossResults << "Number of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << "   Game Iterations: " << mGameIterations << "\n\n";
+		ossResults << "Number of Strategies: " << mNumStrategies << "   Tournament Iterations: " << mTournamentIterations << "   Game Iterations: " << mGameIterations << "\n";
 		ossResults << lineBreak;
-		ossResults << std::left << std::setw(15) << "Strategy ID" << "Total Score" << "\n\n";
+		ossResults << std::left << std::setw(15) << "\nStrategy ID" << "Total Score" << "\n\n";
 
 		//Print each prisoner's cumulative score and determine a winner (lowest score)
 		for (int i = 0; i < mPrisoners.size(); i++)
@@ -140,5 +140,5 @@ void Tournament::generateResults(const int tournamentDetail)
 		exit(1);
 	}
 
-	std::cout << this;
+	return ossResults.str();
 }

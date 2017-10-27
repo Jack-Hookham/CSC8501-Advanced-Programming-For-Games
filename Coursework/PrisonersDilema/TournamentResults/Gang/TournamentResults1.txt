@@ -1,46 +1,46 @@
-______________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________________________
 
 Gang Tournament 1 Results
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 10   Spy Chance: 20%
-
-______________________________________________________________________________________________________________________________________________________________________
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 50   Spy Chance: 20%
+_______________________________________________________________________________________________________________________________________________________________________________________
 
                                                Gang Member Strategies
 
 Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         475.5          Strategy10     Strategy7      Strategy5      Strategy5      Strategy3      
-Gang 2         503            Strategy7      Strategy5      Strategy10     Strategy8      Strategy10     
-Gang 3         512            Strategy5      Strategy9      Strategy6      Strategy6      Strategy10     
-Gang 4         485.5          Strategy6      Strategy2      Strategy1      Strategy2      Strategy10     
-Gang 5         498            Strategy6      Strategy7      Strategy2      Strategy9      Strategy9      
-Gang 6         525            Strategy9      Strategy9      Strategy6      Strategy4      Strategy3      
-Gang 7         492            Strategy5      Strategy8      Strategy2      Strategy2      Strategy3      
-Gang 8         527.5          Strategy3      Strategy4      Strategy9      Strategy1      Strategy2      
-Gang 9         520.5          Strategy9      Strategy3      Strategy3      Strategy3      Strategy9      
-Gang 10        539            Strategy1      Strategy3      Strategy8      Strategy1      Strategy1      
-Gang 11        492            Strategy6      Strategy8      Strategy10     Strategy5      Strategy10     
-Gang 12        482.5          Strategy3      Strategy7      Strategy5      Strategy4      Strategy2      
-Gang 13        502            Strategy2      Strategy6      Strategy5      Strategy2      Strategy9      
-Gang 14        470.5          Strategy8      Strategy6      Strategy7      Strategy1      Strategy10     
-Gang 15        484.5          Strategy9      Strategy9      Strategy8      Strategy10     Strategy2      
-Gang 16        498.5          Strategy2      Strategy8      Strategy5      Strategy5      Strategy6      
-Gang 17        507.5          Strategy6      Strategy8      Strategy7      Strategy3      Strategy2      
-Gang 18        523.5          Strategy7      Strategy1      Strategy4      Strategy4      Strategy9      
-Gang 19        530            Strategy7      Strategy7      Strategy1      Strategy4      Strategy1      
-Gang 20        475.5          Strategy5      Strategy4      Strategy8      Strategy6      Strategy3      
+Gang 1         2420           Strategy1      Strategy9      Strategy4      Strategy8      Strategy5      
+Gang 2         2669.5         Strategy4      Strategy4      Strategy4      Strategy5      Strategy3      
+Gang 3         2455.5         Strategy4      Strategy4      Strategy3      Strategy3      Strategy5      
+Gang 4         2563           Strategy2      Strategy8      Strategy1      Strategy8      Strategy2      
+Gang 5         2338           Strategy9      Strategy7      Strategy8      Strategy1      Strategy3      
+Gang 6         2330.5         Strategy2      Strategy9      Strategy4      Strategy1      Strategy9      
+Gang 7         2366.5         Strategy3      Strategy4      Strategy9      Strategy3      Strategy3      
+Gang 8         2442.5         Strategy7      Strategy6      Strategy8      Strategy7      Strategy6      
+Gang 9         2425.5         Strategy5      Strategy2      Strategy8      Strategy1      Strategy1      
+Gang 10        2498.5         Strategy8      Strategy5      Strategy7      Strategy5      Strategy10     
+Gang 11        2410.5         Strategy7      Strategy10     Strategy9      Strategy5      Strategy8      
+Gang 12        2429.5         Strategy7      Strategy10     Strategy8      Strategy4      Strategy7      
+Gang 13        2367.5         Strategy5      Strategy7      Strategy3      Strategy9      Strategy2      
+Gang 14        2425           Strategy2      Strategy9      Strategy3      Strategy8      Strategy8      
+Gang 15        2716.5         Strategy2      Strategy6      Strategy2      Strategy5      Strategy2      
+Gang 16        2449.5         Strategy3      Strategy2      Strategy6      Strategy6      Strategy5      
+Gang 17        2418           Strategy9      Strategy7      Strategy9      Strategy1      Strategy1      
+Gang 18        2492.5         Strategy3      Strategy4      Strategy2      Strategy8      Strategy9      
+Gang 19        2828.5         Strategy2      Strategy2      Strategy2      Strategy8      Strategy2      
+Gang 20        2427           Strategy8      Strategy7      Strategy7      Strategy8      Strategy2      
 
+Average Score: 2473.7
 Leader Changes Choice: No
-Toal Spies: 769
-Total Spies Discovered: 171
-Percent Discovered: 22%
-______________________________________________________________________________________________________________________________________________________________________
+Total Spies: 3850
+Total Spies Discovered: 795
+Percent Discovered: 20.6%
+_______________________________________________________________________________________________________________________________________________________________________________________
 
-Winning Combination: Gang 14
+Winning Combination: Gang 6
 
-Member 1 - Strategy8
-Member 2 - Strategy6
-Member 3 - Strategy7
+Member 1 - Strategy2
+Member 2 - Strategy9
+Member 3 - Strategy4
 Member 4 - Strategy1
-Member 5 - Strategy10
-______________________________________________________________________________________________________________________________________________________________________
+Member 5 - Strategy9
+_______________________________________________________________________________________________________________________________________________________________________________________
