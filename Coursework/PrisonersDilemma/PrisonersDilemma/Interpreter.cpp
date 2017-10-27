@@ -100,6 +100,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 				{
 					//error expected int line number
 					std::cout << "Invalid strategy file, expected int line number\n";
+					return Prisoner::decisions::INVALID_FILE;
 				}
 			}
 		}
@@ -107,6 +108,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 		{
 			//error operator should be equals
 			std::cout << "Invalid strategy. = operator expected\n";
+			return Prisoner::decisions::INVALID_FILE;
 		}
 	}
 	//rhs = LASTOUTCOME
@@ -124,6 +126,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 				{
 					//error expected int line number
 					std::cout << "Invalid strategy file, expected int line number\n";
+					return Prisoner::decisions::INVALID_FILE;
 				}
 			}
 		}
@@ -131,6 +134,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 		{
 			//error operator should be equals
 			std::cout << "Invalid strategy. EQUALS operator expected\n";
+			return Prisoner::decisions::INVALID_FILE;
 		}
 	}
 	//Sum variables for lhs and rhs
@@ -157,6 +161,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 			{
 				//error
 				std::cout << "Invalid strategy. LASTOUTCOME invalid here.\n";
+				return Prisoner::decisions::INVALID_FILE;
 			}
 			//if PLUS operator
 			if (tokens[tokenIterator] == PsiLang::psilOperators[PsiLang::operatorEnums::PLUS])
@@ -207,6 +212,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 			{
 				//error
 				std::cout << "Invalid strategy. LASTOUTCOME invalid here.\n";
+				return Prisoner::decisions::INVALID_FILE;
 			}
 			//if PLUS operator
 			if (tokens[tokenIterator] == PsiLang::psilOperators[PsiLang::operatorEnums::PLUS])
@@ -248,6 +254,7 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 			{
 				//error expected int line number
 				std::cout << "Invalid strategy file, expected int line number\n";
+				return Prisoner::decisions::INVALID_FILE;
 			}
 		}
 	}
@@ -255,9 +262,3 @@ int Interpreter::parseIf(double timeTaken, const Prisoner* prisoner, const int l
 	timeTaken += GetTickCount() - startTime;
 	return processLine(timeTaken, prisoner, nextLineNum);
 }
-
-//functions
-//equalsCheck()
-//<check()
-//>check()
-//check for goto
