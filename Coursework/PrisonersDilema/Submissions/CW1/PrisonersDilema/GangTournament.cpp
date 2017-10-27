@@ -84,10 +84,10 @@ void GangTournament::play(const int gameDetail)
 	}
 }
 
-void GangTournament::generateResults(const int tournamentDetail)
+const std::string GangTournament::generateResults(const int tournamentDetail)
 {
 	//Calculate the percentage of discovered spies
-	float discoveredPercent = 100.0f;
+	float discoveredPercent = 0.0f;
 	int totalSpies = 0;
 	int totalDiscovered = 0;
 	if (mSpyChance > 0)
@@ -170,15 +170,23 @@ void GangTournament::generateResults(const int tournamentDetail)
 
 		ossResults << "\n";
 		std::string choice;
-		if (mSpyChance < 0) { choice = "N/A"; }
+		if (mSpyChance <= 0) { choice = "N/A"; }
 		else if (mLeaderChange) { choice = "Yes"; } 
 		else { choice = "No"; }
 
 		ossResults << "Average Score: " << std::fixed << std::setprecision(1) << avgScore << "\n";
 		ossResults << "Leader Changes Choice: " << choice << "\n";
 		ossResults << "Total Spies: " << totalSpies << "\n";
-		ossResults << "Total Spies Discovered: " << totalDiscovered << "\n";
-		ossResults << "Percent Discovered: " << std::setprecision(1) << discoveredPercent << "%\n";
+		ossResults << "Total Spies Discovered: " << totalDiscovered << "\n"; 
+		ossResults << "Percent Discovered: ";
+		if (mSpyChance > 0)
+		{
+			ossResults << std::setprecision(1) << discoveredPercent << "%\n";
+		}
+		else
+		{
+			ossResults << "N/A\n";
+		}
 		ossResults << lineBreak;
 		ossResults << "\nWinning Combination: " << mGangs[winner]->getName() << "\n\n";
 		for (int i = 0; i < Gang::GANG_SIZE; i++)
@@ -204,7 +212,7 @@ void GangTournament::generateResults(const int tournamentDetail)
 		exit(1);
 	}
 
-	std::cout << this;
+	return ossResults.str();
 }
 
 void GangTournament::printGangs()

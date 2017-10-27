@@ -77,7 +77,7 @@ void Tournament::play(const int gameDetail)
 	}
 }
 
-void Tournament::generateResults(const int tournamentDetail)
+const std::string Tournament::generateResults(const int tournamentDetail)
 {
 	std::ostringstream ossResults;
 	int winner = 0;
@@ -140,5 +140,5 @@ void Tournament::generateResults(const int tournamentDetail)
 		exit(1);
 	}
 
-	std::cout << this;
+	return ossResults.str();
 }

@@ -1,0 +1,28 @@
+______________________________________________________________________________________________________________________________________________________________________
+
+Gang Tournament 2 Results
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 10   Spy Chance: 20%
+
+______________________________________________________________________________________________________________________________________________________________________
+
+                                               Gang Member Strategies
+
+Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
+
+Gang 1         24.5           Strategy6      Strategy5      Strategy8      Strategy2      Strategy10     
+Gang 2         32             Strategy4      Strategy9      Strategy7      Strategy3      Strategy1      
+
+Leader Changes Choice: Yes
+Toal Spies: 4
+Total Spies Discovered: 1
+Percent Discovered: 25%
+______________________________________________________________________________________________________________________________________________________________________
+
+Winning Combination: Gang 1
+
+Member 1 - Strategy6
+Member 2 - Strategy5
+Member 3 - Strategy8
+Member 4 - Strategy2
+Member 5 - Strategy10
+______________________________________________________________________________________________________________________________________________________________________

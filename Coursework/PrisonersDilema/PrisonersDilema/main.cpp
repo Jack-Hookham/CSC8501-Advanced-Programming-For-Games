@@ -320,7 +320,7 @@ void questionAnalysis(const int total)
 	std::cout << "Running Tournaments...\n";
 	std::ostringstream ossOut;
 	//Run a tournament with 0 spy chance then run the same tournament with the same gang combinations
-	GangTournament* gangTournament = new GangTournament(total, gangTournamentStrategies, false, 20, 1, 20, 0);
+	GangTournament* gangTournament = new GangTournament(total, gangTournamentStrategies, false, 50, 1, 20, 0);
 	gangTournament->play(0);
 	ossOut << gangTournament->generateResults(2);
 

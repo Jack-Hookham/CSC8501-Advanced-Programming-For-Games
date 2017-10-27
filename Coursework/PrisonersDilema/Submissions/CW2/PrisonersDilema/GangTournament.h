@@ -16,7 +16,7 @@ public:
 	inline friend std::ostream& operator<<(std::ostream& os, const GangTournament* gt) { os << gt->getResults() << "\n"; return os; }
 
 	void play(const int gameDetail);
-	void generateResults(const int tournamentDetail);
+	const std::string generateResults(const int tournamentDetail);
 
 	inline void setSpyChance(const int value) { mSpyChance = value; }
 	inline void setLeaderChange(const bool value) { mLeaderChange = value; }

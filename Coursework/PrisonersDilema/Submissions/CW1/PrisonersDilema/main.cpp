@@ -122,7 +122,7 @@ void playTournament(const int total)
 
 	Tournament* t = new Tournament(total, tournamentStrategies, gameIterations, tournamentIterations);
 	t->play(gameDetail);
-	t->generateResults(tournamentDetail);
+	std::cout << t->generateResults(tournamentDetail);
 
 	delete t;
 
@@ -290,7 +290,7 @@ void playGangTournament(const int total)
 
 	GangTournament* gt = new GangTournament(total, tournamentStrategies, leaderChange, gameIterations, tournamentIterations, numGangs, spyChance);
 	gt->play(gameDetail);
-	gt->generateResults(tournamentDetail);
+	std::cout << gt->generateResults(tournamentDetail);
 
 	delete gt;
 
@@ -317,50 +317,56 @@ void questionAnalysis(const int total)
 		gangTournamentStrategies.push_back(ossPath.str());
 	}
 
+	std::cout << "Running Tournaments...\n";
+	std::ostringstream ossOut;
 	//Run a tournament with 0 spy chance then run the same tournament with the same gang combinations
 	GangTournament* gangTournament = new GangTournament(total, gangTournamentStrategies, false, 50, 1, 20, 0);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(5);
 	gangTournament->setLeaderChange(true);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(5);
 	gangTournament->setLeaderChange(false);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(10);
 	gangTournament->setLeaderChange(true);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(10);
 	gangTournament->setLeaderChange(false);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(15);
 	gangTournament->setLeaderChange(true);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(15);
 	gangTournament->setLeaderChange(false);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(20);
 	gangTournament->setLeaderChange(true);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
 
 	gangTournament->setSpyChance(20);
 	gangTournament->setLeaderChange(false);
 	gangTournament->play(0);
-	gangTournament->generateResults(2);
+	ossOut << gangTournament->generateResults(2);
+
+	//Write results to file and print
+	FileManager::writeToFile("../TournamentResults/Gang/Questions.txt", ossOut.str());
+	std::cout << ossOut.str();
 
 	delete gangTournament;
 }
@@ -370,6 +376,7 @@ int main()
 	//Test infinite loop
 	//Prisoner* p = new Prisoner("../Strategies/Test/Prisoner/Loop.txt");
 	//Interpreter::interpretDecision(p);
+	//delete p;
 
 	//Count the number of tournaments played of each type - used for tournament ID
 	int totalTournaments = 0;
