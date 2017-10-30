@@ -1,226 +1,46 @@
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 Gang Tournament 2 Results
-Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 20   Spy Chance: 0%
+Number of Strategies: 10   Tournament Iterations: 1   Game Iterations: 50   Spy Chance: 20%
 _______________________________________________________________________________________________________________________________________________________________________________________
 
                                                Gang Member Strategies
 
 Gang Name      Total Score    Member 1       Member 2       Member 3       Member 4       Member 5       
 
-Gang 1         9228.5         Strategy3      Strategy8      Strategy9      Strategy9      Strategy9      
-Gang 2         9914.5         Strategy7      Strategy4      Strategy3      Strategy10     Strategy2      
-Gang 3         10141          Strategy3      Strategy4      Strategy3      Strategy10     Strategy9      
-Gang 4         9552.5         Strategy10     Strategy8      Strategy1      Strategy1      Strategy7      
-Gang 5         9438.5         Strategy4      Strategy1      Strategy8      Strategy4      Strategy10     
-Gang 6         9729           Strategy8      Strategy7      Strategy6      Strategy6      Strategy7      
-Gang 7         9817.5         Strategy10     Strategy3      Strategy9      Strategy7      Strategy7      
-Gang 8         9810           Strategy3      Strategy7      Strategy6      Strategy7      Strategy9      
-Gang 9         9978           Strategy3      Strategy7      Strategy6      Strategy3      Strategy5      
-Gang 10        9685.5         Strategy1      Strategy5      Strategy4      Strategy2      Strategy6      
-Gang 11        10155          Strategy10     Strategy2      Strategy10     Strategy10     Strategy9      
-Gang 12        9951           Strategy3      Strategy9      Strategy7      Strategy2      Strategy4      
-Gang 13        9780.5         Strategy10     Strategy7      Strategy4      Strategy5      Strategy1      
-Gang 14        9761.5         Strategy9      Strategy2      Strategy10     Strategy1      Strategy4      
-Gang 15        10149          Strategy9      Strategy5      Strategy10     Strategy6      Strategy4      
-Gang 16        9790.5         Strategy7      Strategy4      Strategy10     Strategy9      Strategy1      
-Gang 17        9485           Strategy2      Strategy2      Strategy5      Strategy8      Strategy6      
-Gang 18        9731.5         Strategy8      Strategy1      Strategy1      Strategy8      Strategy4      
-Gang 19        9746.5         Strategy1      Strategy4      Strategy3      Strategy6      Strategy10     
-Gang 20        10145          Strategy3      Strategy6      Strategy9      Strategy4      Strategy6      
-Gang 21        9229           Strategy3      Strategy10     Strategy2      Strategy4      Strategy8      
-Gang 22        9755.5         Strategy10     Strategy1      Strategy6      Strategy10     Strategy9      
-Gang 23        9853           Strategy1      Strategy10     Strategy5      Strategy5      Strategy7      
-Gang 24        10179.5        Strategy4      Strategy6      Strategy5      Strategy3      Strategy6      
-Gang 25        9703.5         Strategy2      Strategy8      Strategy3      Strategy7      Strategy7      
-Gang 26        10151          Strategy9      Strategy6      Strategy10     Strategy6      Strategy6      
-Gang 27        9249.5         Strategy4      Strategy2      Strategy8      Strategy2      Strategy2      
-Gang 28        9450.5         Strategy1      Strategy5      Strategy8      Strategy2      Strategy3      
-Gang 29        9913           Strategy1      Strategy7      Strategy5      Strategy1      Strategy9      
-Gang 30        10090.5        Strategy5      Strategy7      Strategy3      Strategy10     Strategy5      
-Gang 31        9786           Strategy7      Strategy9      Strategy6      Strategy1      Strategy2      
-Gang 32        10041.5        Strategy5      Strategy6      Strategy10     Strategy3      Strategy7      
-Gang 33        10166.5        Strategy2      Strategy4      Strategy4      Strategy2      Strategy5      
-Gang 34        10141          Strategy2      Strategy6      Strategy4      Strategy2      Strategy2      
-Gang 35        9679.5         Strategy2      Strategy5      Strategy1      Strategy6      Strategy6      
-Gang 36        9615           Strategy8      Strategy9      Strategy8      Strategy2      Strategy5      
-Gang 37        9977           Strategy6      Strategy10     Strategy7      Strategy9      Strategy6      
-Gang 38        9248.5         Strategy3      Strategy4      Strategy4      Strategy8      Strategy10     
-Gang 39        10220.5        Strategy6      Strategy6      Strategy5      Strategy10     Strategy6      
-Gang 40        9828.5         Strategy9      Strategy7      Strategy1      Strategy1      Strategy10     
-Gang 41        9245.5         Strategy3      Strategy2      Strategy8      Strategy10     Strategy2      
-Gang 42        9791           Strategy7      Strategy1      Strategy6      Strategy5      Strategy6      
-Gang 43        9918           Strategy6      Strategy4      Strategy9      Strategy7      Strategy3      
-Gang 44        9934.5         Strategy5      Strategy2      Strategy7      Strategy6      Strategy9      
-Gang 45        9467           Strategy5      Strategy8      Strategy2      Strategy1      Strategy10     
-Gang 46        9966.5         Strategy5      Strategy3      Strategy4      Strategy9      Strategy7      
-Gang 47        9781.5         Strategy2      Strategy2      Strategy9      Strategy1      Strategy6      
-Gang 48        9643           Strategy6      Strategy4      Strategy8      Strategy2      Strategy7      
-Gang 49        9665           Strategy10     Strategy8      Strategy4      Strategy6      Strategy7      
-Gang 50        9934.5         Strategy5      Strategy10     Strategy1      Strategy10     Strategy1      
-Gang 51        10164          Strategy10     Strategy5      Strategy6      Strategy2      Strategy2      
-Gang 52        9768           Strategy1      Strategy2      Strategy10     Strategy9      Strategy9      
-Gang 53        9789.5         Strategy5      Strategy1      Strategy10     Strategy5      Strategy7      
-Gang 54        9677           Strategy6      Strategy5      Strategy5      Strategy1      Strategy6      
-Gang 55        9216.5         Strategy9      Strategy8      Strategy2      Strategy6      Strategy4      
-Gang 56        10130          Strategy4      Strategy3      Strategy3      Strategy3      Strategy10     
-Gang 57        10137          Strategy2      Strategy9      Strategy2      Strategy3      Strategy9      
-Gang 58        9490.5         Strategy5      Strategy8      Strategy10     Strategy4      Strategy10     
-Gang 59        9641.5         Strategy5      Strategy5      Strategy6      Strategy3      Strategy1      
-Gang 60        10143          Strategy5      Strategy2      Strategy7      Strategy5      Strategy4      
-Gang 61        9431.5         Strategy1      Strategy6      Strategy4      Strategy9      Strategy8      
-Gang 62        9218.5         Strategy3      Strategy4      Strategy4      Strategy8      Strategy9      
-Gang 63        9943           Strategy7      Strategy6      Strategy3      Strategy2      Strategy5      
-Gang 64        9827.5         Strategy3      Strategy1      Strategy6      Strategy1      Strategy7      
-Gang 65        10123          Strategy6      Strategy2      Strategy10     Strategy3      Strategy4      
-Gang 66        10155          Strategy9      Strategy10     Strategy3      Strategy10     Strategy4      
-Gang 67        9667.5         Strategy7      Strategy3      Strategy4      Strategy3      Strategy8      
-Gang 68        9831           Strategy7      Strategy2      Strategy7      Strategy6      Strategy10     
-Gang 69        9659.5         Strategy10     Strategy1      Strategy2      Strategy6      Strategy5      
-Gang 70        9613           Strategy6      Strategy8      Strategy10     Strategy7      Strategy3      
-Gang 71        9457           Strategy6      Strategy10     Strategy10     Strategy5      Strategy8      
-Gang 72        10225.5        Strategy9      Strategy7      Strategy5      Strategy5      Strategy4      
-Gang 73        9798.5         Strategy2      Strategy9      Strategy1      Strategy2      Strategy9      
-Gang 74        10181.5        Strategy6      Strategy1      Strategy6      Strategy1      Strategy1      
-Gang 75        9966.5         Strategy3      Strategy7      Strategy3      Strategy6      Strategy6      
-Gang 76        9755.5         Strategy1      Strategy4      Strategy4      Strategy10     Strategy2      
-Gang 77        9244.5         Strategy9      Strategy3      Strategy2      Strategy8      Strategy3      
-Gang 78        9546.5         Strategy6      Strategy6      Strategy8      Strategy9      Strategy8      
-Gang 79        9425           Strategy1      Strategy5      Strategy8      Strategy6      Strategy10     
-Gang 80        9405           Strategy3      Strategy3      Strategy6      Strategy8      Strategy1      
-Gang 81        10164          Strategy2      Strategy9      Strategy2      Strategy6      Strategy5      
-Gang 82        9580.5         Strategy5      Strategy1      Strategy8      Strategy7      Strategy5      
-Gang 83        9839.5         Strategy7      Strategy5      Strategy5      Strategy3      Strategy1      
-Gang 84        9561           Strategy9      Strategy1      Strategy3      Strategy8      Strategy1      
-Gang 85        9728           Strategy6      Strategy1      Strategy10     Strategy6      Strategy7      
-Gang 86        9759           Strategy2      Strategy7      Strategy7      Strategy9      Strategy1      
-Gang 87        9462.5         Strategy10     Strategy4      Strategy5      Strategy10     Strategy8      
-Gang 88        9430.5         Strategy4      Strategy8      Strategy1      Strategy4      Strategy2      
-Gang 89        10169.5        Strategy10     Strategy2      Strategy6      Strategy5      Strategy2      
-Gang 90        9629           Strategy2      Strategy10     Strategy4      Strategy7      Strategy8      
-Gang 91        9709.5         Strategy6      Strategy5      Strategy8      Strategy7      Strategy2      
-Gang 92        9833           Strategy4      Strategy7      Strategy7      Strategy5      Strategy4      
-Gang 93        9919           Strategy5      Strategy5      Strategy7      Strategy3      Strategy7      
-Gang 94        9965           Strategy10     Strategy7      Strategy9      Strategy5      Strategy4      
-Gang 95        9406           Strategy1      Strategy8      Strategy4      Strategy2      Strategy2      
-Gang 96        9654           Strategy1      Strategy6      Strategy9      Strategy5      Strategy5      
-Gang 97        9706           Strategy7      Strategy9      Strategy2      Strategy7      Strategy8      
-Gang 98        10355          Strategy2      Strategy9      Strategy5      Strategy5      Strategy6      
-Gang 99        9679.5         Strategy6      Strategy6      Strategy5      Strategy6      Strategy1      
-Gang 100       9989.5         Strategy7      Strategy6      Strategy6      Strategy9      Strategy10     
-Gang 101       9456           Strategy6      Strategy8      Strategy5      Strategy2      Strategy6      
-Gang 102       9624           Strategy3      Strategy7      Strategy6      Strategy8      Strategy9      
-Gang 103       9229           Strategy10     Strategy6      Strategy8      Strategy2      Strategy3      
-Gang 104       9836           Strategy8      Strategy6      Strategy4      Strategy8      Strategy8      
-Gang 105       10163          Strategy6      Strategy6      Strategy3      Strategy5      Strategy9      
-Gang 106       9929           Strategy9      Strategy4      Strategy10     Strategy9      Strategy7      
-Gang 107       10163          Strategy3      Strategy10     Strategy3      Strategy6      Strategy4      
-Gang 108       9457.5         Strategy8      Strategy6      Strategy5      Strategy6      Strategy2      
-Gang 109       9703           Strategy7      Strategy6      Strategy9      Strategy5      Strategy8      
-Gang 110       9978           Strategy5      Strategy3      Strategy1      Strategy1      Strategy3      
-Gang 111       9773.5         Strategy9      Strategy2      Strategy1      Strategy6      Strategy6      
-Gang 112       9753.5         Strategy7      Strategy7      Strategy10     Strategy1      Strategy3      
-Gang 113       9690.5         Strategy1      Strategy6      Strategy2      Strategy5      Strategy6      
-Gang 114       9229.5         Strategy8      Strategy9      Strategy3      Strategy2      Strategy9      
-Gang 115       9244           Strategy10     Strategy9      Strategy8      Strategy2      Strategy3      
-Gang 116       9211.5         Strategy4      Strategy8      Strategy6      Strategy6      Strategy4      
-Gang 117       10182          Strategy9      Strategy10     Strategy10     Strategy4      Strategy2      
-Gang 118       9908.5         Strategy6      Strategy7      Strategy2      Strategy6      Strategy4      
-Gang 119       9640.5         Strategy1      Strategy5      Strategy6      Strategy4      Strategy6      
-Gang 120       9693.5         Strategy8      Strategy2      Strategy8      Strategy1      Strategy3      
-Gang 121       9485.5         Strategy8      Strategy1      Strategy5      Strategy5      Strategy9      
-Gang 122       10347.5        Strategy5      Strategy5      Strategy6      Strategy10     Strategy3      
-Gang 123       9799.5         Strategy5      Strategy7      Strategy1      Strategy3      Strategy10     
-Gang 124       9818.5         Strategy7      Strategy1      Strategy9      Strategy2      Strategy10     
-Gang 125       9521           Strategy8      Strategy5      Strategy2      Strategy5      Strategy9      
-Gang 126       9230           Strategy3      Strategy10     Strategy4      Strategy8      Strategy4      
-Gang 127       9786.5         Strategy10     Strategy2      Strategy1      Strategy4      Strategy10     
-Gang 128       9419           Strategy4      Strategy6      Strategy1      Strategy3      Strategy8      
-Gang 129       9607.5         Strategy7      Strategy6      Strategy10     Strategy3      Strategy8      
-Gang 130       10151          Strategy10     Strategy9      Strategy2      Strategy4      Strategy2      
-Gang 131       9770.5         Strategy1      Strategy5      Strategy7      Strategy1      Strategy5      
-Gang 132       9639           Strategy6      Strategy10     Strategy7      Strategy6      Strategy8      
-Gang 133       10131          Strategy10     Strategy10     Strategy10     Strategy4      Strategy9      
-Gang 134       9929           Strategy7      Strategy2      Strategy5      Strategy10     Strategy4      
-Gang 135       10149          Strategy10     Strategy9      Strategy4      Strategy4      Strategy4      
-Gang 136       9515           Strategy5      Strategy6      Strategy8      Strategy10     Strategy5      
-Gang 137       9247           Strategy2      Strategy9      Strategy3      Strategy2      Strategy8      
-Gang 138       9737           Strategy9      Strategy3      Strategy1      Strategy2      Strategy2      
-Gang 139       9805           Strategy5      Strategy2      Strategy7      Strategy7      Strategy9      
-Gang 140       9234           Strategy10     Strategy9      Strategy2      Strategy8      Strategy6      
-Gang 141       9896.5         Strategy10     Strategy9      Strategy9      Strategy1      Strategy1      
-Gang 142       9843.5         Strategy7      Strategy1      Strategy9      Strategy3      Strategy5      
-Gang 143       9686.5         Strategy4      Strategy3      Strategy1      Strategy8      Strategy8      
-Gang 144       9768           Strategy1      Strategy2      Strategy9      Strategy2      Strategy10     
-Gang 145       9782.5         Strategy1      Strategy9      Strategy3      Strategy9      Strategy3      
-Gang 146       9449           Strategy5      Strategy6      Strategy1      Strategy2      Strategy8      
-Gang 147       10164.5        Strategy10     Strategy5      Strategy3      Strategy9      Strategy3      
-Gang 148       9800.5         Strategy2      Strategy2      Strategy1      Strategy4      Strategy6      
-Gang 149       9925.5         Strategy3      Strategy7      Strategy3      Strategy5      Strategy10     
-Gang 150       9970.5         Strategy10     Strategy9      Strategy10     Strategy3      Strategy7      
-Gang 151       9690           Strategy5      Strategy9      Strategy6      Strategy1      Strategy9      
-Gang 152       10180          Strategy5      Strategy10     Strategy3      Strategy3      Strategy3      
-Gang 153       9846.5         Strategy9      Strategy7      Strategy8      Strategy8      Strategy7      
-Gang 154       9572           Strategy8      Strategy8      Strategy2      Strategy2      Strategy3      
-Gang 155       9910           Strategy1      Strategy4      Strategy6      Strategy1      Strategy10     
-Gang 156       9249.5         Strategy8      Strategy9      Strategy3      Strategy10     Strategy3      
-Gang 157       9472.5         Strategy4      Strategy2      Strategy8      Strategy9      Strategy5      
-Gang 158       9646.5         Strategy5      Strategy6      Strategy1      Strategy4      Strategy2      
-Gang 159       9427.5         Strategy6      Strategy6      Strategy1      Strategy10     Strategy8      
-Gang 160       9830.5         Strategy2      Strategy6      Strategy7      Strategy1      Strategy1      
-Gang 161       10161          Strategy2      Strategy3      Strategy9      Strategy3      Strategy3      
-Gang 162       10158          Strategy2      Strategy6      Strategy2      Strategy6      Strategy2      
-Gang 163       9952.5         Strategy7      Strategy4      Strategy4      Strategy2      Strategy4      
-Gang 164       10161.5        Strategy10     Strategy5      Strategy4      Strategy10     Strategy10     
-Gang 165       9692           Strategy9      Strategy8      Strategy8      Strategy1      Strategy6      
-Gang 166       10358          Strategy9      Strategy2      Strategy5      Strategy9      Strategy5      
-Gang 167       9223           Strategy9      Strategy2      Strategy10     Strategy3      Strategy8      
-Gang 168       9556           Strategy1      Strategy8      Strategy4      Strategy9      Strategy1      
-Gang 169       9585           Strategy8      Strategy10     Strategy1      Strategy9      Strategy7      
-Gang 170       10175          Strategy6      Strategy3      Strategy3      Strategy10     Strategy5      
-Gang 171       9640           Strategy8      Strategy6      Strategy3      Strategy7      Strategy2      
-Gang 172       9768           Strategy8      Strategy8      Strategy10     Strategy7      Strategy4      
-Gang 173       9778.5         Strategy2      Strategy2      Strategy3      Strategy9      Strategy1      
-Gang 174       9814           Strategy5      Strategy6      Strategy7      Strategy1      Strategy9      
-Gang 175       9814.5         Strategy2      Strategy4      Strategy7      Strategy9      Strategy7      
-Gang 176       9611           Strategy2      Strategy8      Strategy1      Strategy5      Strategy7      
-Gang 177       9801           Strategy3      Strategy7      Strategy10     Strategy7      Strategy2      
-Gang 178       9784.5         Strategy1      Strategy2      Strategy7      Strategy5      Strategy3      
-Gang 179       9207.5         Strategy3      Strategy4      Strategy4      Strategy8      Strategy2      
-Gang 180       10027.5        Strategy6      Strategy5      Strategy7      Strategy10     Strategy2      
-Gang 181       9457           Strategy5      Strategy8      Strategy2      Strategy6      Strategy1      
-Gang 182       10203.5        Strategy6      Strategy2      Strategy5      Strategy9      Strategy9      
-Gang 183       9963.5         Strategy9      Strategy6      Strategy7      Strategy6      Strategy6      
-Gang 184       9230           Strategy9      Strategy10     Strategy3      Strategy10     Strategy8      
-Gang 185       9431.5         Strategy5      Strategy1      Strategy9      Strategy8      Strategy6      
-Gang 186       10164.5        Strategy5      Strategy10     Strategy10     Strategy3      Strategy2      
-Gang 187       9757.5         Strategy1      Strategy10     Strategy4      Strategy2      Strategy9      
-Gang 188       9716.5         Strategy3      Strategy7      Strategy8      Strategy4      Strategy7      
-Gang 189       9688.5         Strategy1      Strategy5      Strategy5      Strategy4      Strategy4      
-Gang 190       10193          Strategy5      Strategy6      Strategy4      Strategy10     Strategy2      
-Gang 191       9819.5         Strategy9      Strategy7      Strategy1      Strategy4      Strategy4      
-Gang 192       9448           Strategy9      Strategy1      Strategy9      Strategy4      Strategy8      
-Gang 193       9722.5         Strategy4      Strategy3      Strategy7      Strategy7      Strategy1      
-Gang 194       9601           Strategy5      Strategy8      Strategy8      Strategy10     Strategy6      
-Gang 195       9554           Strategy3      Strategy10     Strategy1      Strategy8      Strategy7      
-Gang 196       9798.5         Strategy1      Strategy5      Strategy7      Strategy6      Strategy4      
-Gang 197       10121          Strategy6      Strategy3      Strategy2      Strategy10     Strategy9      
-Gang 198       9748.5         Strategy4      Strategy9      Strategy1      Strategy3      Strategy9      
-Gang 199       9616.5         Strategy9      Strategy8      Strategy5      Strategy2      Strategy8      
-Gang 200       9791.5         Strategy6      Strategy3      Strategy7      Strategy1      Strategy10     
+Gang 1         2723           Strategy3      Strategy9      Strategy7      Strategy3      Strategy8      
+Gang 2         2381           Strategy5      Strategy6      Strategy3      Strategy5      Strategy5      
+Gang 3         2419.5         Strategy2      Strategy4      Strategy10     Strategy8      Strategy2      
+Gang 4         2518           Strategy6      Strategy5      Strategy6      Strategy5      Strategy5      
+Gang 5         2500.5         Strategy5      Strategy3      Strategy7      Strategy10     Strategy8      
+Gang 6         2596           Strategy7      Strategy6      Strategy9      Strategy3      Strategy3      
+Gang 7         2384.5         Strategy8      Strategy10     Strategy2      Strategy4      Strategy7      
+Gang 8         2442           Strategy6      Strategy8      Strategy2      Strategy5      Strategy9      
+Gang 9         2448           Strategy9      Strategy3      Strategy9      Strategy1      Strategy3      
+Gang 10        2496           Strategy7      Strategy3      Strategy8      Strategy6      Strategy1      
+Gang 11        2441.5         Strategy6      Strategy6      Strategy4      Strategy1      Strategy8      
+Gang 12        2459.5         Strategy3      Strategy9      Strategy10     Strategy3      Strategy1      
+Gang 13        2395           Strategy4      Strategy1      Strategy7      Strategy10     Strategy8      
+Gang 14        2615.5         Strategy7      Strategy9      Strategy7      Strategy10     Strategy7      
+Gang 15        2516.5         Strategy5      Strategy10     Strategy1      Strategy5      Strategy1      
+Gang 16        2539           Strategy7      Strategy5      Strategy3      Strategy2      Strategy8      
+Gang 17        2476.5         Strategy4      Strategy8      Strategy3      Strategy8      Strategy10     
+Gang 18        2443           Strategy6      Strategy7      Strategy5      Strategy7      Strategy5      
+Gang 19        2551           Strategy3      Strategy1      Strategy9      Strategy7      Strategy8      
+Gang 20        2397.5         Strategy2      Strategy10     Strategy3      Strategy5      Strategy1      
 
-Average Score: 9761.9
-Leader Changes Choice: N/A
-Total Spies: 0
-Total Spies Discovered: 0
-Percent Discovered: N/A
+Average Score: 2487.2
+Leader Changes Choice: No
+Total Spies: 3712
+Total Spies Discovered: 727
+Percent Discovered: 19.6%
 _______________________________________________________________________________________________________________________________________________________________________________________
 
-Winning Combination: Gang 179
+Winning Combination: Gang 2
 
-Member 1 - Strategy3
-Member 2 - Strategy4
-Member 3 - Strategy4
-Member 4 - Strategy8
-Member 5 - Strategy2
+Member 1 - Strategy5
+Member 2 - Strategy6
+Member 3 - Strategy3
+Member 4 - Strategy5
+Member 5 - Strategy5
 _______________________________________________________________________________________________________________________________________________________________________________________

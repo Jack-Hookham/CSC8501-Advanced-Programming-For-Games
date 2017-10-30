@@ -115,7 +115,7 @@ void playTournament(const int total)
 		}
 		else
 		{
-			ossPath << "../Strategies/Test/Prisoner/Strategy" << i + 1 << ".txt";
+			ossPath << "../Strategies/Test/PrisonerColleague/strat" << i + 1 << ".txt";
 		}
 		tournamentStrategies.push_back(ossPath.str());
 	}
@@ -283,7 +283,7 @@ void playGangTournament(const int total)
 		}
 		else
 		{
-			ossPath << "../Strategies/Test/Gang/Strategy" << i + 1 << ".txt";
+			ossPath << "../Strategies/Test/GangColleague/strat" << i + 1 << ".txt";
 		}
 		tournamentStrategies.push_back(ossPath.str());
 	}
@@ -320,7 +320,7 @@ void questionAnalysis(const int total)
 	std::cout << "Running Tournaments...\n";
 	std::ostringstream ossOut;
 	//Run a tournament with 0 spy chance then run the same tournament with the same gang combinations
-	GangTournament* gangTournament = new GangTournament(total, gangTournamentStrategies, false, 50, 1, 20, 0);
+	GangTournament* gangTournament = new GangTournament(total, gangTournamentStrategies, false, 30, 1, 20, 0);
 	gangTournament->play(0);
 	ossOut << gangTournament->generateResults(2);
 
